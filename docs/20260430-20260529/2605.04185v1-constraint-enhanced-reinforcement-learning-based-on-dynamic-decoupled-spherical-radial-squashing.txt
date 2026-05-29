@@ -1,0 +1,1742 @@
+Title: Constraint-Enhanced Reinforcement Learning Based on Dynamic Decoupled Spherical Radial Squashing
+
+URL Source: https://arxiv.org/pdf/2605.04185v1
+
+Published Time: Thu, 07 May 2026 00:14:36 GMT
+
+Number of Pages: 27
+
+Markdown Content:
+# Constraint-Enhanced Reinforcement Learning Based on Dynamic Decoupled Spherical Radial Squashing 
+
+Qijun Liao 1 Zhaoxin Yu 2 Jue Yang 1∗
+
+> 1
+
+School of Mechanical Engineering, University of Science and Technology Beijing 
+
+> 2
+
+Institute of Automation, Chinese Academy of Sciences 
+
+## Abstract 
+
+When deploying reinforcement learning policies to physical robots, actuator rate constraints—hard limits on how fast each joint can move per control step—are unavoidable. These limits vary substantially across joints due to differences in motor inertia, power bandwidth, and transmission stiffness, creating pronounced heterogeneity that existing methods fail to handle geometrically: the per-joint feasible region forms a high-dimensional box in action-increment space, yet QP projection and spherical parameterization methods impose isotropic ball-shaped constraints, exponentially under-covering the true feasible set as heterogeneity grows. This paper proposes Dynamic Decoupled Spherical Radial Squashing (DD-SRad), which resolves this mismatch by computing a position-adaptive ra-dius independently for each actuator, achieving tight alignment with the true per-joint feasible region. DD-SRad satisfies per-step hard constraints with prob-ability 1, preserves well-conditioned gradients throughout training, and admits exact policy gradient backpropagation with zero runtime solver overhead. Mu-JoCo benchmark experiments demonstrate the highest task return at zero constraint violation—matching the unconstrained upper bound—with 30%–50% improve-ment in constraint-space coverage over spherical baselines. High-fidelity IsaacLab simulations with Unitree H1 and G1 humanoid robots confirm end-to-end optimal-ity parameterized directly from official joint specifications, validating a systematic pathway from hardware datasheets to safe deployment. Code is publicly available at https://anonymous.4open.science/r/DD-SRad .
+
+## 1 Introduction 
+
+Reinforcement learning has become a powerful tool for training robotic control policies, enabling legged robots and manipulators to acquire agile behaviors through large-scale simulation. However, deploying these policies on physical hardware requires more than high task rewards: the action sequence produced by the policy must be executable by real actuators at every control step. A fundamental requirement is satisfying actuator rate constraints, namely hard limits on how much each joint’s position command can change per control step, imposed by motor inertia, power amplifier bandwidth, and transmission stiffness. Violating these constraints can cause commands to be silently discarded, trigger overcurrent protection, or even lead to permanent joint damage. Critically, these limits differ substantially across joints: for the Unitree H1 humanoid, hip joints allow 2.2 × the rate of ankle joints, while industrial six-axis manipulators can exceed a 5:1 proximal-to-distal ratio [ 1]. This heterogeneity across actuators is not a design defect, but a structural reality that any RL algorithm targeting real-world deployment must address. Heterogeneous per-step rate constraints impose a structure that existing approaches fail to handle simultaneously across three dimensions. The constraint |ait − ait−1| ≤ δi—where ait denotes the 
+
+> ∗Corresponding author: yangjue@ustb.edu.cn
+> arXiv:2605.04185v1 [cs.LG] 5 May 2026
+
+Table 1: Comparison of Rate-Constraint Handling Methods.                                             
+
+> Method Hard Per-Step Guarantee Heterogeneous Rate-Limit Support Exact Box-Shaped Geometry Time-Varying Feasible Set No Runtime Solver Off-Policy End-to-End
+> RL+MPC/QP [2, 3] ✓Partial ✗✓✗✗
+> CMDP (CPO [8], FOCOPS [10]) ✗✗––✓✓
+> TN-SAC [17] ✓✓✓✗✓✓
+> SRad [14] ✓✗✗✗✓✓
+> BoxPre+ [14] ✓✓✗✓✗✓
+> FlowPG [15] / ARAM [16] ✓✓✓✗✓✗
+> DD-SRad (Ours) ✓✓✓✓✓✓
+> Hard Per-Step Guarantee : every control step satisfies the actuator rate limits. Heterogeneous Rate-Limit Support : different joints may have different rate limits. Time-Varying Feasible Set : the valid action region changes with the previous action.
+
+i-th joint’s position command at step t and δi > 0 its per-joint rate limit—defines a feasible set 
+
+Ft = Q
+
+> i
+
+[ait−1 − δi, a it−1 + δi] in action-increment space: an ℓ∞ hyperrectangle whose side lengths 2δi vary across dimensions and drift with each control step. Yet each major solution family sacrifices a different desideratum: hierarchical MPC/QP methods incur runtime solver overhead and training-deployment inconsistency, precluding end-to-end optimization [ 2– 7]; CMDP-based safe RL methods offer only expected-form guarantees that permit transient per-step violations [ 8–13 ]; and action parameterization methods either impose isotropic ℓ2-ball constraints that compress the reachable set under heterogeneous δi [ 14 ], or assume a static feasible set incompatible with the per-step drift of Ft [ 15 – 17 ]. Under heterogeneous constraints, the reachable-set volume of ℓ2
+
+spherical parameterization is only (min i δi)d/ Q 
+
+> i
+
+δi of the ℓ∞ feasible set—a ratio that degrades exponentially with dimension and heterogeneity. No existing method simultaneously achieves hard per-step constraint satisfaction, exact ℓ∞ coverage of Ft, and end-to-end training without runtime solver overhead. Table 1 summarizes this comparison systematically. To fill this gap, this research proposes Dynamic Decoupled Spherical Radial Squashing (DD-SRad) ,a smooth analytic action parameterization that simultaneously achieves hard per-step constraint satisfaction, exact ℓ∞ coverage of the feasible set, and end-to-end gradient backpropagation with zero runtime solver overhead. Instead of applying a single global radius, DD-SRad computes a 
+
+position-adaptive effective radius Ri 
+
+> eff
+
+independently for each action dimension, so that the reachable set tightly covers the full ℓ∞ feasible box Ft rather than an inscribed sphere. This per-dimension decoupling eliminates the dimensional coupling inherent to ℓ2 squashing and provably satisfies per-step hard constraints with probability 1. Because the parameterization is fully smooth and analytic, it admits exact policy gradient backpropagation via the chain rule with zero solver overhead, and plugs directly into off-policy backbones such as SAC and TD3 without architectural changes. The contributions of this paper are as follows: • Geometric alignment : DD-SRad achieves exact ℓ∞ coverage of the feasible set via per-dimension adaptive radius, recovering volume systematically lost by ℓ2 baselines. • Theoretical guarantees : This research proves per-step hard constraint satisfaction with prob-ability 1 and establishes Jacobian condition number bounds governed by the per-dimension limits. • End-to-end compatibility : The smooth analytic form supports exact backpropagation with no runtime solver. • Empirical validation : DD-SRad achieves the highest return at zero violation on MuJoCo benchmarks and transfers directly to Unitree H1/G1 locomotion in IsaacLab using official rate specifications. 22 Methodology 
+
+2.1 Preliminaries Spherical Radial Squashing (SRad). Kasaura et al. [14] define the mapping: 
+
+a = cs + R · u
+
+p1 + ∥u∥2 (1) where u ∈ Rd is the latent action (network output), cs is the ball center, and R > 0 is the global radius. This mapping strictly guarantees ∥a − cs∥ < R , with ∇ua nonzero everywhere. However, the global radius R induces dimensional coupling: if any dimension approaches the boundary, R must be reduced globally, restricting all other dimensions’ exploration. In the differential action space, SRad uses R = min i δi, giving an ℓ2 ball that mismatches the ℓ∞ feasible set geometry; no globally valid and tight R exists under heterogeneous δ. This geometric mismatch motivates DD-SRad’s design: computing Ri 
+
+> eff
+
+independently per dimension so that the reachable set aligns exactly with Ft
+
+(Theorem 2.7), while the smooth per-dimension Jacobian preserves full gradient information under heterogeneous δ (Proposition 2.5). This work addresses reinforcement learning with rate constraints, where the state space is S ⊆ Rn,the action space is A = Qdi=1 [ai
+
+> min
+
+, a i
+
+> max
+
+], the reward function is r : S × A → R, and the transition dynamics are P (st+1 |st, a t). The rate constraints require: 
+
+|ait − ait−1| ≤ δi, ∀i ∈ { 1, . . . , d }, ∀t ≥ 1 (2) where δ = [ δ1, . . . , δ d] ∈ Rd
+
+> ++
+
+, allowing significant heterogeneity ( δi̸ = δj ). State augmentation 
+
+˜st = ( st, a t−1) resolves the induced non-Markovianity (Appendix B.1). Standard conditions assumed: bounded r, compact A, Lipschitz P (· | s, a ).
+
+2.2 Dynamic Decoupled Spherical Radial Squashing 2.2.1 The DD-SRad Mapping Definition 2.1 (Per-Dimension Effective Radius) . Given per-dimension rate limits δ ∈ Rd
+
+> ++
+
+, previous action aprev ∈ A , and position bounds [ai
+
+> min
+
+, a i
+
+> max
+
+], define the effective radius for dimension i as: 
+
+Ri
+
+> eff
+
+(ui, a i
+
+> prev
+
+) = 
+
+
+
+min  δi, a i 
+
+> max
+
+− ai
+
+> prev
+
+ , if ui > 0min  δi, a i 
+
+> prev
+
+− ai
+
+> min
+
+ , if ui < 0
+
+δi, if ui = 0 
+
+(3) 
+
+Definition 2.2 (DD-SRad Mapping) . Given latent action u ∈ Rd and previous action aprev ∈ A , the DD-SRad mapping is defined as an independent per-dimension transformation: 
+
+ai = ai 
+
+> prev
+
++ Ri
+
+> eff
+
+(ui, a i
+
+> prev
+
+) · ui
+
+p1 + ( ui)2 , ∀i ∈ { 1, . . . , d } (4) 
+
+In vector form: 
+
+a = aprev + Reff ⊙ f (u) (5) 
+
+where ⊙ denotes element-wise product, f (u)i = ui/p1 + ( ui)2 is the per-dimension spherical squashing function, and Reff = [ R1
+
+> eff
+
+, . . . , R d
+
+> eff
+
+]⊤.
+
+Remark 2.3 (Geometric Comparison with SRad and ℓ∞ Projection Methods) . SRad constructs an ℓ2 ball with global radius R = min i δi; DD-SRad’s reachable set is the ℓ∞ hyperrectangle Q
+
+> i
+
+[ai 
+
+> prev
+
+− Ri
+
+> eff
+
+, a i 
+
+> prev
+
++ Ri
+
+> eff
+
+] (volume ratio in Theorem 2.7). Compared to ℓ∞ clip, DD-SRad has the same reachable set but maintains a smooth Jacobian near the boundary; clip truncates gradients at constraint boundaries, losing directional information during policy updates. 
+
+As a numerical safety redundancy, optional global ℓ2 clipping scales the action increment ∆a =
+
+a − aprev after per-dimension squashing: 
+
+f∆a = ∆ a · min 
+
+
+
+1, ∥δ∥2
+
+∥∆a∥2
+
+
+
+(6) The trigger rate is below 0.1% ; per-dimension squashing provides the primary guarantee. 32.3 Theoretical Guarantees 
+
+Proofs are deferred to Appendix B. 
+
+2.3.1 Hard Constraint Satisfaction Theorem 2.4 (Heterogeneous Rate Constraint Satisfaction) . For any aprev ∈ A , any latent action 
+
+u ∈ Rd, and any per-dimension rate limits δ ∈ Rd
+
+> ++
+
+, the DD-SRad mapping (4) guarantees: 
+
+|ai − ai
+
+> prev
+
+| ≤ δi and ai ∈ [ai
+
+> min
+
+, a i
+
+> max
+
+], ∀i, with probability 1 (7) 
+
+Furthermore, when ai 
+
+> prev
+
+∈ (ai
+
+> min
+
+, a i
+
+> max
+
+), both constraints hold with strict inequalities. Proof. See Appendix B.2. 
+
+2.3.2 Gradient Non-degeneracy 
+
+The spherical squashing function saturates like tanh : as |ui| → ∞ , the Jacobian decreases toward 0+
+
+at rate O(|ui|−3); DD-SRad confines ∥u∥ within the effective gradient region via λbase ∥u∥2 (§2.4). 
+
+Proposition 2.5 (Jacobian Structure and Gradient Norm Bound) . Let κ ≜ max i δi/ min i δi ≥ 1. For 
+
+ui̸ = 0 and ai 
+
+> prev
+
+∈ (ai
+
+> min
+
+, a i
+
+> max
+
+), the Jacobian J(u) = ∂a/∂u of the DD-SRad mapping satisfies: (i) J(u) is a diagonal matrix with i-th diagonal entry 
+
+∂a i
+
+∂u i = Ri
+
+> eff
+
+(ui, a i
+
+> prev
+
+)(1 + ( ui)2)3/2 > 0; (8) 
+
+(ii) The spectral norm ∥J(u)∥2 ≤ max i δi holds for all u ∈ Rd; away from position boundaries (Ri 
+
+> eff
+
+= δi) at u = 0 , the condition number reaches κ, which is the worst-case upper bound on the condition number; (iii) For the TD3 backbone (without entropy term), the gradient norm of the actor loss satisfies 
+
+∥∇ uLactor ∥2 ≤ max  
+
+> i
+
+δi · ∥∇ aQ(˜ s, a )∥2 + 2 λbase ∥u∥2; (9) 
+
+for the SAC backbone, the entropy regularization term α∥∇ u log π(u|˜s)∥2 is additionally included. Proof. See Appendix B.3. 
+
+Remark 2.6. At ui = 0 , the mapping is continuous but non-differentiable, with left/right derivatives 
+
+R−,i = min( δi, a i 
+
+> prev
+
+− ai
+
+> min
+
+) and R+,i = min( δi, a i 
+
+> max
+
+− ai
+
+> prev
+
+); automatic differentiation returns one as a subgradient (both strictly positive). This measure-zero event causes no empirical convergence issues under continuous policy distributions (§3.3). 
+
+The mapping is ∥δ∥2-Lipschitz continuous in u (Appendix Proposition B.4), ensuring small policy perturbations cause bounded action changes—a standard regularity condition for gradient-based optimization. 
+
+2.3.3 Tight ℓ∞-Coverage of the Reachable Set Theorem 2.7 (Tight Coverage of the Reachable Set with the ℓ∞ Feasible Set) . Fix aprev ∈ A , and let the joint rate-position feasible set be F = {a ∈ Rd : |ai − ai
+
+> prev
+
+| ≤ δi} ∩ A . The closure of the reachable set of the DD-SRad mapping satisfies 
+
+RDD =
+
+> d
+
+Y
+
+> i=1
+
+ai 
+
+> prev
+
+− R−,i , a i 
+
+> prev
+
++ R+,i  = F, (10) 4with Lebesgue measure VDD = Qdi=1 (R−,i +R+,i ). Relative to ℓ2 spherical parameterization (SRad) with global radius R = min i δi, the volume ratio away from position boundaries ( Ri 
+
+> eff
+
+= δi) is 
+
+VDD 
+
+VSRad 
+
+= 2dΓ( d/ 2 + 1) 
+
+πd/ 2 ·
+
+Q 
+
+> i
+
+δi
+
+(min i δi)d , (11) 
+
+where VSRad = πd/ 2 
+
+> Γ( d/ 2+1)
+
+(min i δi)d is the d-dimensional ℓ2 ball volume and Γ( ·) is the Gamma function. Proof. See Appendix B.5. 
+
+2.4 Policy Optimization with DD-SRad Parameterization 
+
+Upon embedding the DD-SRad mapping into the off-policy actor network, the actor loss for SAC/TD3 backbones takes the unified form 
+
+Lactor = E(s,a prev )∼D [α log πθ (a|˜s) − Qϕ(˜ s, a )] + λbase E[∥u∥2], (12) where ˜s = ( s, a prev ) is the augmented state, D is the replay buffer, α ≥ 0 is the SAC entropy temperature, Qϕ is the Q-network with parameters ϕ, and λbase > 0 is the latent action regularization coefficient; for the TD3 backbone, the entropy term α = 0 and Eq. (12) reduces to the deterministic policy gradient form. For the SAC backbone, since the action a = ϕ˜s(u) is obtained by mapping the latent action u ∼ N (μθ (s), σ 2 
+
+> θ
+
+(s)) through DD-SRad, the policy density is given via the change-of-variables formula under standard reparameterization: 
+
+log πθ (a|˜s) = log N (u; μθ (s), σ 2 
+
+> θ
+
+(s)) −
+
+> d
+
+X
+
+> i=1
+
+log ∂a i
+
+∂u i , (13) where the per-dimension Jacobian ∂a i/∂u i = Ri
+
+> eff
+
+/(1 + ( ui)2)3/2 is given by Eq. (8), so the log-determinant term admits the closed-form expression 
+
+> d
+
+X
+
+> i=1
+
+log ∂a i
+
+∂u i =
+
+> d
+
+X
+
+> i=1
+
+
+
+log Ri
+
+> eff
+
+(ui, a i
+
+> prev
+
+) − 32 log  1 + ( ui)2
+
+. (14) This expression is smooth in θ (at u̸ = 0 ) with no additional overhead. The regularization λbase ∥u∥2
+
+confines ∥u∥ within the effective gradient regime—when ∥u∥ ≫ 1, Jacobian entries ∂a i/∂u i →
+
+0+, degrading gradient transmission—and mitigates cross-dimensional gradient imbalance under heterogeneous constraints (Eq. 9). Robustness of λbase is verified in §3.3. The complete procedure is in Algorithm 1 (Appendix); DD-SRad, as an independent parameterization layer, is backbone-agnostic: constraint satisfaction is guaranteed by Theorem 2.4 and gradient backpropagation by Proposition 2.5. 
+
+2.5 Gradient Propagation Through Off-Policy Backbones 
+
+The DD-SRad parameterization is naturally compatible with off-policy algorithms based on an action-conditioned Q function (SAC [ 30 ], TD3 [ 32 ]). Taking SAC as an example, the actor gradient is 
+
+∇θ Lactor = E˜s
+
+
+
+∇aQ(˜ s, a ) a=ϕ˜s(uθ ) · ∂ϕ ˜s
+
+∂u · ∂u ∂θ 
+
+
+
+, (15) where ϕ˜s : Rd → A denotes the DD-SRad mapping (Eq. 4) conditioned on aprev in ˜s, and ∂ϕ ˜s/∂u 
+
+is diagonally positive definite (Proposition 2.5(i)), propagating all directional information in ∇aQ
+
+losslessly to θ; TD3 is identical without the entropy term. DD-SRad is thus a plug-and-play parame-terization layer for both off-policy families. For on-policy algorithms (e.g., PPO [ 31 ]), constraint satisfaction is still guaranteed by the mapping structure and at−1 can be incorporated into the augmented observation; however, the scalar advantage 
+
+At has substantially higher estimation variance under high-κ constraints than the per-dimension ∇aQ
+
+signal, limiting fine-grained per-dimension exploration (see §J for extension directions). 5Table 2: Quantitative benchmark summary under tight heterogeneous constraints (mean ±std over 5 seeds; best in bold ; † see footnote) 
+
+(a) SAC Backbone Ant-v5 (δ = [0 .24,0.54], κ = 2 .5) Humanoid-v5 (δ = [0 .86,0.56,0.25], κ = 4 .0)
+
+Method Return ↑ CV ↓ Util Return ↑ CV ↓ Util BoxPre+ 1998 ± 125 6.3 0.453 ± 0.026 5204 ± 176 3.4 0.159 ± 0.033 
+
+Post(QP) † 1517 ± 137 9.0 0.651 ± 0.015 5191 ± 346 6.7 0.249 ± 0.045 
+
+SRad-Strict 1448 ± 996 68 .8 0.141 ± 0.029 2742 ± 1350 49 .3 0.024 ± 0.007 
+
+SRad-QP 1703 ± 232 13 .6 0.583 ± 0.035 4558 ± 500 11 .0 0.053 ± 0.024 
+
+D-Tanh 2719 ± 174 6.4 0.570 ± 0.037 4868 ± 267 5.5 0.662 ± 0.069 
+
+DD-SRad (Ours) 3112 ± 788 25 .3 0.492 ± 0.051 5620 ± 215 3.8 0.489 ± 0.035 
+
+HalfCheetah-v5 (δ = [0 .23,0.53], κ = 2 .5) Hopper-v5 (δ = [0 .2,0.5,0.5] , κ = 2 .5)
+
+Method Return ↑ CV ↓ Util Return ↑ CV ↓ Util BoxPre+ 3796 ± 59 1.6 0.600 ± 0.016 2319 ± 208 9.0 0.267 ± 0.015 
+
+Post(QP) † 1798 ± 246 13 .7 0.767 ± 0.022 1278 ± 165 12 .9 0.353 ± 0.014 
+
+SRad-Strict 1432 ± 147 10 .3 0.213 ± 0.014 2195 ± 735 33 .5 0.155 ± 0.020 
+
+SRad-QP 2482 ± 433 17 .4 0.557 ± 0.018 1624 ± 332 20 .4 0.370 ± 0.009 
+
+D-Tanh 4205 ± 231 5.5 0.662 ± 0.069 2334 ± 276 11 .8 0.480 ± 0.011 
+
+DD-SRad (Ours) 4290 ± 682 15 .9 0.626 ± 0.095 2610 ± 183 7.0 0.461 ± 0.007 
+
+(b) TD3 Backbone Ant-v5 (δ = [0 .24,0.54], κ = 2 .5) Humanoid-v5 (δ = [0 .86,0.56,0.25], κ = 4 .0)
+
+Method Return ↑ CV ↓ Util Return ↑ CV ↓ Util BoxPre+ 2917 ± 289 9.9 0.518 ± 0.018 5291 ± 119 2.3 0.179 ± 0.030 
+
+Post(QP) † 1998 ± 282 14 .1 0.689 ± 0.029 4420 ± 117 2.6 0.465 ± 0.036 
+
+SRad-Strict 1246 ± 376 30 .2 0.176 ± 0.015 2270 ± 1126 49 .6 0.053 ± 0.013 
+
+SRad-QP 2147 ± 195 9.1 0.554 ± 0.011 3810 ± 332 8.7 0.015 ± 0.003 
+
+D-Tanh 3484 ± 781 22 .4 0.565 ± 0.017 5313 ± 341 6.4 0.184 ± 0.039 
+
+DD-SRad (Ours) 4260 ± 176 4.1 0.548 ± 0.021 5498 ± 203 3.7 0.203 ± 0.024 
+
+HalfCheetah-v5 (δ = [0 .23,0.53], κ = 2 .5) Hopper-v5 (δ = [0 .2,0.5,0.5] , κ = 2 .5)
+
+Method Return ↑ CV ↓ Util Return ↑ CV ↓ Util BoxPre+ 3641 ± 681 18 .7 0.607 ± 0.081 3256 ± 196 6.0 0.303 ± 0.014 
+
+Post(QP) † 1484 ± 1042 70 .2 0.695 ± 0.060 849 ± 251 29 .6 0.487 ± 0.023 
+
+SRad-Strict 1518 ± 185 12 .2 0.211 ± 0.011 2394 ± 322 13 .4 0.166 ± 0.015 
+
+SRad-QP 3211 ± 128 4.0 0.582 ± 0.027 1020 ± 139 13 .6 0.333 ± 0.019 
+
+D-Tanh 4000 ± 318 7.9 0.672 ± 0.035 2712 ± 228 8.4 0.496 ± 0.003 
+
+DD-SRad (Ours) 4329 ± 529 12 .2 0.668 ± 0.028 3312 ± 384 11 .6 0.462 ± 0.023 
+
+Notes: CVR = 0 for all parameterization-based methods across all configurations, confirmed by Theorem 2.4. † SAC-Post(QP)/TD3-Post(QP): Critic does not perceive projection; its Util is inflated by boundary-dwelling behavior (clip), not indicative of superior geometric coverage— Util comparison is meaningful only among Critic-aware methods. 
+
+## 3 Experiments 
+
+Three experiment groups verify the quantitative predictions of §2.3: §3.1 confirms hard constraint satisfaction (Proposition 2.5, Theorem 2.4) and the performance advantage of smooth Jacobian structure over gradient-truncating baselines; §3.2 verifies the ℓ∞-coverage prediction of Theorem 2.7 via per-dimension utilization; §3.3 validates the λbase sensitivity bound (Proposition 2.5(iii)). All runs use 5 seeds; metrics are Return ↑, Utilization ( E[∥∆a∥1]/∥δ∥1), and CV ↓; CVR is reported in the notes when nonzero. Environment: MuJoCo v2.3.7 / Gymnasium v0.29; hyperparameters in Appendix C. DD-SRad is evaluated on SAC [ 30 ] and TD3 [ 32 ]. Baselines: D-Tanh uses tanh instead of spherical squashing with the same Ri
+
+eff (isolates Jacobian decay effect); BoxPre+ uses critic-aware ℓ∞ clip projection [ 14 ]; Post(QP) uses constraint-unaware clip post-processing; SRad-Strict sets R =min i δi (quantifies ℓ2 mismatch); SRad-QP appends QP after SRad. 
+
+3.1 Benchmark Performance 
+
+Experiments cover four environments—Ant-v5 (8D), Humanoid-v5 (17D), HalfCheetah-v5 (6D), Hopper-v5 (3D)—each tested under wide homogeneous constraints and tight heterogeneous con-straints (see Appendix Table 5), with 1.5M–2M training steps. 6Table 2 provides the quantitative summary; wide-homogeneous results are in Appendix Table 8. All constrained methods achieve CVR = 0 (Theorem 2.4); SAC-Post(QP) shows non-zero CVR under tight configurations. Under tight heterogeneous constraints, DD-SRad achieves the highest Return across all 8 environment– backbone configurations, matching or exceeding the unconstrained upper bound. D-Tanh shares the same Ri 
+
+> eff
+
+mechanism yet trails by 5%–14% under SAC despite higher Util: the tanh Jacobian decays exponentially in |ui| versus DD-SRad’s polynomial decay (Proposition 2.5), compounding with κ—on Humanoid ( d = 17 , κ = 4 .0), D-Tanh falls below BoxPre+, while DD-SRad leads. SRad-Strict exhibits structural collapse (Ant-SAC CV = 68 .8% ; Humanoid-SAC CV = 49 .3% ), con-firming the ℓ2 isotropic geometry mismatch predicted by Theorem 2.7: SRad-Strict ankle utilization (≈ 0.081 ) falls far below min j δj /δ ankle = 0 .40 . BoxPre+ achieves the same ℓ∞ rectangular reach-able set as DD-SRad (Theorem 2.7) yet trails DD-SRad substantially on Ant-SAC (1998 vs. 3112), confirming Proposition 2.5: ℓ∞ clip discontinuously truncates ∇aQ at constraint boundaries, while DD-SRad’s diagonally positive definite Jacobian propagates full directional gradient information to θ.Learning curves and radar charts in Appendix D, E. 
+
+3.2 Analysis of Action Optimization Under Heterogeneous Constraints 
+
+This section verifies Theorem 2.7 via training diagnostics; Utilization distinguishes policy-driven conservatism from parameterization-forced feasible-set truncation. Figure 1 confirms no divergence across all 8 configurations under heterogeneous constraints; HalfCheetah degrades most ( ≈ 40% 
+
+under SAC) as its locomotion task directly requires large joint outputs.                
+
+> (a) Ant-SAC (b) Humanoid-SAC (c) HalfCheetah-SAC (d) Hopper-SAC
+> (e) Ant-TD3 (f) Humanoid-TD3 (g) HalfCheetah-TD3 (h) Hopper-TD3
+> Wide Homogeneous Tight Heterogeneous
+> Figure 1: Mean return curves of DD-SRad under wide homogeneous and tight heterogeneous constraints with SAC/TD3 backbones.
+
+Per-dimension utilization exhibits a layered structure under tight constraints: Ant hip ( δ = 0 .2)and ankle ( δ = 0 .5) groups each independently approach their own δi boundary, rather than being truncated to min i δi—direct evidence of ℓ∞ parameterization. Radar charts across all environments in Appendix F. 
+
+3.3 Sensitivity Analysis of λbase 
+
+λbase is the sole algorithmic hyperparameter; its role is to confine ∥u∥ within the effective gradient region (Proposition 2.5(iii)). This section tests λbase ∈ { 0.0001 , 0.001 , 0.01 , 0.1, 1.0} on Ant-v5 under wide homogeneous ( δ = [1 .0] 8) and tight heterogeneous ( δ = [0 .24, 0.54]) constraints. Figure 2 shows that under wide homogeneous constraints, λbase ∈ { 0.001 , 0.01 , 0.1, 1.0} all con-verge comparably; λbase = 0 .0001 shows ≈ 20% return degradation with irregular cross-dimensional utilization, indicating regularization failure. 7(a) Return (Tight) (b) Return (Wide) (c) Utilization (Tight) (d) Utilization (Wide)      
+
+> 1e-4 1e-3 1e-2 1e-1 1e0
+> Figure 2: Mean return and per-dimension utilization of DD-SRad (SAC) on Ant-v5 under varying λbase .
+
+Under tight heterogeneous constraints (Figure 2(a)(c)), the influence pattern changes qualitatively and becomes non-monotone: λbase = 0 .01 achieves the highest return, with both smaller and larger values degrading performance. Two competing failure modes drive this structure: at λbase = 0 .0001 ,insufficient regularization causes runaway per-dimension imbalance—the radar chart shows ankle dimensions overexpanding above 0.65 while hip dimensions collapse irregularly, yielding the worst return despite maximal exploration freedom; at λbase = 1 .0, excessive regularization uniformly suppresses utilization to ≈ 0.2, eliminating the hip–ankle differential and destroying differentiated coverage. Combining both regimes: wide constraints favor λbase = 0 .001 while tight constraints favor λbase = 0 .01 ; λbase = 0 .005 lies at the geometric midpoint and performs consistently well across both, requiring no per-environment tuning. 
+
+## 4 Simulations 
+
+IsaacLab high-fidelity simulation with per-joint rate limits from official specifications verifies cross-platform ℓ∞ reachable-set consistency (Gap metric) under contact dynamics, sensor noise, and joint temporal coupling unavailable in MuJoCo. 
+
+4.1 Experimental Setup 
+
+Experiments select Unitree H1 (10 joints, rough terrain, κ ≈ 2.2) and G1 (13 joints with torso, flat terrain, κ = 4 .0), providing controlled comparison of κ effects under different terrain conditions. Rate limits are read from official specifications and normalized; tightened constraints verify hard guarantee validity; details in Appendix Table 6. Experiments uniformly use the FastSAC [ 38 ] backbone—an SAC variant for large-scale parallel simulation ( Nenv = 4096 ) with stable humanoid locomotion training; its policy gradient structure is mathematically identical to standard SAC, and DD-SRad compatibility is guaranteed by §2.5. Baselines: SAC-DD-SRad (Ours), SAC-D-Tanh, SAC-BoxPre+, SAC-Post(QP), SRad-QP, and SRad-Strict. Additional metrics: VTE ↓, Fall ↓, Steps ↑, Util-P/Util-D/Gap (Appendix Figure 8). 
+
+4.2 Simulation Results  
+
+> (a)
+
+H1 Mean Return (b) G1 Mean Return (c) H1 Radar Chart (d) G1 Radar Chart        
+
+> BoxPre+ QP SRad-QP SRad-Strict D-Tanh DD-SRad
+> Figure 3: Learning curves and radar charts for H1 and G1 (mean ±std over 5 seeds; official constraints).
+
+8Table 3: Comprehensive performance in IsaacLab high-fidelity simulation (FastSAC backbone [ 38 ]; H1 Rough & G1 Flat; mean ±std over 5 seeds;                                                                                                                                                                      
+
+> bold is best among end-to-end methods; all constrained methods satisfy CVR =0 (constraint layer enforced directly); κ= max iδi/min iδi:H1 κ≈2.2, G1 κ=4 .0)
+> (a) Task-Level Performance (Return ↑: cumulative episode reward; VTE ↓: velocity tracking error (m/s); Fall ↓: base contact termination rate (%); Steps ↑: mean episode length)
+> Unitree H1 (Humanoid,Rough, κ≈2.2)Unitree G1 (Humanoid,Flat, κ=4 .0)
+> Method Return ↑VTE ↓Fall ↓Steps ↑Return ↑VTE ↓Fall ↓Steps ↑
+> BoxPre+ 23 .11 ±1.87 0.385 ±0.026 70 .2526 5213 ±241 0.224 ±0.028 5.7970
+> Post(QP) 19 .53 ±2.43 0.465 ±0.064 88 .0339 4954 ±42 0.139 ±0.006 0.01000
+> SRad-QP 13 .64 ±1.33 0.390 ±0.044 76 .5431 5166 ±98 0.187 ±0.011 0.3998
+> SRad-Strict 0.83 ±0.11 0.624 ±0.008 100 .0139 1312 ±344 0.360 ±0.036 91 .0403
+> D-Tanh 34 .56 ±3.04 0.462 ±0.041 58 .7679 5145 ±91 0.207 ±0.016 2.2989
+> DD-SRad (Ours) 37 .14 ±2.84 0.459 ±0.023 48 .7748 5473 ±238 0.138 ±0.009 0.3998
+> (b) Constraint Utilization (Util-P: proximal joint group (H1: δP=0 .40 , G1: δP=0 .40 ); Util-D: distal joint group (H1: δD=0 .18 , G1:
+> δD=0 .18 ); Gap =|Util-P −Util-D |)
+> Unitree H1 (Humanoid,Rough, κ≈2.2)Unitree G1 (Humanoid,Flat, κ=4 .0)
+> Method Util-P Util-D Average Gap Util-P Util-D Average Gap BoxPre+ 0.42 ±0.00 0.44 ±0.01 0.02 0.37 ±0.02 0.38 ±0.02 0.01
+> Post(QP) 0.45 ±0.01 0.48 ±0.01 0.03 0.39 ±0.01 0.09 ±0.01 0.30
+> SRad-QP 0.37 ±0.01 0.42 ±0.01 0.06 0.41 ±0.01 0.03 ±0.04 0.38
+> SRad-Strict 0.08 ±0.00 0.50 ±0.01 0.42 0.08 ±0.01 0.01 ±0.00 0.08
+> D-Tanh 0.41 ±0.00 0.62 ±0.05 0.21 0.40 ±0.01 0.02 ±0.05 0.37
+> DD-SRad (Ours) 0.38 ±0.01 0.48 ±0.03 0.10 0.40 ±0.01 0.02 ±0.04 0.38
+> Notes: All values are measured on 5 evaluation seeds with 1000 test episodes per seed after convergence; learning curves (Fig. 3a, Fig. 3b) and radar charts (Fig. 3c, Fig. 3d) are plotted from the same evaluation data. H1 proximal group: hip joints ( δ=0 .40 ); distal group: ankle joints (δ=0 .18 ). G1 proximal group: hip_pitch joints ( δ=0 .40 ); distal group: ankle joints ( δ=0 .18 –0.25 ). H1 fall rates reflect terrain difficulty.
+
+On H1 (Table 3(a)), DD-SRad leads at 37 .14 ±2.84 (Fall = 48 .7% , Steps = 748 ); D-Tanh ( 34 .56 ), BoxPre+ ( 23 .11 , Fall = 70 .2% ), SAC-Post(QP) ( 19 .53 ), SRad-QP ( 13 .64 ), and SRad-Strict ( 0.83 ,Fall = 100% ) follow, with gaps amplified by rough terrain. On G1, DD-SRad achieves 5473 ±238 
+
+(Fall = 0 .3% , Steps = 998 ); BoxPre+ ( 5213 ) ranks second in Return, slightly exceeding D-Tanh (5145 ), yet shows 62% higher VTE ( 0.224 vs 0.138 ), revealing gait instability from clip’s uniform activation; SRad-Strict ( 1312 , Fall = 91% ) confirms high-κ collapse. Table 3(b) shows per-joint-group utilization. DD-SRad achieves task-adaptive allocation: balanced proximal–distal on H1 (Gap = 0 .10 ); hip-dominant on G1 (Util-P = 0 .40 , Util-D ≈ 0.02 , Gap = 0 .38 ). BoxPre+’s near-equal utilization (Gap ≈ 0.01 ) directly causes 62% higher G1 VTE: consistent with Proposition 2.5, gradient truncation at clip boundaries prevents the critic signal from driving dimension-selective allocation. SRad-Strict Util-P = 0 .08 falls far below min i δi/δ P≈0.45 (Theo-rem 2.7). 
+
+## 5 Related Work 
+
+Hierarchical and model-based methods. MPC/QP approaches achieve hard per-step satisfaction but incur solver overhead and training-deployment inconsistency [ 6, 7 , 2, 4, 5, 3 ]; hierarchical RL decouples constraint handling at the cost of objective inconsistency and degraded sim-to-real transfer [18–24]. 
+
+Constrained Markov decision processes. CMDP methods bound expected cumulative costs [ 13 , 8 –12, 25–27] but permit transient per-step violations, falling short of |∆ait| ≤ δi, ∀t [28]. 
+
+Action parameterization and safety filters. tanh /squashed-Gaussian outputs enforce static intervals but not inter-step differential constraints [ 29 – 32 ]; SRad [ 14 ] imposes a global ℓ2 radius that com-presses the reachable set under heterogeneous δi; CBF-QP/OptLayer filters achieve hard satisfaction but incur QP latency and gradient discontinuities [33–36]. 
+
+Generative and flow-based methods. FlowPG [ 15 ], CV-Flows [ 37 ], ARAM [ 16 ], and TN-SAC [ 17 ]achieve strong performance on static feasible sets but cannot accommodate the per-step Ft drift induced by at−1.A detailed per-method analysis is provided in Appendix A. 96 Conclusion 
+
+This paper identifies the geometric mismatch between the ℓ∞ rate-constraint feasible set and ℓ2
+
+spherical parameterization, quantifying the volume ratio as Q 
+
+> i
+
+δi/(min i δi)d. DD-SRad resolves this via position-adaptive Ri 
+
+> eff
+
+computed independently per dimension, with three theoretical guaran-tees: probability-1 constraint satisfaction (Theorem 2.4), diagonally positive definite Jacobian with spectral structure determined by {δi} (Proposition 2.5), and ℓ∞-tight coverage with volume ratio Q 
+
+> i
+
+δi/(min i δi)d relative to ℓ2 (Theorem 2.7). MuJoCo experiments achieve the highest return at zero violation across all 8 environment–backbone configurations, with 30%–50% coverage improve-ment over ℓ2 baselines and λbase robust over two orders of magnitude. IsaacLab H1/G1 simulations confirm end-to-end optimality parameterized directly from official joint rate specifications, validating the systematic pathway from hardware specifications to safe deployment without reward engineering. 
+
+## References 
+
+[1] P. M. Wensing, A. Wang, S. Seok, D. Otten, J. Lang, and S. Kim, “Proprioceptive actuator design in the MIT Cheetah: Impact mitigation and high-bandwidth physical interaction for dynamic legged robots,” 
+
+IEEE Transactions on Robotics , vol. 33, no. 3, pp. 509–522, June 2017. [2] R. Grandia, F. Jenelten, S. Yang, F. Farshidian, and M. Hutter, “Perceptive locomotion through nonlinear model-predictive control,” IEEE Transactions on Robotics , vol. 39, no. 5, pp. 3402–3421, Oct. 2023. [3] G. Bledt, M. J. Powell, B. Katz, J. Di Carlo, P. M. Wensing, and S. Kim, “MIT Cheetah 3: Design and control of a robust, dynamic quadruped robot,” in 2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , Madrid, Spain, 2018, pp. 2245–2252. [4] D. Kim et al., “Highly dynamic quadruped locomotion via whole-body impulse control and model predictive control,” arXiv preprint arXiv:1909.06586 , 2019. [5] A. Pandala, R. T. Fawcett, and K. A. Hamed, “Robust predictive control for quadrupedal locomotion: Learning to close the gap between reduced and full-order models,” IEEE Robotics and Automation Letters ,vol. 7, no. 3, pp. 6622–6629, 2022. [6] G. Williams et al., “Information theoretic MPC for model-based reinforcement learning,” in 2017 IEEE International Conference on Robotics and Automation (ICRA) , Singapore, 2017, pp. 1714–1721. [7] A. Nagabandi, G. Kahn, R. S. Fearing, and S. Levine, “Neural network dynamics for model-based deep reinforcement learning with model-free fine-tuning,” in 2018 IEEE International Conference on Robotics and Automation (ICRA) , Brisbane, Australia, 2018, pp. 7559–7566. [8] J. Achiam, D. Held, A. Tamar, and P. Abbeel, “Constrained policy optimization,” in Proceedings of the 34th International Conference on Machine Learning (ICML) , 2017, pp. 22–31. [9] C. Tessler, D. J. Mankowitz, and S. Mannor, “Reward constrained policy optimization,” in International Conference on Learning Representations (ICLR) , 2019. [10] Y. Zhang, Q. Vuong, and K. W. Ross, “First order constrained optimization in policy space,” in Advances in Neural Information Processing Systems (NeurIPS) , 2020. [11] L. Yang et al., “Constrained update projection approach to safe policy optimization,” in Advances in Neural Information Processing Systems (NeurIPS) , 2022. [12] L. Zhang et al., “Penalized proximal policy optimization for safe reinforcement learning,” in International Joint Conference on Artificial Intelligence (IJCAI) , 2022. [13] E. Altman, Constrained Markov Decision Processes . CRC Press, 1999. [14] K. Kasaura, S. Miura, T. Kozuno, R. Yonetani, K. Hoshino, and Y. Hosoe, “Benchmarking actor-critic deep reinforcement learning algorithms for robotics control with action constraints,” IEEE Robotics and Automation Letters , vol. 8, no. 8, pp. 4449-4456, Aug. 2023. [15] J. C. Brahmanage, J. Ling, and A. Kumar, “FlowPG: Action-constrained policy gradient with normalizing flows,” in Advances in Neural Information Processing Systems (NeurIPS) , 2023. [16] W.-T. Hung et al., “Efficient action-constrained reinforcement learning via acceptance-rejection method and augmented MDPs,” in International Conference on Learning Representations (ICLR) , 2025. 
+
+10 [17] P. Stolz et al., “Improving Stochastic Action-Constrained Reinforcement Learning via Truncated Distribu-tions,” arXiv preprint arXiv:2511.22406 , 2025. [18] T. Johannink et al., “Residual reinforcement learning for robot control,” in IEEE International Conference on Robotics and Automation (ICRA) , 2019, pp. 6023–6029. [19] J. Lee et al., “Learning quadrupedal locomotion over challenging terrain,” Science Robotics , vol. 5, no. 47, 2020. [20] J. Li, L. Sun, J. Chen, M. Tomizuka, and W. Zhan, “A safe hierarchical planning framework for complex driving scenarios based on reinforcement learning,” in 2021 IEEE International Conference on Robotics and Automation (ICRA) , Xi’an, China, 2021, pp. 2660–2666. [21] A. Rajeswaran et al., “Learning complex dexterous manipulation with deep reinforcement learning and demonstrations,” arXiv preprint arXiv:1709.10087 , 2017. [22] S. Gros and M. Zanon, “Data-driven economic NMPC using reinforcement learning,” IEEE Transactions on Automatic Control , vol. 65, no. 2, pp. 636–648, Feb. 2020. [23] M. Vecerík et al., “Leveraging demonstrations for deep reinforcement learning on robotics problems with sparse rewards,” arXiv preprint arXiv:1707.08817 , 2017. [24] Y. Chebotar et al., “Closing the sim-to-real loop: Adapting simulation randomization with real world experience,” in IEEE International Conference on Robotics and Automation (ICRA) , 2019, pp. 8973–8979. [25] A. Ray, J. Achiam, and D. Amodei, “Benchmarking safe exploration in deep reinforcement learning,” 2019. [Online]. Available: https://cdn.openai.com/safexp-short.pdf 
+
+[26] A. Wachi, X. Shen, and Y. Sui, “A survey of constraint formulations in safe reinforcement learning,” in 
+
+International Joint Conference on Artificial Intelligence (IJCAI) , 2024. [27] S. Gu et al., “A review of safe reinforcement learning: Methods, theories, and applications,” IEEE Transactions on Pattern Analysis and Machine Intelligence , vol. 46, no. 12, pp. 11216–11235, Dec. 2024. [28] D. P. Bertsekas and S. E. Shreve, Stochastic Optimal Control: The Discrete Time Case . Athena Scientific, 1996. [29] T. P. Lillicrap et al., “Continuous control with deep reinforcement learning,” in Proceedings of the Fourth International Conference on Learning Representations (ICLR) , 2016. [30] T. Haarnoja, A. Zhou, P. Abbeel, and S. Levine, “Soft actor-critic: Off-policy maximum entropy deep reinforcement learning with a stochastic actor,” in International Conference on Machine Learning (ICML) ,2018, pp. 1861–1870. [31] J. Schulman, F. Wolski, P. Dhariwal, A. Radford, and O. Klimov, “Proximal policy optimization algorithms,” 
+
+arXiv preprint arXiv:1707.06347 , 2017. [32] S. Fujimoto, H. van Hoof, and D. Meger, “Addressing function approximation error in actor-critic methods,” in International Conference on Machine Learning (ICML) , 2018, pp. 1587–1596. [33] A. D. Ames, X. Xu, J. W. Grizzle, and P. Tabuada, “Control barrier function based quadratic programs for safety critical systems,” IEEE Transactions on Automatic Control , vol. 62, no. 8, pp. 3861–3876, Aug. 2017. [34] T.-H. Pham, G. De Magistris, and R. Tachibana, “OptLayer – Practical constrained optimization for deep reinforcement learning in the real world,” in 2018 IEEE International Conference on Robotics and Automation (ICRA) , Brisbane, Australia, 2018, pp. 6236–6243. [35] G. Dalal, K. Dvijotham, M. Vecerik, T. Hester, C. Paduraru, and Y. Tassa, “Safe exploration in continuous action spaces,” arXiv preprint arXiv:1801.08757 , 2018. [36] A. Singletary, S. Kolathaya, and A. D. Ames, “Safety-critical kinematic control of robotic systems,” IEEE Control Systems Letters , vol. 6, pp. 139–144, 2022. [37] J. C. Brahmanage, J. Ling, and A. Kumar, “Leveraging constraint violation signals for action-constrained reinforcement learning,” in Proceedings of the AAAI Conference on Artificial Intelligence , 2025. [38] Y. Seo, C. Sferrazza, J. Chen, G. Shi, R. Duan, and P. Abbeel, “Learning sim-to-real humanoid locomotion in 15 minutes,” arXiv preprint arXiv:2512.01996 , 2025. 
+
+11 A Extended Related Work 
+
+The most mature engineering solution for handling actuator constraints is the hierarchical control architecture, which decouples the high-level RL policy from the low-level constraint handling. Williams et al. [ 6] proposed information-theoretic MPPI, solving constrained optimization within the control period via large-scale parallel sampling and demonstrating strong online planning capability on racing trajectory tracking tasks; however, the computational cost of MPPI grows steeply with state dimension, making it difficult to maintain the required control frequency on high-DOF humanoid robots. Nagabandi et al. [ 7] learned system dynamics with a neural network and ran MPC on top, achieving online adaptation to changes in environment parameters; however, the accuracy of the learned dynamics model degrades away from the training distribution, causing constraint satisfaction to deteriorate—particularly evident in contact-rich locomotion tasks. Grandia et al. [ 2] embedded perception into nonlinear MPC to achieve dynamic locomotion on rough terrain, demonstrating MPC’s constraint-handling capability in complex environments; however, the per-step solve time of approximately 15 ms, together with perception processing overhead, makes generalization to higher-frequency control scenarios difficult. Kim et al. [ 4] proposed a combined whole-body impulse control and MPC framework achieving highly dynamic gaits on a quadruped; the method’s reliance on precise dynamics models limits its robustness to parametric uncertainty and external disturbances. Pandala et al. [ 5] introduced robust predictive control to reduce the gap between simplified and full-order models; however, its conservative design further compresses the reachable action space under tight rate constraints, affecting motion performance. Johannink et al. [ 18 ] proposed residual reinforcement learning, stacking an RL policy on top of a classical controller to enable safe exploration with fewer samples in robotic manipulation; however, the performance ceiling of this framework is limited by the quality of the base controller, and the high-level–low-level objective inconsistency is especially pronounced near constraint boundaries. Lee et al. [ 19 ] completed end-to-end locomotion learning on challenging terrain with a real quadruped, demonstrating the potential of pure RL under complex dynamics; however, that work does not explicitly handle joint rate limits, relying on reward engineering for soft constraints on abnormal actions without providing hard guarantees. Li et al. [ 20 ] designed an RL-based safe hierarchical planning framework for complex driving scenarios; the high-level policy cannot perceive the low-level constraint boundaries at inference time, leading to biased policy gradient estimates near constraint regions, and empirical studies show that actual execution performance degrades by approximately 18% compared to end-to-end methods [ 21 ]. Gros and Zanon [ 22 ] proposed a data-driven economic nonlinear MPC framework that theoretically unifies RL and MPC; however, their framework re-quires differentiable dynamics models and incurs high computational complexity, limiting real-time deployment feasibility. The above hierarchical approaches share three structural difficulties: objective inconsistency between the high-level RL and low-level constraint handler—the high-level optimizes long-term cumulative return while the low-level minimizes tracking error, and these two objectives conflict fundamentally when constraints are active; computational overhead of the low-level solver (MPC, QP) in high-dimensional systems significantly compresses control bandwidth, with the convex MPC solve on MIT Cheetah 3 reducing the control frequency from an ideal 500 Hz to approximately 40 Hz in practice [ 3 ]; and training-deployment inconsistency making sim-to-real transfer difficult [ 23 , 24 ]—the policy observes idealized execution during training, while low-level corrections change the action effect at deployment, with performance degradation of 25–40%. From a constrained RL perspective, Altman [ 13 ] established the theoretical foundation of constrained Markov decision processes (CMDP), formalizing constraint satisfaction as expected cumulative constraints Eπ [P 
+
+> t
+
+ct] ≤ d; the core limitation of this framework is that it permits transient violations as long as the long-term average is satisfied, whereas rate constraints require |∆ait| ≤ δi, ∀t to hold strictly at every time step—two constraint types with essentially different mathematical structures. Achiam et al. [ 8] proposed Constrained Policy Optimization (CPO), maintaining constraint feasibility during policy updates via second-order trust-region methods and establishing an important reference point for constrained RL on the Safety Gym benchmark; however, CPO handles expected-form constraints, exhibits high gradient estimate variance in sparse violation scenarios, and requires solving a linear system at each step with considerable computational cost. Tessler et al. [ 9] proposed RCPO, converting constraints into penalty terms via dynamic Lagrangian multiplier adjustment; this method cannot eliminate single-step violations at test time even after convergence, lacking hard guarantees. 12 Zhang et al. [ 10 ] proposed FOCOPS, approximating CPO’s constrained policy update with first-order optimization to substantially reduce computational cost; however, its theoretical guarantees are equally limited to expected constraints and are ineffective for per-step rate limits. Yang et al. [ 11 ]proposed CUP, decoupling policy improvement from constraint satisfaction via constrained update projection; however, this method’s conservatism near constraint boundaries reduces exploration efficiency, leading to insufficient constraint utilization under high-κ heterogeneous constraints. Zhang et al. [ 12 ] proposed P3O, balancing task performance and constraint satisfaction with adaptive penalty coefficients; its online tuning mechanism is sensitive to hyperparameters, with questionable stability under rapidly varying rate constraints. Ray et al. [ 25 ] systematically evaluated the performance of multiple safe RL algorithms, revealing an inherent trade-off between constraint satisfaction rate and task performance in existing CMDP methods, but providing no specialized solutions for the temporally dependent rate-constraint scenario. Survey works by Wachi et al. [26] and Gu et al. [27] further confirm that existing safe RL theoretical frameworks cannot mathematically cover the per-step hard guarantee requirements of rate constraints. At the policy parameterization level, Schulman et al. [ 31 ] proposed PPO, which has found wide application in on-policy settings; however, PPO itself does not handle action-domain constraints, allowing actions to exceed physical limits during training, and requiring additional constraint handling at deployment. Fujimoto et al. [ 32 ] proposed TD3, improving critic estimate accuracy via target policy smoothing; similarly, the standard TD3 framework has no native support for rate constraints. Lillicrap et al. [ 29 ] introduced a tanh output layer in DDPG to restrict actions to [−1, 1] ; this method hard-codes the action range as a uniform symmetric interval and cannot handle dynamic shifting feasible sets centered at at−1. Haarnoja et al. [ 30 ] proposed SAC, adopting a squashed Gaussian policy to explicitly model action boundaries while maintaining entropy maximization; however, squashed Gaussians are equally applicable only to static position-domain constraints and cannot express inter-step action differential relationships. Kasaura et al. [ 14 ] systematically studied the effect of action constraints on actor-critic algorithms and proposed Spherical Radial Squashing (SRad), constraining policy output within a ball of center cs and radius R via a = cs + R · u/ p1 + ∥u∥2,outperforming naive clip and QP post-processing on robotic control constraint benchmarks; SRad performs well under homogeneous constraints, but its global radius design faces a structural trade-off under heterogeneous constraints—if R = min i δi, the reachable set for high-budget dimensions is compressed to a fraction min i δi/δ i of the original radius; if R > min i δi, low-budget dimensions are violated; no globally valid and tight radius selection exists. Singletary et al. [ 36 ] proposed a safety-critical kinematics control framework using control barrier functions (CBF) to guarantee safety constraints at the kinematic level; the CBF approach requires high model accuracy and faces computational bottlenecks with real-time CBF-QP solving in high-dimensional joint spaces. Pham et al. [ 34 ] proposed OptLayer, inserting a differentiable optimization layer between the policy and environment to project infeasible actions to the nearest feasible point, achieving hard constraint satisfaction; however, QP solve time under high-dimensional non-convex constraints grows with dimension, and the Jacobian computation of the differentiable projection layer introduces additional latency in real-time control. Dalal et al. [ 35 ] proposed Safe Layer, learning a safe projection via linear approximation of constraint functions to achieve low-cost action correction; linear approximation accuracy degrades near constraint boundaries, causing protection failures under high-frequency rate constraint activation. Ames et al. [ 33 ] proposed a CBF-based QP safety filter, guaranteeing forward invariance in control input space via QP solving with rigorous continuous-time safety guarantees; however, adapting CBF-QP to discrete-time RL differential action constraints requires conservative margin design, excessively restricting the action range during normal motion. Recent generative model-based methods attempt to fundamentally change the constraint handling paradigm. Brahmanage et al. [ 15 ] proposed FlowPG, sampling directly from the feasible set via normalizing flows, achieving excellent performance on static action constraint benchmarks; however, FlowPG requires pre-building a flow model of the global feasible set, while the feasible set Ft of rate constraints drifts with each step’s at−1, making it impossible to establish a static distribution, rendering FlowPG inapplicable to rate-constraint scenarios. Conditional normalizing flows can theoretically model time-varying feasible sets conditioned on at−1, but executing a full L-layer flow forward pass at each inference step introduces unacceptable real-time latency at 50 Hz control frequency; DD-SRad’s analytic parameterization incurs zero inference overhead. Brahmanage et al. [ 37 ] further proposed CV-Flows, augmenting flow model training with constraint violation signals to improve sampling quality near boundaries; however, its assumption of a static feasible set equally prevents it from handling temporally dependent rate constraints. Hung et al. [ 16 ] proposed 13 ARAM, efficiently realizing constraint-feasible action sampling via acceptance-rejection sampling and augmented MDPs, with sample efficiency significantly superior to MCMC methods under static constraints; however, the acceptance-rejection framework equally requires relatively stable feasible sets during training and cannot directly accommodate rate constraints where the feasible set shifts dynamically with at−1 at each step. Stolz et al. [ 17 ] proposed defining a truncated Gaussian distribution policy directly over constrained intervals, resolving the abnormal probability density of squashed Gaussians at constraint boundaries via closed-form/approximate normalization constants and entropy corrections, achieving significant performance improvements on static and state-dependent action constraint benchmarks; the original work does not cover the temporally dependent feasible set Ft induced by at−1, and adapting it to rate constraints requires state augmentation and recomputing truncation endpoints at each step. This approach and DD-SRad represent two parallel design routes within action-constrained RL: the former focuses on correct density modeling of the policy distribution, the latter on analytic parameterization of ℓ∞ geometry; the two share the same reachable set under an ℓ∞ feasible set, differing in that one handles the density function for stochastic sampling while the other uses a deterministic mapping such that entropy and log-probability computations in u-space remain consistent with standard SAC. Synthesizing the above analysis, existing methods share a common geometric mismatch problem when handling rate constraints. The rate constraint |ait − ait−1| ≤ δi defines an ℓ∞ hyperrectangle feasible set Ft = {a : |ai − ait−1| ≤ δi, ∀i} in the differential action space, while ℓ2 spherical parameteriza-tion (SRad) and the static feasible set assumption of generative model methods are both incompatible with this ℓ∞ geometric structure. Under heterogeneous constraints ( κ ≫ 1), the effective explo-ration radius of ℓ2 spherical parameterization is limited to R ≤ min i δi, compressing the reachable set for high-budget dimensions to a fraction min i δi/δ i of the original radius—corresponding to approximately 60% radius loss at κ = 2 .5. The reachable set of ℓ∞ projection methods (such as per-dimension clip) is consistent with Ft, but clip truncates the gradient at the boundary of the feasible set, causing the policy gradient to lose directional information as the constraint approaches saturation. 
+
+## B Proofs of Theoretical Results 
+
+This appendix collects complete proofs of all theoretical results stated in §2.3. Notation follows §2 throughout. Two elementary facts are used repeatedly throughout the proofs. • Squashing bound. For f (t) ≜ t/ √1 + t2, one has |f (t)| < 1 for all t ∈ R and |f (t)| ≤ | t|
+
+(since √1 + t2 ≥ 1). • Squashing derivative. f ′(t) = (1 + t2)−3/2, which satisfies 0 < f ′(t) ≤ 1 for all t ∈ R.
+
+B.1 Proof of Augmented MDP Validity 
+
+Proof. The three properties are verified in turn. 
+
+(i) Markov property. By construction, ˜st+1 = ( st+1 , a t), where st+1 is drawn from the original transition kernel P (· | st, a t) and the action component is set deterministically to at. Hence the augmented transition kernel satisfies 
+
+˜P (˜ st+1 | ˜st, a t) = P (st+1 | st, a t) .
+
+The right-hand side depends only on (st, a t), and st is a component of ˜st, so the transition probability is a function of (˜ st, a t) alone. The Markov property therefore holds on the augmented state space 
+
+˜S = S × A .
+
+(ii) Policy validity. The DD-SRad mapping (4) takes aprev = at−1 as input, which is the second component of the augmented state ˜st = ( st, a t−1). By Theorem 2.4, the output at = ϕ(ut, a t−1)
+
+satisfies |ait − ait−1| ≤ δi and ait ∈ [ai
+
+> min
+
+, a i
+
+> max
+
+] for all i with probability 1. Therefore the stochastic policy π : ˜S → ∆( A) is well-defined and maps every augmented state to a distribution over A
+
+satisfying constraint (2). 
+
+(iii) Existence of the optimal value function. The augmented MDP ˜M inherits all standard regularity conditions from the original MDP: the reward r is bounded, the augmented action space A is compact 14 (unchanged), and the augmented transition kernel ˜P is Lipschitz continuous in (˜ s, a ) because P is Lipschitz in (s, a ) and the action component of ˜st+1 is set deterministically. Under these conditions, the augmented Bellman operator 
+
+(T Q)(˜ s, a ) ≜ r(s, a ) + γ E˜s′∼ ˜P (·| ˜s,a )
+
+h
+
+max  
+
+> a′
+
+Q(˜ s′, a ′)
+
+i
+
+is a γ-contraction in ∥ · ∥ ∞ on the space of bounded functions [ 28 ]. By Banach’s fixed-point theorem, 
+
+T admits a unique fixed point Q∗, which is the optimal action-value function of ˜M.
+
+B.2 Proof of Theorem 2.4 (Heterogeneous Rate Constraint Satisfaction) 
+
+Proof. Fix any dimension i ∈ { 1, . . . , d } and any ui ∈ R. Let ∆ai ≜ ai − ai 
+
+> prev
+
+= Ri 
+
+> eff
+
+(ui, a i
+
+> prev
+
+) ·
+
+f (ui).Three exhaustive cases are considered according to the sign of ui.
+
+Case 1: ui > 0. Then Ri 
+
+> eff
+
+= min  δi, a i 
+
+> max
+
+− ai
+
+> prev
+
+ ≥ 0 and f (ui) ∈ (0 , 1) .1. Rate constraint. |∆ai| = Ri 
+
+> eff
+
+· f (ui) < R i 
+
+> eff
+
+≤ δi, where the strict inequality uses 
+
+f (ui) < 1. (When ai 
+
+> prev
+
+= ai 
+
+> max
+
+one has Ri 
+
+> eff
+
+= 0 , giving ∆ai = 0 , which also satisfies 
+
+|∆ai| ≤ δi.) 2. Position constraint. Since ∆ai = Ri 
+
+> eff
+
+f (ui) ≥ 0, it follows that ai = ai 
+
+> prev
+
++ ∆ ai ≥
+
+ai 
+
+> prev
+
+≥ ai
+
+> min
+
+. Moreover, ∆ai < R i 
+
+> eff
+
+≤ ai 
+
+> max
+
+− ai
+
+> prev
+
+, so ai < a i
+
+> max
+
+. Hence ai ∈
+
+[ai
+
+> min
+
+, a i
+
+> max
+
+].If additionally ai 
+
+> prev
+
+∈ (ai
+
+> min
+
+, a i
+
+> max
+
+), then Ri 
+
+> eff
+
+> 0, so |∆ai| < δ i and ai ∈ (ai
+
+> min
+
+, a i
+
+> max
+
+) hold strictly. 
+
+Case 2: ui < 0. Then Ri 
+
+> eff
+
+= min  δi, a i 
+
+> prev
+
+− ai
+
+> min
+
+ ≥ 0 and f (ui) ∈ (−1, 0) . A symmetric argument to Case 1 (with the roles of ai 
+
+> min
+
+and ai 
+
+> max
+
+exchanged) yields |∆ai| ≤ δi and ai ∈
+
+[ai
+
+> min
+
+, a i
+
+> max
+
+], with strict inclusions when ai 
+
+> prev
+
+∈ (ai
+
+> min
+
+, a i
+
+> max
+
+).
+
+Case 3: ui = 0 . Then ∆ai = Ri 
+
+> eff
+
+· f (0) = 0 , so |∆ai| = 0 ≤ δi and ai = ai 
+
+> prev
+
+∈ A i.Applying the above to every dimension independently and observing that the latent action u is drawn from a continuous distribution (hence ui = 0 occurs with probability 0), the constraints 
+
+|ai − ai
+
+> prev
+
+| ≤ δi and ai ∈ [ai
+
+> min
+
+, a i
+
+> max
+
+] hold for all i with probability 1. 
+
+B.3 Proof of Proposition 2.5 (Jacobian Structure and Gradient Norm Bound) 
+
+Proof. (i) Diagonal structure and positivity. Fix dimension i and suppose ui̸ = 0 . On the open half-lines {ui > 0} and {ui < 0}, the effective radius Ri 
+
+> eff
+
+(ui, a i
+
+> prev
+
+) is piecewise constant (it equals min( δi, a i 
+
+> max
+
+− ai
+
+> prev
+
+) for ui > 0 and min( δi, a i 
+
+> prev
+
+− ai
+
+> min
+
+) for ui < 0). Differentiating 
+
+ai = ai 
+
+> prev
+
++ Ri 
+
+> eff
+
+· f (ui) with respect to ui on each open half-line via the chain rule gives 
+
+∂a i
+
+∂u i = Ri 
+
+> eff
+
+· f ′(ui) = Ri
+
+> eff
+
+(1 + ( ui)2)3/2 .
+
+Since aj depends only on uj for j̸ = i, all off-diagonal entries of the Jacobian J(u) = ∂a/∂u are zero. Hence J(u) is diagonal. When ai 
+
+> prev
+
+∈ (ai
+
+> min
+
+, a i
+
+> max
+
+), Ri 
+
+> eff
+
+> 0, so ∂a i/∂u i > 0.
+
+(ii) Spectral norm and condition number. Since J(u) is diagonal, its spectral norm equals the largest absolute diagonal entry: 
+
+∥J(u)∥2 = max 
+
+> i
+
+Ri
+
+> eff
+
+(1 + ( ui)2)3/2 ≤ max  
+
+> i
+
+Ri 
+
+> eff
+
+≤ max  
+
+> i
+
+δi,
+
+15 where the bound (1 + ( ui)2)3/2 ≥ 1 and Ri 
+
+> eff
+
+≤ δi are applied. For the condition number, note that the i-th diagonal entry Jii (u) = Ri 
+
+> eff
+
+/(1+( ui)2)3/2 is maximized at ui = 0 with value Ri 
+
+> eff
+
+|ui=0 = δi. At u = 0 with Ri 
+
+> eff
+
+= δi for all i (i.e., away from position boundaries), 
+
+κ(J(0)) = max i δi
+
+min i δi = κ. 
+
+For general u̸ = 0, the factor (1 + ( ui)2)3/2 varies across dimensions and may either increase or decrease the ratio of diagonal entries; it does not exceed the ratio at u = 0, so κ is the worst-case upper bound on the condition number. 
+
+(iii) Gradient norm bound. For the TD3 backbone, the actor loss is Lactor (u) = −Q(˜ s, ϕ (u)) + 
+
+λbase ∥u∥22. Differentiating with respect to u and applying the triangle inequality: 
+
+∥∇ uLactor ∥2 = ∇aQ(˜ s, a ) a=ϕ(u) · J(u) + 2 λbase u 2
+
+≤ ∥ J(u)∥2 · ∥∇ aQ(˜ s, a )∥2 + 2 λbase ∥u∥2.
+
+Substituting the spectral norm bound from (ii) yields inequality (9) . For the SAC backbone, the entropy term α log πθ (a|˜s) contributes an additional gradient term α∇u log πθ (a|˜s), which enters linearly and is accounted for as stated. 
+
+B.4 Proof of Proposition (Lipschitz Continuity of the Mapping) 
+
+Proof. Fix aprev ∈ A and u, ˆu ∈ Rd. For each dimension i, define gi(v) ≜ Ri 
+
+> eff
+
+(v, a i
+
+> prev
+
+) · f (v) so that ai−ˆai = gi(ui)−gi(ˆ ui). Denote R+ ≜ min( δi, a i
+
+> max
+
+−ai
+
+> prev
+
+) and R− ≜ min( δi, a i 
+
+> prev
+
+−ai
+
+> min
+
+);both satisfy R± ≤ δi.
+
+Case 1: ui, ˆui > 0. Both map under R+, so 
+
+|gi(ui) − gi(ˆ ui)| = R+|f (ui) − f (ˆ ui)|.
+
+By the Mean Value Theorem and f ′(t) = (1 + t2)−3/2 ≤ 1:
+
+|f (ui) − f (ˆ ui)| ≤ | ui − ˆui|.
+
+Hence |gi(ui) − gi(ˆ ui)| ≤ R+|ui − ˆui| ≤ δi|ui − ˆui|.
+
+Case 2: ui, ˆui < 0. Both map under R−; the identical argument gives |gi(ui) − gi(ˆ ui)| ≤ δi|ui − ˆui|.
+
+Case 3: ui ≥ 0 and ˆui ≤ 0 (or vice versa). Assume without loss of generality ui ≥ 0 ≥ ˆui. Then 
+
+gi(ui) = R+f (ui) ≥ 0 and gi(ˆ ui) = R−f (ˆ ui) ≤ 0, so 
+
+|gi(ui) − gi(ˆ ui)| = R+f (ui) + R−|f (ˆ ui)|≤ δif (ui) + |f (ˆ ui)|
+
+≤ δiui + |ˆui| = δi|ui − ˆui|,
+
+where the second inequality uses |f (t)| ≤ | t|, and the last equality holds because ui ≥ 0 ≥ ˆui.Combining all three cases, |ai − ˆai| ≤ δi|ui − ˆui| holds for every i. Squaring and summing over all dimensions: 
+
+∥ϕ(u) − ϕ(ˆ u)∥22 =
+
+> d
+
+X
+
+> i=1
+
+|ai − ˆai|2 ≤
+
+> d
+
+X
+
+> i=1
+
+(δi)2(ui − ˆui)2 ≤ ∥ δ∥22 · ∥ u − ˆu∥22.
+
+Taking the square root gives the stated Lipschitz bound. 
+
+Tightness. Fix any ε > 0 and set ui = ε, ˆui = −ε for all i, with ai 
+
+> prev
+
+in the interior of Ai so that 
+
+R± = δi. Then each dimension falls into Case 3, and the inequality chain above becomes an equality to leading order as ε → 0 (since f (ε) → ε and |f (−ε)| → ε). Hence ∥δ∥2 is the best possible Lipschitz constant. 16 B.5 Proof of Theorem 2.7 (Tight ℓ∞-Coverage of the Reachable Set) 
+
+Proof. Fix aprev ∈ A . For each dimension i, define the direction-dependent effective radii 
+
+R+,i ≜ min  δi, a i 
+
+> max
+
+− ai
+
+> prev
+
+ , R−,i ≜ min  δi, a i 
+
+> prev
+
+− ai
+
+> min
+
+ ,
+
+corresponding to Ri 
+
+> eff
+
+when ui > 0 and ui < 0, respectively. 
+
+Step 1: Characterization of RDD .
+
+Inclusion (image is contained in the open box). By Theorem 2.4, for every u ∈ Rd and every i:• If ui > 0: ∆ai = R+,i f (ui) ∈ (0 , R +,i ), so ai ∈ (ai
+
+> prev
+
+, a i 
+
+> prev
+
++ R+,i ).• If ui < 0: ∆ai = R−,i f (ui) ∈ (−R−,i , 0) , so ai ∈ (ai 
+
+> prev
+
+− R−,i , a i
+
+> prev
+
+).• If ui = 0 : ai = ai
+
+> prev
+
+.In all cases, ai ∈ (ai 
+
+> prev
+
+− R−,i , a i 
+
+> prev
+
++ R+,i ).
+
+Surjectivity (every interior point is achieved). Fix any target a∗ = ( a∗1, . . . , a ∗d) satisfying a∗i ∈
+
+(ai 
+
+> prev
+
+− R−,i , a i 
+
+> prev
+
++ R+,i ) for all i. Set ∆∗i ≜ a∗i − ai 
+
+> prev
+
+and consider two subcases. If ∆∗i > 0: the goal is to find u∗i > 0 satisfying R+,i f (u∗i) = ∆ ∗i. Since ∆∗i < R +,i , the ratio ∆∗i/R +,i ∈ (0 , 1) . The equation f (u) = c for c ∈ (0 , 1) has the unique positive solution 
+
+u = c/ √1 − c2, giving 
+
+u∗i = ∆∗i
+
+p(R+,i )2 − (∆ ∗i)2 > 0.
+
+For this u∗i, Ri 
+
+> eff
+
+(u∗i, a i
+
+> prev
+
+) = R+,i by definition, so ϕ(u∗)i = ai 
+
+> prev
+
++ R+,i f (u∗i) = a∗i as required. If ∆∗i < 0: a symmetric construction with R−,i yields the unique negative preimage u∗i =∆∗i/p(R−,i )2 − (∆ ∗i)2 < 0.If ∆∗i = 0 : u∗i = 0 gives a∗i = ai
+
+> prev
+
+.Since dimensions are decoupled, setting u∗ = ( u∗1, . . . , u ∗d) achieves ϕ(u∗) = a∗.
+
+Conclusion. The reachable set (image) is 
+
+RDD =
+
+> d
+
+Y
+
+> i=1
+
+ ai 
+
+> prev
+
+− R−,i , a i 
+
+> prev
+
++ R+,i  ,
+
+and its closure is the closed product interval RDD = Qdi=1 [ai 
+
+> prev
+
+− R−,i , a i 
+
+> prev
+
++ R+,i ].
+
+Step 2: Agreement with F. Observe that 
+
+ai 
+
+> prev
+
++ R+,i = ai 
+
+> prev
+
++ min  δi, a i 
+
+> max
+
+− ai
+
+> prev
+
+ = min  ai 
+
+> prev
+
++ δi, a i
+
+> max
+
+ ,ai 
+
+> prev
+
+− R−,i = ai 
+
+> prev
+
+− min  δi, a i 
+
+> prev
+
+− ai
+
+> min
+
+ = max  ai 
+
+> prev
+
+− δi, a i
+
+> min
+
+ .
+
+Therefore, for each dimension i:
+
+ai 
+
+> prev
+
+− R−,i , a i 
+
+> prev
+
++ R+,i  = ai 
+
+> prev
+
+− δi, a i 
+
+> prev
+
++ δi ∩ ai
+
+> min
+
+, a i
+
+> max
+
+ .
+
+Taking the Cartesian product over all dimensions: 
+
+RDD =
+
+> d
+
+Y
+
+> i=1
+
+  ai 
+
+> prev
+
+− δi, a i 
+
+> prev
+
++ δi ∩ [ai
+
+> min
+
+, a i
+
+> max
+
+] = F,
+
+where the last equality uses the product structure of both the rate-constraint set and A. This establishes (10). 17 Step 3: Volume ratio. When ai 
+
+> prev
+
+is sufficiently far from the position boundaries so that R+,i =
+
+R−,i = δi for all i, the Lebesgue measure of RDD is 
+
+VDD =
+
+> d
+
+Y
+
+> i=1
+
+ R+,i + R−,i  =
+
+> d
+
+Y
+
+> i=1
+
+2δi.
+
+The d-dimensional ℓ2 ball with radius R = min i δi has volume 
+
+VSRad = πd/ 2
+
+Γ( d/ 2 + 1) 
+
+
+
+min  
+
+> i
+
+δid
+
+.
+
+Dividing: 
+
+VDD 
+
+VSRad 
+
+=
+
+Qdi=1 2δi
+
+πd/ 2
+
+Γ( d/ 2 + 1) (min i δi)d
+
+= 2d Γ( d/ 2 + 1) 
+
+πd/ 2 ·
+
+Q 
+
+> i
+
+δi
+
+(min i δi)d ,
+
+which establishes (11). 
+
+## C Structure and Hyperparameters 
+
+The complete DD-SRad algorithm is presented in Algorithm 1. 
+
+Algorithm 1: DD-SRad (Off-Policy Backbone) 
+
+Input: Per-dimension rate limits δ, latent action regularization coefficient λbase , position bounds 
+
+[amin , a max ], off-policy backbone B 
+
+> 1
+
+Initialize augmented replay buffer D, policy network πθ , action-value function Qϕ, and target network Qϕ′ ; 
+
+> 2
+
+for each training step do  
+
+> 3
+
+Environment interaction: Read st from the environment, retrieve previous action at−1 from the augmented state, construct augmented state ˜st = ( st, a t−1); 
+
+> 4
+
+Constrained action generation (DD-SRad core): Sample latent action ut ∼ πθ (· | ˜st); 
+
+> 5
+
+Compute effective radius Ri
+
+> eff
+
+(uit, a it−1) independently per dimension i (Eq. 3); apply per-dimension spherical squashing to obtain at (Eq. 4);  
+
+> 6
+
+Execute at, obtain rt and st+1 , store (˜ st, a t, r t, ˜st+1 ) in D; 
+
+> 7
+
+Q-function update (determined by backbone B): Sample a batch from D; update Qϕ
+
+according to the Bellman target of backbone B; 
+
+> 8
+
+Policy gradient update: Minimize Lactor per Eq. (12); backpropagate gradient through the DD-SRad Jacobian (Proposition 2.5) via the chain rule to θ; under the SAC backbone, compute log πθ (a|˜s) via change of variables per Eq. (13);  
+
+> 9
+
+Update target network ϕ′ ← τ ϕ + (1 − τ )ϕ′;All MuJoCo benchmark experiments were run on a single NVIDIA RTX A5000 GPU (24 GB VRAM), with 1.5–2M training steps per environment-backbone-constraint configuration; single-run training time per environment is approximately 2–3 hours. IsaacLab simulation experiments were also conducted on a single A5000 using 4096 parallel simulation environments: H1 rough terrain was trained for 50k gradient steps with approximately 6 hours per run; G1 flat terrain was trained for 100k gradient steps with approximately 12 hours per run; 5 seeds were run serially, with complete H1 and G1 experiments taking approximately 30 hours and 60 hours respectively. Code is based on PyTorch 3.11 and IsaacLab 5.1.0, with Ubuntu 22.04 as the server operating system. Table 4 lists the complete network and training hyperparameters used in all experiments. Unless otherwise specified, all experiments use the same network architecture and training configuration. Table 5 lists the constraint parameter settings for each MuJoCo experiment. Table 6 lists the per-joint-group constraint parameters for each robot in the simulation experiments. Table 7 lists the hyperparameters for each baseline method. Note: the network architecture, learning rates, and buffer sizes of all baseline methods are identical to DD-SRad to ensure fair comparison. 18 Table 4: Network architecture and training hyperparameters (common to all experiments) 
+
+Category Parameter Value Network Architecture Actor hidden layers [256, 256] Critic hidden layers [256, 256] Activation function ReLU Output activation Tanh (Actor mean), Identity (log_std) Optimizer Actor learning rate 3 × 10 −4
+
+Critic learning rate 3 × 10 −4
+
+Alpha learning rate 3 × 10 −4
+
+Optimizer type Adam Gradient clipping 1.0 Training parameters Batch size 256 Replay buffer size 1,000,000 Learning starts 10,000 Train frequency 1Gradient steps 1Target update τ 0.005 Discount γ 0.99 Other Evaluation frequency Every 5,000 steps Evaluation episodes 5Random seeds 12345, 22345, 32345, 42345, 52345 
+
+Table 5: Constraint parameter settings (MuJoCo experiments, by experiment group) 
+
+Experiment Environment Constraint type δ
+
+§3.1 (Exp. 1/2) Ant-v5 Wide homogeneous [1 .0] 8
+
+Tight heterogeneous [0 .24, 0.54]
+
+Humanoid-v5 Wide homogeneous [0 .4] 17 
+
+Tight heterogeneous [0 .86, 0.56, 0.25]
+
+Hopper-v5 Wide homogeneous [1 .0] 3
+
+Tight heterogeneous [0 .2, 0.5, 0.5] 
+
+HalfCheetah-v5 Wide homogeneous [1 .0] 6
+
+Tight heterogeneous [0 .23, 0.53]
+
+§3.3 (Exp. 3) Ant-v5 (wide) All methods [1 .0] 8
+
+Ant-v5 (tight) All methods [0 .24, 0.54]
+
+Table 6: Constraint parameters for simulation experiments (from official technical specifications; normalized to joint position increment units, δi = ωi 
+
+> max
+
+× ∆t × η, ∆t = 0 .02 s, η is the safety factor) 
+
+Robot Terrain Joint group No. joints δ (normalized) Unitree H1 Rough Hip yaw/roll/pitch (proximal) 6 0.40 Knee (mid) 2 0.25 Ankle (distal) 2 0.18 Unitree G1 Flat Hip pitch/roll (proximal) 4 0.40 Hip yaw/knee (mid) 4 0.35 Ankle pitch 2 0.25 Ankle roll/torso 3 0.18–0.25 
+
+19 Table 7: Baseline method hyperparameters                        
+
+> Method Parameter Value DD-SRad λbase 0.005 SAC-BoxPre+ Projection Per-dimension clip ( ℓ∞hyperrectangle) Critic training Pre-projected actions + penalty Penalty coefficient Equivalent to DD-SRad λbase
+> SAC-Post(QP) Projection Per-dimension clip post-processing Critic training Pre-projected actions (no penalty) SRad-Strict Global radius Rmin iδi
+> Other parameters Same as DD-SRad SRad-QP Mapping SRad ( R= min iδi)Post-processing QP projection to Ft
+> Other parameters Same as DD-SRad
+
+## D Extended Benchmark Performance 
+
+Figure 4 presents the mean return learning curves across four MuJoCo environments (Ant-v5, Humanoid-v5, HalfCheetah-v5, Hopper-v5) under tight heterogeneous constraints, for both SAC and TD3 backbones, covering all six methods. Shaded regions indicate mean ± standard deviation over 5 random seeds. Under wide homogeneous constraints all methods converge to similar levels; the curves under tight heterogeneous constraints are shown here to visualize the training stability differences discussed in §3.1, in particular the systematic collapse of SRad-Strict (high CV) versus the stable convergence of DD-SRad. Table 8 presents the quantitative performance from the §3.1 standard benchmark experiments under wide homogeneous constraints (Humanoid-v5: δ = [0 .4] d; all others: δ = [1 .0] d), for reference alongside the tight heterogeneous constraint results in the main Table 2. Under wide constraints, the rate limits exert weak actual constraint force on the policy, with CVR approaching 0 for all methods and Return gaps narrowing substantially—this pattern itself validates the design expectation that DD-SRad introduces no additional performance loss when constraints are non-binding. 
+
+## E Per-Dimension Utilization Radar Charts Under Benchmark 
+
+To quantify how fully each method exploits its per-dimension rate budget, define the constraint utilization of dimension i as 
+
+ui = 1
+
+T
+
+> T
+
+X
+
+> t=1
+
+|∆ait|
+
+δi , (16) where ∆ait = ait − ait−1 is the executed action increment at step t and δi is the per-dimension rate limit. By construction ui ∈ [0 , 1] , with ui = 1 indicating that the constraint is saturated on average and ui = 0 indicating the dimension is never moved. Figure 5 presents the post-convergence per-dimension utilization radar charts across four MuJoCo environments under tight heterogeneous constraints, for both SAC and TD3 backbones. Each axis of each polygon corresponds to one action dimension, with the radial value indicating the 5-seed mean utilization E[|∆ai|]/δ i for that dimension. The DD-SRad polygon (red) hugs the boundary corresponding to each dimension’s δi; BoxPre+ (blue) exhibits systematic inward contraction on high-budget dimensions (axes with larger δi); SRad-Strict (green) shows the most severe collapse on high-budget dimensions, consistent with Theorem 2.7’s prediction that ℓ2 parameterization achieves utilization of approximately min j δj /δ i on those dimensions; QP Post (dark red) exhibits inflated Util due to boundary-dwelling behavior but carries no geometric coverage meaning (see §3.1 footnote). Under wide homogeneous constraints (panels (a)(c)(i)(k)), performance gaps across methods narrow, consistent with the expectation that constraints are non-binding. 20 (a) Ant-SAC-W (b) Humanoid-SAC-W (c) HalfCheetah-SAC-W (d) Hopper-SAC-W  
+
+> (e)
+
+Ant-SAC-S (f) Humanoid-SAC-S (g) HalfCheetah-SAC-S (h) Hopper-SAC-S  
+
+> (i)
+
+Ant-TD3-W (j) Humanoid-TD3-W (k) HalfCheetah-TD3-W (l) Hopper-TD3-W  
+
+> (m)
+
+Ant-TD3-S (n) Humanoid-TD3-S (o) HalfCheetah-TD3-S (p) Hopper-TD3-S      
+
+> BoxPre+ QP SRad-QP SRad-Strict D-Tanh DD-SRad
+> Figure 4: SAC/TD3-Based benchmark performance comparison across four environments.
+
+## F Per-Dimension Utilization Radar Charts Under Heterogeneous Constraints 
+
+Figure 6 presents the per-dimension constraint utilization radar charts of DD-SRad under wide homogeneous (blue) and tight heterogeneous (red) constraints, for all four environments with SAC and TD3 backbones. Each axis corresponds to one action dimension, with radial value indicating 
+
+E[|∆ai|]/δ i. The layered polygon structure under tight constraints—where each dimension indepen-dently approaches its own δi boundary rather than being uniformly truncated to min i δi—provides visual corroboration of the ℓ∞-tight coverage property established in Theorem 2.7 and the quantitative Gap analysis of §3.2. 
+
+## G Simulation Reward Settings 
+
+Both simulation robots adopt custom reward functions that completely replace the IsaacLab default reward terms. Table 9 presents the main components of the reward rt = P 
+
+> k
+
+wk · ϕk, where the curriculum coefficient is cf = min( ¯L/L ∗, 1) , ¯L is the exponential moving average episode length, and L∗ is the target episode length. 21 (a) Ant-SAC-W (b) Humanoid-SAC-W (c) HalfCheetah-SAC-W (d) Hopper-SAC-W 
+
+(e) Ant-SAC-S (f) Humanoid-SAC-S (g) HalfCheetah-SAC-S (h) Hopper-SAC-S 
+
+(i) Ant-TD3-W (j) Humanoid-TD3-W (k) HalfCheetah-TD3-W (l) Hopper-TD3-W 
+
+(m) Ant-TD3-S (n) Humanoid-TD3-S (o) HalfCheetah-TD3-S (p) Hopper-TD3-S      
+
+> BoxPre+ QP SRad-QP SRad-Strict D-Tanh DD-SRad
+
+Figure 5: Per-dimension constraint utilization radar charts of all methods on four environments under tight heterogeneous constraints (SAC/TD3 backbones). 
+
+22 Table 8: Supplementary benchmark results under wide homogeneous constraints (mean ±std over 5 seeds; best in bold ; † see footnote) 
+
+(a) SAC Backbone Ant-v5 (δ = [1 .0] 8, κ = 1 .0) Humanoid-v5 (δ = [0 .4] 17 , κ = 1 .0)
+
+Method Return ↑ CV ↓ Util Return ↑ CV ↓ Util BoxPre+ 3737 ± 729 19 .5 0.323 ± 0.014 5144 ± 145 2.8 0.158 ± 0.014 
+
+Post(QP) † 2437 ± 467 19 .1 0.341 ± 0.011 5163 ± 175 3.4 0.289 ± 0.018 
+
+SRad-Strict 2952 ± 385 13 .0 0.244 ± 0.009 3918 ± 1350 34 .5 0.057 ± 0.016 
+
+SRad-QP 3122 ± 719 23 .0 0.253 ± 0.012 3903 ± 1324 33 .9 0.060 ± 0.015 
+
+D-Tanh 4039 ± 725 18 .0 0.301 ± 0.009 5212 ± 135 2.6 0.253 ± 0.029 
+
+DD-SRad (Ours) 4199 ± 957 22 .8 0.334 ± 0.026 5384 ± 261 4.8 0.241 ± 0.049 
+
+HalfCheetah-v5 (δ = [1 .0] 6, κ = 1 .0) Hopper-v5 (δ = [1 .0] 3, κ = 1 .0)
+
+Method Return ↑ CV ↓ Util Return ↑ CV ↓ Util BoxPre+ 5383 ± 412 7.7 0.528 ± 0.009 2226 ± 437 19 .6 0.145 ± 0.009 
+
+Post(QP) † 5582 ± 704 12 .6 0.578 ± 0.052 2037 ± 425 20 .9 0.167 ± 0.009 
+
+SRad-Strict 3921 ± 469 12 .0 0.273 ± 0.020 1992 ± 145 7.3 0.193 ± 0.016 
+
+SRad-QP 4186 ± 439 10 .5 0.270 ± 0.006 1915 ± 188 9.8 0.185 ± 0.017 
+
+D-Tanh 5646 ± 517 9.2 0.626 ± 0.018 2649 ± 194 7.3 0.361 ± 0.016 
+
+DD-SRad (Ours) 5925 ± 782 13 .2 0.555 ± 0.103 2764 ± 405 14 .7 0.325 ± 0.012 
+
+(b) TD3 Backbone Ant-v5 (δ = [1 .0] 8, κ = 1 .0) Humanoid-v5 (δ = [0 .4] 17 , κ = 1 .0)
+
+Method Return ↑ CV ↓ Util Return ↑ CV ↓ Util BoxPre+ 4906 ± 708 14 .4 0.307 ± 0.021 5018 ± 144 2.9 0.154 ± 0.025 
+
+Post(QP) † 2613 ± 1011 38 .7 0.309 ± 0.033 4289 ± 111 2.6 0.537 ± 0.044 
+
+SRad-Strict 3756 ± 1287 34 .3 0.236 ± 0.015 3884 ± 404 10 .4 0.127 ± 0.020 
+
+SRad-QP 4973 ± 716 14 .4 0.214 ± 0.009 3483 ± 1009 29 .0 0.018 ± 0.005 
+
+D-Tanh 4058 ± 483 11 .9 0.353 ± 0.005 5027 ± 144 2.9 0.242 ± 0.047 
+
+DD-SRad (Ours) 5088 ± 881 17 .3 0.362 ± 0.031 5107 ± 343 6.7 0.207 ± 0.020 
+
+HalfCheetah-v5 (δ = [1 .0] 6, κ = 1 .0) Hopper-v5 (δ = [1 .0] 3, κ = 1 .0)
+
+Method Return ↑ CV ↓ Util Return ↑ CV ↓ Util BoxPre+ 6198 ± 1093 17 .6 0.510 ± 0.059 3157 ± 126 4.0 0.178 ± 0.006 
+
+Post(QP) † 3163 ± 2881 91 .1 0.589 ± 0.102 2915 ± 473 16 .2 0.281 ± 0.023 
+
+SRad-Strict 4119 ± 1665 40 .4 0.264 ± 0.035 2598 ± 556 21 .4 0.168 ± 0.017 
+
+SRad-QP 4051 ± 521 12 .9 0.339 ± 0.023 2030 ± 406 20 .0 0.163 ± 0.018 
+
+D-Tanh 6596 ± 942 14 .3 0.611 ± 0.064 2303 ± 122 5.3 0.371 ± 0.020 
+
+DD-SRad (Ours) 6650 ± 2477 37 .2 0.523 ± 0.119 3216 ± 478 14 .9 0.337 ± 0.017 
+
+Notes: CVR = 0 for all parameterization-based methods across all configurations, confirmed by Theorem 2.4. Return gaps across methods narrow substantially compared to Table 2 (tight heterogeneous constraints), consistent with the expectation that DD-SRad’s advantage is most pronounced when constraints are binding. † SAC-Post(QP)/TD3-Post(QP): Util is inflated by clip boundary-dwelling (see Table 2 Notes). 
+
+## H Reachable Set Scatter of H1 and G1 
+
+Figure 7 presents the empirical reachable sets of each method in the (∆ aL. hip_pitch , ∆aL. ankle_roll )
+
+plane for H1 and G1, providing execution-level geometric verification complementary to the Gap metric in Table 3(b). On H1, DD-SRad scatters uniformly within the constraint rectangle [−δhip , δ hip ] × [−δankle , δ ankle ],with both dimensional rate budgets independently and fully utilized, consistent with the balanced utilization of Util-P = 0 .38 , Util-D = 0 .48 ; D-Tanh scatter morphology closely resembles DD-SRad, reflecting that the shared Ri
+
+eff mechanism produces similar coverage structures under the same geometric constraints; SRad-Strict scatter concentrates within the disk of radius R = min i δi, with the high-budget dimension (hip_pitch) reachable set uniformly compressed to the tightest constraint magnitude, directly corresponding to the utilization collapse Util-P = 0 .08 and Fall = 100% .On G1, DD-SRad scatter distributes broadly along the ∆aL. hip_pitch axis and is highly concentrated near zero along ∆aL. ankle_roll , forming a near-horizontal band structure—a direct manifestation of the position-adaptive Ri
+
+eff mechanism interacting with the flat terrain task structure: hip_pitch joints bear gait propulsion (large δ, fully utilized), while ankle_roll joints have extremely low lateral stability 23 (a) Ant-SAC (b) Humanoid-SAC (c) HalfCheetah-SAC (d) Hopper-SAC 
+
+(e) Ant-TD3 (f) Humanoid-TD3 (g) HalfCheetah-TD3 (h) Hopper-TD3 
+
+Figure 6: Per-dimension constraint utilization radar charts of DD-SRad under wide homogeneous (blue) and tight heterogeneous (red) constraints with SAC/TD3 backbones. 
+
+Table 9: Reward function definitions for simulation robots (H1 Rough & G1 Flat) 
+
+(a) Unitree H1 Rough 
+
+Reward term Formula Weight Linear velocity tracking exp  −∥ (vxy − vcmd  
+
+> xy
+
+)∥2/0.25  1.5 Angular velocity tracking exp  −(wz − wcmd  
+
+> z
+
+)2/0.25  1.0 Survival bonus constant 0.02 Orientation penalty −∥ gxy ∥2 · cf 3.0 Joint default position −∥ θ − θdefault ∥2 · cf 0.05 
+
+(b) Unitree G1 Flat (HolosomaRewardComputerV3) 
+
+Reward term Formula Weight Linear velocity tracking exp  −∥ (vxy − vcmd  
+
+> xy
+
+)∥2/0.25  1.5 Angular velocity tracking exp  −(wz − wcmd  
+
+> z
+
+)2/0.25  1.0 Survival bonus constant 0.02 Orientation penalty −∥ gxy ∥2 · max( cf , 0.3) 3.0 Joint default position (non-knee) −∥ θ¬k − θ¬k 
+
+> def
+
+∥2 · cf 0.05 Joint default position (knee) −∥ θk − θk
+
+> def
+
+∥2 · cf 0.05 ×0.5
+
+Foot height exp  − P(hf − hswing  
+
+> f
+
+)2/(2 σ2
+
+> h
+
+) 1.0 Knee flexion exp  −(θk − θk 
+
+> def
+
+− κflex sin ϕk )2/(2 σ2 
+
+> k
+
+) 1.5 Minimum knee angle − clamp( θmin − θk , 0, ∞)2 · cf 2.0 Stride length exp  − P(xbf − L sin ϕf )2/(2 σ2 
+
+> s
+
+) 1.5 Foot parallelism −(ψf,L − ψf,R )2 · cf 1.0 Foot clearance − clamp( dmin − | yf,L − yf,R |, 0, ∞)2 · cf 4.0 Anti-crossing − clamp( yf,R − yf,L , 0, ∞)2 · cf 5.0 Hip roll −∥ θhip_roll − θhr def ∥2 · cf 3.0 Hip yaw −∥ θhip_yaw − θhy def ∥2 · cf 3.0 Torso joint −∥ θtorso − θtorso def ∥2 · max( cf , 0.3) 2.0 Ankle pitch −∥ θap − θap def ∥2 · cf 2.0 Foot slip − P 
+
+> f
+
+∥ ˙pxy f ∥ · 1[∥Ff ∥ > 1 N] 0.5 
+
+ϕf : gait phase; L: stride length target; dmin : minimum foot clearance; σ: Gaussian widths for each term. 
+
+24 (a) H1 Empirical Reachable Sets  
+
+> (b) G1 Empirical Reachable Sets
+> Figure 7: Empirical Reachable Sets
+
+demands under flat terrain’s low perturbation, and the policy converges to near-zero ankle_roll through independent per-dimension optimization. D-Tanh exhibits the same morphology, confirming that this solution structure is jointly determined by ℓ∞ geometry and task rewards, independent of the specific squashing function; the task-metric gap (VTE: 0.138 vs 0.207 , Return: 5473 vs 5145 ) reflects the effective gradient region advantage of spherical radial squashing over tanh (Proposition 2.5). BoxPre+ (Gap = 0 .01 ) forces uniform coverage—a geometric side effect of ℓ∞ clip projection— preventing task-aligned allocation and directly manifesting as VTE = 0 .224 (+62% vs DD-SRad). SAC-Post(QP) covers the rectangle interior with reduced boundary density, consistent with QP’s conservative margin at feasible-set vertices (Return = 4954 , ≈ 10% below DD-SRad). SRad-Strict concentrates within the ℓ2 disk of radius R = min i δi, directly corresponding to Util-P = 0 .08 and Return = 1312 .The scatter morphology is fully consistent with the Gap metric in Table 3(b), forming cross-platform verification from MuJoCo to IsaacLab: ℓ∞-exact parameterization guarantees geometric coverage and enables task-gradient-guided dimensional allocation—balancing rate budgets under high-perturbation rough terrain (H1) and focusing on propulsion joints for precise velocity tracking on flat terrain (G1)—an adaptive capability neither BoxPre+’s clip nor SRad-Strict’s global radius can achieve. 
+
+## I Per-Dimension Action Increment Probability Density of H1 and G1 
+
+To visualize the empirical distribution of executed action increments, the probability density of 
+
+∆ai for each controlled dimension is plotted. Given N observed samples {∆aik}Nk=1 , the density is estimated via a normalized histogram with B uniform bins over [−δi, δ i]:
+
+ˆp(x) = cb
+
+N · w , x ∈ bin b, (17) where cb is the count of samples in bin b and w = 2δi/B is the bin width. This satisfies 
+
+R δi 
+
+> −δi
+
+ˆp(x) dx = 1 , so ˆp is a valid probability density function. Values of ˆp ≫ 1 are physically meaningful and indicate that samples concentrate in a narrow sub-interval of [−δi, δ i].Figure 8 presents per-dimension probability density ˆp(∆ ai) for each method on H1 and G1, forming a three-layer complementary verification alongside the mean utilization metric of the radar charts and the geometric morphology of the scatter plots. Density values far exceeding 1 indicate that action increments are highly concentrated in a narrow sub-interval of the constraint range, which is the probability density manifestation of the policy actively choosing a conservative solution in a specific dimension. 
+
+H1 (Rough Terrain, 10 Dimensions). DD-SRad exhibits a broad unilateral distribution on the hip_pitch group ( δ = 0 .40 ) with probability mass clearly shifted toward the positive constraint boundary, reflecting the demand of rough terrain gait propulsion for sustained forward hip joint rate output—the policy fully exploits the rate budget of the large-δ dimensions to resist dynamic perturbations and maintain forward momentum. D-Tanh (orange) shows nearly identical distribution morphology in the same dimensions, consistent with the shared Ri 
+
+> eff
+
+geometry; the systematic return gap ( 34 .56 vs 37 .14 ) arises from the difference in squashing function Jacobian decay rate, not from 25 (a) H1 per-dimension action distribution       
+
+> (b) G1 per-dimension action distribution
+> BoxPre+ QP SRad-QP SRad-Strict D-Tanh DD-SRad
+> Figure 8: H1 and G1 per-dimension action distribution
+
+reachable set geometry. SRad-Strict (green) exhibits a clear bimodal structure in the hip_pitch dimension with peaks far from the constraint boundary, directly corresponding to the mechanism by which the global ℓ2 radius R = min i δi uniformly compresses the hip joint large-δ step size to the ankle joint magnitude, blocking effective gait propulsion; its Fall = 100% is the inevitable consequence of this geometric mismatch on rough terrain. In the ankle dimensions ( δ = 0 .18 ), DD-SRad shows a moderately spread distribution, indicating that the ankle joint rate budget receives substantive utilization under rough terrain’s dynamic balance demands; SRad-Strict ankle dimensions also show extreme concentration, because global radius compression prevents the policy from producing effective recovery actions. BoxPre+ (blue) shows relatively flat distributions across all dimensions, reflecting the uniform projection property of ℓ∞ clip within the feasible set, but this flat distribution corresponds to Return = 23 .11 significantly lower than DD-SRad, validating that uniform activation is not equivalent to task efficiency (§4.2). In the arm and shoulder joint dimensions (shoulder/elbow, δ = 0 .18 –0.40 ), SRad-Strict similarly shows bimodal or concentrated distributions in large-δ dimensions, while DD-SRad and D-Tanh maintain broad distributions matched to task demands, with the overall pattern consistent with the leg joints. 26 G1 (Flat Terrain, 13 Dimensions). The G1 distribution plots reveal the task-adaptive structural dif-ferences across methods under flat terrain’s low-perturbation conditions, forming a multi-perspective verification that closes layer by layer with the scatter plots and radar charts. In the hip_pitch dimension ( δ = 0 .40 , the main gait propulsion joint), DD-SRad (red) exhibits a broad distribution covering most of the constraint interval with probability mass well spread out, directly corresponding to the high utilization of Util-P = 0 .40 . D-Tanh (orange) shows nearly identical distribution morphology to DD-SRad, further confirming that this broad utilization structure is jointly determined by the Ri 
+
+> eff
+
+mechanism and task rewards, not a specific product of the squashing function. SRad-Strict (green) exhibits a bimodal distribution in the hip_pitch dimension with peaks concentrated near ± min i δi = ±0.10 , directly manifesting the mechanism by which the global ℓ2
+
+radius uniformly compresses the rate of all dimensions to the tightest hip_roll constraint magnitude, causing the actual reachable step size of the gait propulsion joint to be only 25% of DD-SRad’s. In distal joint dimensions such as ankle_pitch ( δ = 0 .25 ) and ankle_roll ( δ = 0 .18 ), both DD-SRad and D-Tanh exhibit highly concentrated zero-mean spikes ( ˆp ≫ 1), i.e., probability mass highly concentrated in a narrow band around ∆ai ≈ 0. This is the optimal solution to which the policy actively converges through task gradient optimization under flat terrain’s low-perturbation conditions: flat ground imposes extremely low demands on ankle joint lateral stabilization and pitch adjustment, so the policy compresses distal joint actions to near zero to reduce ineffective consumption, focusing on hip_pitch and other large-δ propulsion joints for precise velocity tracking, ultimately achieving the lowest velocity tracking error of all methods at VTE = 0 .138 . The Ri
+
+> eff
+
+mechanism allows each dimension to independently respond to this task structure—the adaptive tightening of the effective radius near position boundaries for distal joints does not affect the full exploration of the hip_pitch dimension, with the two completely decoupled at the parameterization level. BoxPre+ also shows some zero-vicinity concentration in ankle dimensions, but with broader spread than DD-SRad, reflecting that ℓ∞ clip projection within the feasible set still forces retention of non-zero activation components in each dimension; the cost is quantified as VTE = 0 .224 . In the hip_roll dimension ( δ = 0 .10 , G1’s tightest constraint), all methods exhibit extremely high zero-mean spikes, reflecting both the strict constraint limitation and the fact that flat terrain imposes almost no demand on hip lateral roll—consistent with the task characteristics. SRad-Strict shows bimodal distributions in intermediate-δ dimensions such as torso, consistent with the expectation that the global ℓ2 radius produces varying degrees of mismatch across dimensions with different constraint magnitudes; the severe degradation of Return = 1312 is the cumulative result of geometric mismatch across all dimensions. 
+
+## J Limitation 
+
+DD-SRad’s diagonally positive definite Jacobian enables exact gradient propagation through off-policy backbones (SAC, TD3), but is less effective with on-policy algorithms such as PPO: the scalar advantage At has substantially higher estimation variance under high-κ constraints than the per-dimension ∇aQ signal, requiring an action-conditioned advantage network with replay for effective on-policy extension. Additionally, the current design targets independent per-dimension box constraints; cross-dimensional coupled constraints require extensions such as a state-conditioned unified radius or neural Ri
+
+> eff
+
+.27

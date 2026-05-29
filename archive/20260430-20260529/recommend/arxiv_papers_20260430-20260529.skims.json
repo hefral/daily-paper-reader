@@ -1,0 +1,1135 @@
+{
+  "mode": "skims",
+  "generated_at": "2026-05-29T12:42:49.925625+00:00",
+  "stats": {
+    "mode": "skims",
+    "forced_all_quick": true,
+    "min_score": 8.0,
+    "deep_divecandidates": 28,
+    "deep_cap": null,
+    "deep_selected": 0,
+    "quick_candidates": 28,
+    "quick_skim_target": null,
+    "quick_selected": 28
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2605.01978v1",
+      "source": "arxiv",
+      "title": "Stability of Control Lyapunov Function Guided Reinforcement Learning",
+      "abstract": "Reinforcement learning (RL) has become the de facto method for achieving locomotion on humanoid robots in practice, yet stability analysis of the corresponding control policies is lacking. Recent work has attempted to merge control theoretic ideas with reinforcement learning through control guided learning. A notable example of this is the use of a control Lyapunov function (CLF) to synthesize the reinforcement learning rewards, a technique known as CLF-RL, which has shown practical success. This paper investigates the stability properties of optimal controllers using CLF-RL with the goal of bridging experimentally observed stability with theoretical guarantees. The RL problem is viewed as an optimal control problem and exponential stability is proven in both continuous and discrete time using both core CLF reward terms and the additional terms used in practice. The theoretical bounds are numerically verified on systems such as the double integrator and cart-pole. Finally, the CLF guided rewards are implemented for a walking humanoid robot to generate stable periodic orbits.",
+      "authors": [
+        "Zachary Olkin",
+        "William D. Compton",
+        "Aaron D. Ames"
+      ],
+      "primary_category": "eess.SY",
+      "categories": [
+        "eess.SY",
+        "cs.RO"
+      ],
+      "published": "2026-05-03T17:27:44+00:00",
+      "link": "https://arxiv.org/pdf/2605.01978v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Uses reinforcement learning with control Lyapunov functions for stable humanoid locomotion",
+      "llm_evidence_cn": "使用控制李雅普诺夫函数的强化学习实现稳定的人形机器人运动",
+      "llm_evidence": "使用控制李雅普诺夫函数的强化学习实现稳定的人形机器人运动",
+      "canonical_evidence": "使用控制李雅普诺夫函数的强化学习实现稳定的人形机器人运动",
+      "llm_tldr_en": "Proves exponential stability of CLF-guided RL for humanoid locomotion, bridging experimental success with theoretical guarantees.",
+      "llm_tldr_cn": "该论文针对人形机器人运动中强化学习缺乏稳定性分析的问题，将RL问题建模为最优控制问题，利用控制李雅普诺夫函数合成奖励，从理论上证明了所得最优控制器的指数稳定性，为实验成功提供了坚实的理论保证。",
+      "llm_tldr": "该论文针对人形机器人运动中强化学习缺乏稳定性分析的问题，将RL问题建模为最优控制问题，利用控制李雅普诺夫函数合成奖励，从理论上证明了所得最优控制器的指数稳定性，为实验成功提供了坚实的理论保证。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.01978v2",
+      "source": "arxiv",
+      "title": "Stability of Control Lyapunov Function Guided Reinforcement Learning",
+      "abstract": "Reinforcement learning (RL) has become the de facto method for achieving locomotion on humanoid robots in practice, yet stability analysis of the corresponding control policies is lacking. Recent work has attempted to merge control theoretic ideas with reinforcement learning through control guided learning. A notable example of this is the use of a control Lyapunov function (CLF) to synthesize the reinforcement learning rewards, a technique known as CLF-RL, which has shown practical success. This paper investigates the stability properties of optimal controllers using CLF-RL with the goal of bridging experimentally observed stability with theoretical guarantees. The RL problem is viewed as an optimal control problem and exponential stability is proven in both continuous and discrete time using both core CLF reward terms and the additional terms used in practice. The theoretical bounds are numerically verified on systems such as the double integrator and cart-pole. Finally, the CLF guided rewards are implemented for a walking humanoid robot to generate stable periodic orbits.",
+      "authors": [
+        "Zachary Olkin",
+        "William D. Compton",
+        "Aaron D. Ames"
+      ],
+      "primary_category": "eess.SY",
+      "categories": [
+        "eess.SY",
+        "cs.RO"
+      ],
+      "published": "2026-05-03T17:27:44+00:00",
+      "link": "https://arxiv.org/pdf/2605.01978v2",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Analyzes stability of CLF-guided RL for humanoid locomotion",
+      "llm_evidence_cn": "分析CLF引导的强化学习在人形运动控制中的稳定性",
+      "llm_evidence": "分析CLF引导的强化学习在人形运动控制中的稳定性",
+      "canonical_evidence": "分析CLF引导的强化学习在人形运动控制中的稳定性",
+      "llm_tldr_en": "Investigates the stability of CLF-RL for humanoid locomotion, proving exponential stability under certain conditions and bridging experimental success with theoretical guarantees for RL-based locomotion policies.",
+      "llm_tldr_cn": "本文针对基于强化学习的人形机器人运动控制，研究控制李雅普诺夫函数引导奖励设计（CLF-RL）的稳定性。将RL视为最优控制问题，理论分析证明在一定条件下CLF-RL可保证闭环系统指数稳定，为实验中观察到的人形稳定行走提供了严格保证。该结果弥补了RL在人形运动控制领域长期缺乏理论分析的不足，为可靠部署奠定了理论基础。",
+      "llm_tldr": "本文针对基于强化学习的人形机器人运动控制，研究控制李雅普诺夫函数引导奖励设计（CLF-RL）的稳定性。将RL视为最优控制问题，理论分析证明在一定条件下CLF-RL可保证闭环系统指数稳定，为实验中观察到的人形稳定行走提供了严格保证。该结果弥补了RL在人形运动控制领域长期缺乏理论分析的不足，为可靠部署奠定了理论基础。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.06593v1",
+      "source": "arxiv",
+      "title": "ReActor: Reinforcement Learning for Physics-Aware Motion Retargeting",
+      "abstract": "Retargeting human kinematic reference motion onto a robot's morphology remains a formidable challenge. Existing methods often produce physical inconsistencies, such as foot sliding, self-collisions, or dynamically infeasible motions, which hinder downstream imitation learning. We propose a bilevel optimization framework that jointly adapts reference motions to a robot's morphology while training a tracking policy using reinforcement learning. To make the optimization tractable, we derive an approximate gradient for the upper-level loss. Our framework requires only a sparse set of semantic rigid-body correspondences and eliminates the need for manual tuning by identifying optimal values for a parameterization expressive enough to preserve characteristic motion across different embodiments. Moreover, by integrating retargeting directly with physics simulation, we produce physically plausible motions that facilitate robust imitation learning. We validate our method in simulation and on hardware, demonstrating challenging motions for morphologies that differ significantly from a human, including retargeting onto a quadruped.",
+      "authors": [
+        "David Müller",
+        "Agon Serifi",
+        "Sammy Christen",
+        "Ruben Grandia",
+        "Espen Knoop",
+        "Moritz Bächer"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.GR",
+        "cs.LG"
+      ],
+      "published": "2026-05-07T17:20:15+00:00",
+      "link": "https://arxiv.org/pdf/2605.06593v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Physics-aware motion retargeting using RL for human-to-robot motion adaptation",
+      "llm_evidence_cn": "利用强化学习进行物理感知的运动重定向，实现人到机器人的动作适应",
+      "llm_evidence": "利用强化学习进行物理感知的运动重定向，实现人到机器人的动作适应",
+      "canonical_evidence": "利用强化学习进行物理感知的运动重定向，实现人到机器人的动作适应",
+      "llm_tldr_en": "ReActor proposes a bilevel optimization that jointly adapts human reference motion to a robot's morphology and trains a tracking policy with RL, eliminating manual tuning and ensuring physical feasibility for retargeting.",
+      "llm_tldr_cn": "针对现有运动重定向方法产生物理不一致（如脚滑、自碰撞）的问题，提出双层优化框架，同时优化人体参考运动适应机器人形态并训练RL策略，实现无需手工调参的物理可行重定向。",
+      "llm_tldr": "针对现有运动重定向方法产生物理不一致（如脚滑、自碰撞）的问题，提出双层优化框架，同时优化人体参考运动适应机器人形态并训练RL策略，实现无需手工调参的物理可行重定向。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.09944v1",
+      "source": "arxiv",
+      "title": "Explicit Stair Geometry Conditioning for Robust Humanoid Locomotion",
+      "abstract": "Robust humanoid stair climbing remains challenging due to geometric discontinuities, sensitivity to step height variations, and perception uncertainty in real-world environments. Existing learning-based locomotion policies often rely on implicit terrain representations or blind proprioceptive feedback, limiting their ability to generalize across varying stair geometries and to anticipate required gait adjustments. This paper proposes an explicit stair geometry conditioning framework for robust humanoid stair climbing. Instead of encoding terrain as high-dimensional latent features, we extract a compact set of interpretable geometric parameters, including step height, step depth, and current yaw angle relative to the robot heading. These explicit stair parameters directly condition a Proximal Policy Optimization (PPO)-based locomotion policy, enabling proactive modulation of swing-foot clearance and stride characteristics according to stair structure. Simulation experiments demonstrate improved generalization across unseen stair heights beyond the training distribution. Real-world experiments on the Unitree G1 humanoid validate reliable indoor and outdoor stair traversal. In challenging outdoor scenarios, the robot successfully ascends 33 consecutive steps without failure, demonstrating robustness and practical deployability.",
+      "authors": [
+        "Jianguo Zhang",
+        "Wentai Xu",
+        "Shusheng Ye",
+        "Yuxiang He",
+        "Weimin Qi",
+        "Qinbo Sun",
+        "Ning Ding",
+        "Liguang Zhou"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-11T03:47:24+00:00",
+      "link": "https://arxiv.org/pdf/2605.09944v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "RL-based humanoid stair climbing with explicit geometry parameters",
+      "llm_evidence_cn": "基于强化学习的人形机器人爬楼梯显式几何参数方法",
+      "llm_evidence": "基于强化学习的人形机器人爬楼梯显式几何参数方法",
+      "canonical_evidence": "基于强化学习的人形机器人爬楼梯显式几何参数方法",
+      "llm_tldr_en": "Proposes explicit stair geometry conditioning for robust RL-based humanoid locomotion, using interpretable geometric parameters instead of implicit terrain representations.",
+      "llm_tldr_cn": "针对人形机器人爬楼梯时几何不连续、步高敏感和感知不确定等挑战，提出显式楼梯几何条件化框架，通过提取步高、步深和偏航角等直观几何参数替代传统隐式地形表示。该框架将几何参数作为策略输入，使基于强化学习的运动策略能预测自适应步态。实验表明，相比隐式方法，该方法在不同楼梯几何上具有更强的泛化能力和鲁棒性，在真实人形机器人上验证了有效性，为复杂地形下的机器人移动提供了可靠方法。",
+      "llm_tldr": "针对人形机器人爬楼梯时几何不连续、步高敏感和感知不确定等挑战，提出显式楼梯几何条件化框架，通过提取步高、步深和偏航角等直观几何参数替代传统隐式地形表示。该框架将几何参数作为策略输入，使基于强化学习的运动策略能预测自适应步态。实验表明，相比隐式方法，该方法在不同楼梯几何上具有更强的泛化能力和鲁棒性，在真实人形机器人上验证了有效性，为复杂地形下的机器人移动提供了可靠方法。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.15517v1",
+      "source": "arxiv",
+      "title": "Terrain Consistent Reference-Guided RL for Humanoid Navigation Autonomy",
+      "abstract": "We present a method for training reference-guided, perceptive reinforcement learning locomotion policies for humanoid robots in which reference trajectories are modulated in training to be consistent with terrain geometry. Aiming to deploy our method with standard navigation autonomy infrastructure, we synthesize SE(2)-controllable reference trajectories inside the RL training loop, projecting desired footsteps onto valid footholds and adjusting swing-foot and center-of-mass trajectories to match the terrain. The resulting policy exposes a clean SE(2) velocity interface compatible with standard navigation planners. In simulation, environmentally-conditioned references significantly improve reference tracking performance compared to environment agnostic references. On hardware, we integrate the policy with an MPC + control barrier function planner and demonstrate long-horizon (>70m) closed-loop autonomous navigation on the Unitree G1 through outdoor environments containing rough terrain and consecutive flights of stairs, with all sensing and computation onboard.",
+      "authors": [
+        "William D. Compton",
+        "Zachary Olkin",
+        "Aaron D. Ames"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "eess.SY"
+      ],
+      "published": "2026-05-15T01:27:50+00:00",
+      "link": "https://arxiv.org/pdf/2605.15517v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "terrain-consistent reference-guided RL for humanoid locomotion and navigation",
+      "llm_evidence_cn": "地形一致参考引导强化学习用于人形机器人运动与导航",
+      "llm_evidence": "地形一致参考引导强化学习用于人形机器人运动与导航",
+      "canonical_evidence": "地形一致参考引导强化学习用于人形机器人运动与导航",
+      "llm_tldr_en": "Trains RL locomotion policies with terrain-modulated references, projecting footsteps onto valid footholds, and exposes a standard SE(2) velocity interface for navigation integration.",
+      "llm_tldr_cn": "为人形机器人导航自主性提出地形一致参考引导强化学习方法，在RL训练中合成与地形几何一致的参考轨迹，将期望脚步投影到有效落点上并调整摆动脚和质心轨迹。策略暴露标准SE(2)速度接口，可直接与导航规划器集成。仿真实验显示，环境条件化参考显著提升了参考跟踪性能，使学习型运动策略与经典导航栈无缝衔接，促进了人形机器人在复杂地形中的自主移动能力。",
+      "llm_tldr": "为人形机器人导航自主性提出地形一致参考引导强化学习方法，在RL训练中合成与地形几何一致的参考轨迹，将期望脚步投影到有效落点上并调整摆动脚和质心轨迹。策略暴露标准SE(2)速度接口，可直接与导航规划器集成。仿真实验显示，环境条件化参考显著提升了参考跟踪性能，使学习型运动策略与经典导航栈无缝衔接，促进了人形机器人在复杂地形中的自主移动能力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.18611v1",
+      "source": "arxiv",
+      "title": "Unified Walking, Running, and Recovery for Humanoids via State-Dependent Adversarial Motion Priors",
+      "abstract": "We propose a unified reinforcement learning framework that enables a single policy to perform walking, running, and fall recovery on the Unitree G1 humanoid robot, validated on physical hardware without any explicit mode-switching command at deployment. The framework extends Adversarial Motion Priors (AMP) by replacing the conventional global reference distribution with a state-dependent gate that routes each training transition to one of two discriminators: a dedicated recovery discriminator and a velocity-conditioned locomotion discriminator that jointly covers walking and running. The gate is defined by a single fixed threshold on projected gravity: the recovery discriminator is activated when body tilt exceeds approximately $37^\\circ$ from vertical ($|g_z+1|>0.6$); otherwise the locomotion discriminator is used, with the normalized commanded velocity serving as a condition that selects the appropriate reference trajectory between walk and run clips. Only three LAFAN1 reference clips are required to regularize the complete behavior set. At deployment, a single frozen ONNX policy executes at 50\\,Hz with no runtime mode logic; hardware experiments demonstrate successful recovery from both prone and supine falls and smooth walk-to-run transitions under the same controller.",
+      "authors": [
+        "Yidan Lu",
+        "Yichao Zhong",
+        "Liu Zhao",
+        "Wanyue Li",
+        "Peng Lu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-18T16:21:57+00:00",
+      "link": "https://arxiv.org/pdf/2605.18611v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "unified RL policy for humanoid walking, running, fall recovery with state-dependent AMP",
+      "llm_evidence_cn": "基于状态依赖对抗运动先验的人形机器人统一行走、跑步与恢复RL策略",
+      "llm_evidence": "基于状态依赖对抗运动先验的人形机器人统一行走、跑步与恢复RL策略",
+      "canonical_evidence": "基于状态依赖对抗运动先验的人形机器人统一行走、跑步与恢复RL策略",
+      "llm_tldr_en": "Presents a unified RL framework using state-dependent adversarial motion priors to enable a single policy for humanoid walking, running, and fall recovery on real hardware.",
+      "llm_tldr_cn": "针对人形机器人需要多技能运动能力的问题，提出统一强化学习框架，使用状态依赖门控机制扩展对抗运动先验（AMP），根据身体倾斜程度自动在行走/跑步与恢复两种判别器间切换。单一策略无需显式模式切换即可在Unitree G1上实现行走、跑步和跌倒恢复。实物实验验证了该方法在真实场景下的鲁棒性和多模式连续切换能力。",
+      "llm_tldr": "针对人形机器人需要多技能运动能力的问题，提出统一强化学习框架，使用状态依赖门控机制扩展对抗运动先验（AMP），根据身体倾斜程度自动在行走/跑步与恢复两种判别器间切换。单一策略无需显式模式切换即可在Unitree G1上实现行走、跑步和跌倒恢复。实物实验验证了该方法在真实场景下的鲁棒性和多模式连续切换能力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.20373v1",
+      "source": "arxiv",
+      "title": "SUGAR: A Scalable Human-Video-Driven Generalizable Humanoid Loco-Manipulation Learning Framework",
+      "abstract": "Building humanoid robots capable of generalizable whole-body loco-manipulation in the real world remains a fundamental challenge. Existing methods either rely on laborious task-specific reward engineering, rigidly replay reference motions that fail to generalize, or depend on costly teleoperation that limits scalability. While human videos capture diverse human behaviors, motion priors inferred from them are inherently imperfect, suffering from occlusion, contact artifacts, and retargeting errors that render them unsuitable for direct policy learning. To address this, we present SUGAR, a scalable data-driven framework that converts diverse human videos into deployable humanoid loco-manipulation skills, without any task-specific reward engineering or reference-motion conditioning at inference. SUGAR proceeds in three stages. First, a fully automated pipeline extracts kinematic interaction priors including human-object motion trajectories and contact labels from unstructured human videos. Second, a privileged physics-based refiner uses a unified mimic reward and progressive state pool to transform imperfect priors into physically feasible, high-fidelity skills. Third, refined skills are distilled into a hierarchical autonomous policy consisting of a command generator and a command tracker. We evaluate SUGAR on six representative loco-manipulation tasks in simulation and real-world humanoid hardware. Our method substantially outperforms reference-tracking baselines, and performance scales clearly with the amount of human video data. It also achieves zero-shot real-world transfer with reliable closed-loop execution, autonomous failure recovery, and stable long-horizon performance under external perturbations. Project Page: https://tianshuwu.github.io/sugar-humanoid/",
+      "authors": [
+        "Tianshu Wu",
+        "Xiangqi Kong",
+        "Yue Chen",
+        "Qize Yu",
+        "Hang Ye",
+        "Jia Li",
+        "Yizhou Wang",
+        "Hao Dong"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-05-19T18:24:05+00:00",
+      "link": "https://arxiv.org/pdf/2605.20373v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Human-video-driven framework for generalizable humanoid loco-manipulation learning",
+      "llm_evidence_cn": "人视频驱动的人形机器人全身移动操作学习框架",
+      "llm_evidence": "人视频驱动的人形机器人全身移动操作学习框架",
+      "canonical_evidence": "人视频驱动的人形机器人全身移动操作学习框架",
+      "llm_tldr_en": "SUGAR converts diverse human videos into generalizable humanoid loco-manipulation skills without task-specific engineering, enabling scalable skill learning.",
+      "llm_tldr_cn": "针对人形机器人全身移动操作技能泛化性不足和数据采集成本高的问题，SUGAR框架提出从多样人视频中提取不完美运动先验，通过可扩展的数据驱动方法学习可部署于真实机器人的通用技能，无需任务特定奖励设计，实现了高效技能迁移。",
+      "llm_tldr": "针对人形机器人全身移动操作技能泛化性不足和数据采集成本高的问题，SUGAR框架提出从多样人视频中提取不完美运动先验，通过可扩展的数据驱动方法学习可部署于真实机器人的通用技能，无需任务特定奖励设计，实现了高效技能迁移。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.22894v1",
+      "source": "arxiv",
+      "title": "SCRIPT: Scalable Diffusion Policy with Multi-stage Training for Language-driven Physics-Based Humanoid Control",
+      "abstract": "Controlling physics-based humanoids from natural-language instructions is a critical step toward general-purpose embodied agents. However, existing methods remain constrained by a tension between semantic expressiveness and physical feasibility, often failing to jointly achieve faithful instruction following, high-quality motion, and stable long-horizon control. We propose SCRIPT, a scalable diffusion policy with a multi-stage training framework for language-driven physics-based humanoid control. The core of SCRIPT is a Joint Action-State-Text Diffusion Transformer (JAST-DiT), which represents actions, physical states, and text as dedicated token streams and couples them through joint attention, enabling direct interaction between language semantics and control dynamics. To stabilize autoregressive control, we introduce a nonlinear history conditioning mechanism, which preserves the dense recent context and samples increasingly sparse cues from long-term history. Beyond supervised imitation pre-training, we propose a post-training stage, further improving the performance using Reinforcement Learning with Hybrid Rewards (RLHR). By injecting learnable noise into the flow-sampling process, RLHR effectively improves motion quality and instruction following within closed-loop simulations using hybrid physical feedback and text rewards. Quantitative evaluations demonstrate that SCRIPT outperforms prior state-of-the-art methods, with gains across text alignment, motion quality, and physical realism metrics. Furthermore, scaling studies on the 1200-hour MotionMillion dataset demonstrate consistent performance gains with model scaling, highlighting SCRIPT's robust scalability for large-scale pre-training. Our code will be publicly available for future research.",
+      "authors": [
+        "Jingyan Zhang",
+        "Han Liang",
+        "Ruichi Zhang",
+        "Bin Li",
+        "Juze Zhang",
+        "Xin Chen",
+        "Jingya Wang",
+        "Lan Xu",
+        "Jingyi Yu"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-05-21T14:17:21+00:00",
+      "link": "https://arxiv.org/pdf/2605.22894v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Language-driven physics-based humanoid control using diffusion policy",
+      "llm_evidence_cn": "使用扩散策略的语言驱动物理仿真人形机器人控制",
+      "llm_evidence": "使用扩散策略的语言驱动物理仿真人形机器人控制",
+      "canonical_evidence": "使用扩散策略的语言驱动物理仿真人形机器人控制",
+      "llm_tldr_en": "SCRIPT is a scalable diffusion policy framework that enables physics-based humanoids to follow natural language instructions via a joint action-state-text diffusion transformer.",
+      "llm_tldr_cn": "SCRIPT 提出了一种可扩展的扩散策略与多阶段训练框架，用于语言驱动的物理仿真人形机器人控制。其核心是联合动作-状态-文本扩散Transformer（JAST-DiT），通过将动作、物理状态和文本作为独立标记流并利用联合注意力实现直接集成。实验结果表明，该方法能够同时实现忠实的指令跟随、高质量运动和稳定的长期控制，解决了语义表达性与物理可行性之间的冲突，为通用具身智能体的人形机器人控制迈出了重要一步。",
+      "llm_tldr": "SCRIPT 提出了一种可扩展的扩散策略与多阶段训练框架，用于语言驱动的物理仿真人形机器人控制。其核心是联合动作-状态-文本扩散Transformer（JAST-DiT），通过将动作、物理状态和文本作为独立标记流并利用联合注意力实现直接集成。实验结果表明，该方法能够同时实现忠实的指令跟随、高质量运动和稳定的长期控制，解决了语义表达性与物理可行性之间的冲突，为通用具身智能体的人形机器人控制迈出了重要一步。",
+      "llm_tags": [
+        "query:rl-humanoid:composite"
+      ],
+      "matched_query_tag": "query:rl-humanoid:composite",
+      "matched_query_text": "Papers central to 查找强化学习及人行机器人运动控制相关论文, especially work that connects or combines: Find papers on reinforcement learning; Research on humanoid robots; Motion control for robots; Deep reinforcement learning methods; Humanoid locomotion and balance; Find papers on reinforcement learning for humanoid robot motion control; Literature review on deep reinforcement learning in robotics; Research on bipedal locomotion control using learning methods.",
+      "matched_requirement_id": "req-composite-rl-humanoid",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.24592v1",
+      "source": "arxiv",
+      "title": "MuGen: Multi-Skill Generative Locomotion Controller for Humanoid Robots",
+      "abstract": "This paper presents MuGen, a data-driven framework for learning and deploying multi-skill locomotion on humanoid robots. MuGen enables a robot to perform expressive motions like humans under the guidance of example motion sequences. To achieve this, we employ vector-quantized autoencoders (VQ-VAEs) trained with model-based reinforcement learning, resulting in a generative representation of locomotion that captures key patterns of human motion from hours of heterogeneous human performance data. We employ a teacher-student learning framework and develop a new policy distillation strategy to enable a deployable student policy learning this efficient latent representation. This policy allows the robot to track and mimic unseen human motions and further enables the robot to reuse the learned latent space for other tasks. We demonstrate the effectiveness of our framework through a diverse set of motions and accurate execution.",
+      "authors": [
+        "Yusen Feng",
+        "Xiang Wang",
+        "Heyuan Yao",
+        "Zixi Kang",
+        "Xinyu Huo",
+        "Boyang Yu",
+        "Pengyun Qiu",
+        "Ruijie Zhao",
+        "Baoquan Chen",
+        "Libin Liu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-23T14:06:06+00:00",
+      "link": "https://arxiv.org/pdf/2605.24592v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Data-driven framework for multi-skill humanoid locomotion using model-based RL and VQ-VAEs",
+      "llm_evidence_cn": "基于模型强化学习和VQ-VAE的人形机器人多技能运动控制框架",
+      "llm_evidence": "基于模型强化学习和VQ-VAE的人形机器人多技能运动控制框架",
+      "canonical_evidence": "基于模型强化学习和VQ-VAE的人形机器人多技能运动控制框架",
+      "llm_tldr_en": "MuGen uses VQ-VAEs and model-based RL to learn a generative locomotion representation from human motion data, enabling a humanoid robot to perform expressive, multi-skill motions via policy distillation.",
+      "llm_tldr_cn": "MuGen通过矢量量化自编码器与基于模型的强化学习，从人类运动数据中学习生成式运动表征，使机器人能像人类一样执行富有表现力的多技能动作。采用师生学习框架与策略蒸馏，实现可部署的学生策略来追踪和模仿未见过的人类运动。实验表明该方法能有效实现人形机器人的多样运动控制。",
+      "llm_tldr": "MuGen通过矢量量化自编码器与基于模型的强化学习，从人类运动数据中学习生成式运动表征，使机器人能像人类一样执行富有表现力的多技能动作。采用师生学习框架与策略蒸馏，实现可部署的学生策略来追踪和模仿未见过的人类运动。实验表明该方法能有效实现人形机器人的多样运动控制。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.25782v1",
+      "source": "arxiv",
+      "title": "ParkourFormer: Integrating Predictive Supervision and Sequence Modeling into Parkour Locomotion",
+      "abstract": "Humanoid parkour requires locomotion policies to coordinate whole-body dynamics across rapidly changing terrains such as stairs, gaps, slopes, and obstacles. Existing reinforcement learning policies are largely reactive, mapping observations directly to actions without explicitly modeling future body states. Such modeling becomes critical in agile locomotion tasks where successful motion execution depends strongly on anticipating upcoming contact transitions and body dynamics.We present ParkourFormer, a Transformer-based sequence modeling framework that reformulates humanoid locomotion as a future-conditioned decision-making problem. The current robot state queries historical sensorimotor trajectories through cross-attention, while a lightweight prediction head forecasts short-horizon future proprioceptive states. The predicted future states, trained with supervised signals, are fused with temporal features to generate actions, enabling the policy to jointly reason over motion history and anticipated future dynamics. We evaluate ParkourFormer on a diverse multi-terrain humanoid parkour benchmark including stairs, gaps, slopes, rough terrain, and obstacle traversal. Experiments in simulation and on a real humanoid robot show that ParkourFormer achieves a 93.85% average traversal success rate on highly challenging terrains, with improvements of up to 42.73% over strong MLP, MoE-based MLP, and vanilla Transformer baselines, while maintaining a single unified policy across all terrain types. These results demonstrate that explicit future-state modeling significantly improves robustness and generalization for agile whole-body locomotion.",
+      "authors": [
+        "Yanheng Mai",
+        "Wenhao Xu",
+        "Zirui Huang",
+        "Yifei Fu",
+        "Shengwei Dong",
+        "Xinjue Wang",
+        "Kailun Huang",
+        "Yanzhe Xie",
+        "Renjing Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-25T12:29:47+00:00",
+      "link": "https://arxiv.org/pdf/2605.25782v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Transformer-based RL framework for humanoid parkour locomotion",
+      "llm_evidence_cn": "基于Transformer的强化学习框架用于人形机器人跑酷运动",
+      "llm_evidence": "基于Transformer的强化学习框架用于人形机器人跑酷运动",
+      "canonical_evidence": "基于Transformer的强化学习框架用于人形机器人跑酷运动",
+      "llm_tldr_en": "ParkourFormer reformulates humanoid locomotion as future-conditioned decision-making with a Transformer, enabling agile parkour across diverse terrains.",
+      "llm_tldr_cn": "现有强化学习运动策略多为反应式，缺乏对未来身体状态的显式建模，限制了人形机器人在快速变化地形中的表现。本文提出ParkourFormer，一种基于Transformer的序列建模框架，将人形机器人运动重新定义为未来条件决策问题。当前机器人状态通过交叉注意力查询历史感觉运动轨迹，从而预测未来状态并指导动作。该方法在楼梯、间隙、斜坡和障碍物等多种地形上实现了协调的全身跑酷运动，成功依赖于对即将到来的接触转换和身体动力学的预测。",
+      "llm_tldr": "现有强化学习运动策略多为反应式，缺乏对未来身体状态的显式建模，限制了人形机器人在快速变化地形中的表现。本文提出ParkourFormer，一种基于Transformer的序列建模框架，将人形机器人运动重新定义为未来条件决策问题。当前机器人状态通过交叉注意力查询历史感觉运动轨迹，从而预测未来状态并指导动作。该方法在楼梯、间隙、斜坡和障碍物等多种地形上实现了协调的全身跑酷运动，成功依赖于对即将到来的接触转换和身体动力学的预测。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.25782v2",
+      "source": "arxiv",
+      "title": "ParkourFormer: Integrating Predictive Supervision and Sequence Modeling into Parkour Locomotion",
+      "abstract": "Humanoid parkour requires locomotion policies to coordinate whole-body dynamics across rapidly changing terrains such as stairs, gaps, slopes, and obstacles. Existing reinforcement learning policies are largely reactive, mapping observations directly to actions without explicitly modeling future body states. Such modeling becomes critical in agile locomotion tasks where successful motion execution depends strongly on anticipating upcoming contact transitions and body dynamics. We present ParkourFormer, a Transformer-based sequence modeling framework that reformulates humanoid locomotion as a future-conditioned decision-making problem. The current robot state queries historical sensorimotor trajectories through cross-attention, while a lightweight prediction head forecasts short-horizon future proprioceptive states. The predicted future states, trained with supervised signals, are fused with temporal features to generate actions, enabling the policy to jointly reason over motion history and anticipated future dynamics. We evaluate ParkourFormer on a diverse multi-terrain humanoid parkour benchmark including stairs, gaps, slopes, rough terrain, and obstacle traversal. Experiments in simulation and on a real humanoid robot show that ParkourFormer achieves a 93.85% average traversal success rate on highly challenging terrains, with improvements of up to 42.73% over strong MLP, MoE-based MLP, and vanilla Transformer baselines, while maintaining a single unified policy across all terrain types. These results demonstrate that explicit future-state modeling significantly improves robustness and generalization for agile whole-body locomotion.",
+      "authors": [
+        "Yanheng Mai",
+        "Wenhao Xu",
+        "Zirui Huang",
+        "Yifei Fu",
+        "Shengwei Dong",
+        "Xinjue Wang",
+        "Kailun Huang",
+        "Yanzhe Xie",
+        "Renjing Xu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-25T12:29:47+00:00",
+      "link": "https://arxiv.org/pdf/2605.25782v2",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "RL-based framework for humanoid parkour locomotion using Transformer sequence modeling",
+      "llm_evidence_cn": "基于强化学习的Transformer序列建模用于人形机器人跑酷运动",
+      "llm_evidence": "基于强化学习的Transformer序列建模用于人形机器人跑酷运动",
+      "canonical_evidence": "基于强化学习的Transformer序列建模用于人形机器人跑酷运动",
+      "llm_tldr_en": "ParkourFormer employs a Transformer with future-conditioned decision-making to enable humanoid parkour over stairs and gaps, using cross-attention over historical trajectories to anticipate future states, outperforming reactive RL policies.",
+      "llm_tldr_cn": "ParkourFormer针对人形机器人跑酷中缺乏未来状态预测的问题，提出一种基于Transformer的序列建模框架。该方法将运动构建为未来条件决策问题，通过交叉注意力查询历史感觉运动轨迹，预测即将发生的接触转换和身体动力学。在仿真中，机器人成功完成跨楼梯、过缝隙等复杂地形任务，运动敏捷性和成功率显著优于现有反应式强化学习策略。这一方法为敏捷人形运动提供了有效的预测决策机制。",
+      "llm_tldr": "ParkourFormer针对人形机器人跑酷中缺乏未来状态预测的问题，提出一种基于Transformer的序列建模框架。该方法将运动构建为未来条件决策问题，通过交叉注意力查询历史感觉运动轨迹，预测即将发生的接触转换和身体动力学。在仿真中，机器人成功完成跨楼梯、过缝隙等复杂地形任务，运动敏捷性和成功率显著优于现有反应式强化学习策略。这一方法为敏捷人形运动提供了有效的预测决策机制。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.01242v1",
+      "source": "arxiv",
+      "title": "Breaking the Computational Barrier: Provably Efficient Actor-Critic for Low-Rank MDPs",
+      "abstract": "Reinforcement learning (RL) is a fundamental framework for sequential decision-making, in which an agent learns an optimal policy through interactions with an unknown environment. In settings with function approximation, many existing RL algorithms achieve favorable sample complexity, but often rely on computationally intractable oracles. In this paper, we use supervised learning as a computational proxy to establish a clear hierarchy of commonly adopted RL oracles under low-rank Markov Decision Processes (MDPs). This hierarchy shows that policy evaluation is the most computationally efficient oracle, provided that supervised learning can be efficiently solved. Motivated by this observation, we propose a novel optimistic actor-critic algorithm that relies solely on the policy evaluation oracle. We prove that our algorithm outperforms the existing sample complexity guarantees for low-rank MDPs while avoiding computationally expensive planning or optimization oracles commonly assumed in prior works. We further extend our theoretical results to approximately low-rank MDPs and demonstrate that this setting captures a broad class of real-world environments. Finally, we validate our theoretical results with experiments on several standard Gym environments.",
+      "authors": [
+        "Ruiquan Huang",
+        "Donghao Li",
+        "Yingbin Liang",
+        "Jing Yang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-02T04:46:54+00:00",
+      "link": "https://arxiv.org/pdf/2605.01242v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "provably efficient actor-critic algorithm for low-rank MDPs",
+      "llm_evidence_cn": "低秩MDP的可证明高效演员-评论家算法",
+      "llm_evidence": "低秩MDP的可证明高效演员-评论家算法",
+      "canonical_evidence": "低秩MDP的可证明高效演员-评论家算法",
+      "llm_tldr_en": "Establishes a computational hierarchy of RL oracles and proposes an optimistic actor-critic algorithm that is both sample and computationally efficient under low-rank MDPs.",
+      "llm_tldr_cn": "针对强化学习在函数近似下计算效率低的问题，使用监督学习作为计算代理建立RL预言机层次，揭示策略评估是最易处理的预言机。基于此提出新型乐观演员-评论家算法，在低秩MDP下同时达到样本和计算效率。理论证明其样本复杂度与高效计算，为实用RL算法设计提供了理论指导，该工作桥接了RL理论与实践之间的计算鸿沟。",
+      "llm_tldr": "针对强化学习在函数近似下计算效率低的问题，使用监督学习作为计算代理建立RL预言机层次，揭示策略评估是最易处理的预言机。基于此提出新型乐观演员-评论家算法，在低秩MDP下同时达到样本和计算效率。理论证明其样本复杂度与高效计算，为实用RL算法设计提供了理论指导，该工作桥接了RL理论与实践之间的计算鸿沟。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.03452v1",
+      "source": "arxiv",
+      "title": "BifrostUMI: Bridging Robot-Free Demonstrations and Humanoid Whole-Body Manipulation",
+      "abstract": "High-quality data collection is a fundamental cornerstone for training humanoid whole-body visuomotor policies. Current data acquisition paradigms predominantly rely on robot teleoperation, which is often hindered by limited hardware accessibility and low operational efficiency. Inspired by the Universal Manipulation Interface (UMI), we propose BifrostUMI, a portable, efficient, and robot-free data collection framework tailored for humanoid robots. BifrostUMI leverages lightweight VR devices to capture human demonstrations as sparse keypoint trajectories while simultaneously recording wrist-mounted visual data. These multimodal data are subsequently utilized to train a high-level policy network that predicts future keypoint trajectories conditioned on the captured visual features. Through a robust keypoint retargeting pipeline, keypoint trajectories are precisely mapped onto the robot's morphology and executed via a whole-body controller. This approach enables the seamless transfer of diverse and agile behaviors from natural human demonstrations to humanoid embodiments. We demonstrate the efficacy and versatility of the proposed framework across two distinct experimental scenarios.",
+      "authors": [
+        "Chenhao Yu",
+        "Hongwu Wang",
+        "Youhao Hu",
+        "Jiachen Zhang",
+        "Yuanyuan Li",
+        "Shaqi Luo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-05T07:35:09+00:00",
+      "link": "https://arxiv.org/pdf/2605.03452v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "VR-based robot-free data collection for humanoid whole-body manipulation policies",
+      "llm_evidence_cn": "基于VR的无机器人数据采集用于人形机器人全身操作策略",
+      "llm_evidence": "基于VR的无机器人数据采集用于人形机器人全身操作策略",
+      "canonical_evidence": "基于VR的无机器人数据采集用于人形机器人全身操作策略",
+      "llm_tldr_en": "BifrostUMI uses lightweight VR to capture human demonstrations and train humanoid whole-body manipulation policies, bypassing costly teleoperation.",
+      "llm_tldr_cn": "针对人形机器人全身操作数据采集依赖遥操作、效率低的问题，BifrostUMI利用VR设备捕捉稀疏人体关键点轨迹和视觉数据，以此训练高层策略网络预测未来轨迹，实现了便携、高效的无机器人数据采集框架，推动了人形机器人技能学习。",
+      "llm_tldr": "针对人形机器人全身操作数据采集依赖遥操作、效率低的问题，BifrostUMI利用VR设备捕捉稀疏人体关键点轨迹和视觉数据，以此训练高层策略网络预测未来轨迹，实现了便携、高效的无机器人数据采集框架，推动了人形机器人技能学习。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.12347v1",
+      "source": "arxiv",
+      "title": "Real-Time Whole-Body Teleoperation of a Humanoid Robot Using IMU-Based Motion Capture with Sim2Sim and Sim2Real Validation",
+      "abstract": "Stable, low-latency whole-body teleoperation of humanoid robots is an open research challenge, complicated by kinematic mismatches between human and robot morphologies, accumulated inertial sensor noise, non-trivial control latency, and persistent sim-to-real transfer gaps. This paper presents a complete real-time whole-body teleoperation system that maps human motion, recorded with a Virdyn IMU-based full-body motion capture suit, directly onto a Unitree G1 humanoid robot. We introduce a custom motion-processing, kinematic retargeting, and control pipeline engineered for continuous, low-latency operation without any offline buffering or learning-based components. The system is first validated in simulation using the MuJoCo physics model of the Unitree G1 (sim2sim), and then deployed without modification on the physical platform (sim2real). Experimental results demonstrate stable, synchronized reproduction of a broad motion repertoire, including walking, standing, sitting, turning, bowing, and coordinated expressive full-body gestures. This work establishes a practical, scalable framework for whole-body humanoid teleoperation using commodity wearable motion capture hardware.",
+      "authors": [
+        "Hamza Ahmed Durrani",
+        "Suleman Khan"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-12T16:22:17+00:00",
+      "link": "https://arxiv.org/pdf/2605.12347v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "whole-body teleoperation system for humanoid robot using IMU motion capture",
+      "llm_evidence_cn": "基于IMU运动捕捉的人形机器人全身遥操作系统",
+      "llm_evidence": "基于IMU运动捕捉的人形机器人全身遥操作系统",
+      "canonical_evidence": "基于IMU运动捕捉的人形机器人全身遥操作系统",
+      "llm_tldr_en": "Develops a real-time whole-body teleoperation system for a humanoid robot using IMU-based motion capture, achieving stable, low-latency control without learning components.",
+      "llm_tldr_cn": "针对人形机器人全身遥操作中运动学不匹配、传感器噪声和延迟等挑战，提出基于IMU运动捕捉的实时全身遥操作系统。该系统通过自定义运动处理和运动学重定向管道，将Virdyn动捕服采集的人体运动直接映射到Unitree G1人形机器人上，实现了连续、低延迟的遥操作，无需离线处理或学习组件。仿真和真实机器人实验验证了系统的稳定性和低延迟特性，为人形机器人遥操作提供了高效的解决方案。",
+      "llm_tldr": "针对人形机器人全身遥操作中运动学不匹配、传感器噪声和延迟等挑战，提出基于IMU运动捕捉的实时全身遥操作系统。该系统通过自定义运动处理和运动学重定向管道，将Virdyn动捕服采集的人体运动直接映射到Unitree G1人形机器人上，实现了连续、低延迟的遥操作，无需离线处理或学习组件。仿真和真实机器人实验验证了系统的稳定性和低延迟特性，为人形机器人遥操作提供了高效的解决方案。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Research on humanoid robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.14417v1",
+      "source": "arxiv",
+      "title": "Before the Body Moves: Learning Anticipatory Joint Intent for Language-Conditioned Humanoid Control",
+      "abstract": "Natural language is an intuitive interface for humanoid robots, yet streaming whole-body control requires control representations that are executable now and anticipatory of future physical transitions. Existing language-conditioned humanoid systems typically generate kinematic references that a low-level tracker must repair reactively, or use latent/action policies whose outputs do not explicitly encode upcoming contact changes, support transfers, and balance preparation. We propose \\textbf{DAJI} (\\emph{Dynamics-Aligned Joint Intent}), a hierarchical framework that learns an anticipatory joint-intent interface between language generation and closed-loop control. DAJI-Act distills a future-aware teacher into a deployable diffusion action policy through student-driven rollouts, while DAJI-Flow autoregressively generates future intent chunks from language and intent history. Experiments show that DAJI achieves strong results in anticipatory latent learning, single-instruction generation, and streaming instruction following, reaching 94.42\\% rollout success on HumanML3D-style generation and 0.152 subsequence FID on BABEL.",
+      "authors": [
+        "Haozhe Jia",
+        "Honglei Jin",
+        "Yuan Zhang",
+        "Youcheng Fan",
+        "Shaofeng Liang",
+        "Lei Wang",
+        "Shuxu Jin",
+        "Kuimou Yu",
+        "Zinuo Zhang",
+        "Jianfei Song",
+        "Wenshuo Chen",
+        "Yutao Yue"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-05-14T06:05:24+00:00",
+      "link": "https://arxiv.org/pdf/2605.14417v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "learns anticipatory joint intent for language-conditioned humanoid whole-body control, addressing future contact changes and balance",
+      "llm_evidence_cn": "学习面向语言调控人形机器人全身控制的预判关节意图，处理未来接触变化与平衡",
+      "llm_evidence": "学习面向语言调控人形机器人全身控制的预判关节意图，处理未来接触变化与平衡",
+      "canonical_evidence": "学习面向语言调控人形机器人全身控制的预判关节意图，处理未来接触变化与平衡",
+      "llm_tldr_en": "Proposes DAJI, a hierarchical framework that learns an anticipatory joint-intent interface between language commands and closed-loop control for humanoid robots, enabling proactive balance and contact management.",
+      "llm_tldr_cn": "针对现有语言调控人形机器人系统无法显式预判未来接触变化与平衡需求的问题，本文提出 DAJI（动力学对齐关节意图）分层框架，学习一个在语言生成与闭环控制之间的预判关节意图接口。通过蒸馏未来感知教师模型，DAJI-Act 产生的控制信号能够提前准备支撑转移和平衡调整。实验结果表明，该方法能有效提升人形机器人全身控制在语言指令下的主动性和鲁棒性，为语言接口的人形机器人运动控制提供了一种新范式。",
+      "llm_tldr": "针对现有语言调控人形机器人系统无法显式预判未来接触变化与平衡需求的问题，本文提出 DAJI（动力学对齐关节意图）分层框架，学习一个在语言生成与闭环控制之间的预判关节意图接口。通过蒸馏未来感知教师模型，DAJI-Act 产生的控制信号能够提前准备支撑转移和平衡调整。实验结果表明，该方法能有效提升人形机器人全身控制在语言指令下的主动性和鲁棒性，为语言接口的人形机器人运动控制提供了一种新范式。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.14417v2",
+      "source": "arxiv",
+      "title": "Before the Body Moves: Learning Anticipatory Joint Intent for Language-Conditioned Humanoid Control",
+      "abstract": "Natural language is an intuitive interface for humanoid robots, yet streaming whole-body control requires control representations that are executable now and anticipatory of future physical transitions. Existing language-conditioned humanoid systems typically generate kinematic references that a low-level tracker must repair reactively, or use latent/action policies whose outputs do not explicitly encode upcoming contact changes, support transfers, and balance preparation. We propose \\textbf{DAJI} (\\emph{Dynamics-Aligned Joint Intent}), a hierarchical framework that learns an anticipatory joint-intent interface between language generation and closed-loop control. DAJI-Act distills a future-aware teacher into a deployable diffusion action policy through student-driven rollouts, while DAJI-Flow autoregressively generates future intent chunks from language and intent history. Experiments show that DAJI achieves strong results in anticipatory latent learning, single-instruction generation, and streaming instruction following, reaching 94.42\\% rollout success on HumanML3D-style generation and 0.152 subsequence FID on BABEL.",
+      "authors": [
+        "Haozhe Jia",
+        "Honglei Jin",
+        "Yuan Zhang",
+        "Youcheng Fan",
+        "Shaofeng Liang",
+        "Lei Wang",
+        "Shuxu Jin",
+        "Kuimou Yu",
+        "Zinuo Zhang",
+        "Jianfei Song",
+        "Wenshuo Chen",
+        "Yutao Yue"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-05-14T06:05:24+00:00",
+      "link": "https://arxiv.org/pdf/2605.14417v2",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "learns anticipatory joint intent for language-conditioned humanoid whole-body control, addressing future contact changes and balance",
+      "llm_evidence_cn": "学习面向语言调控人形机器人全身控制的预判关节意图，处理未来接触变化与平衡",
+      "llm_evidence": "学习面向语言调控人形机器人全身控制的预判关节意图，处理未来接触变化与平衡",
+      "canonical_evidence": "学习面向语言调控人形机器人全身控制的预判关节意图，处理未来接触变化与平衡",
+      "llm_tldr_en": "Proposes DAJI, a hierarchical framework that learns an anticipatory joint-intent interface between language commands and closed-loop control for humanoid robots, enabling proactive balance and contact management.",
+      "llm_tldr_cn": "针对现有语言调控人形机器人系统无法显式预判未来接触变化与平衡需求的问题，本文提出 DAJI（动力学对齐关节意图）分层框架，学习一个在语言生成与闭环控制之间的预判关节意图接口。通过蒸馏未来感知教师模型，DAJI-Act 产生的控制信号能够提前准备支撑转移和平衡调整。实验结果表明，该方法能有效提升人形机器人全身控制在语言指令下的主动性和鲁棒性，为语言接口的人形机器人运动控制提供了一种新范式。",
+      "llm_tldr": "针对现有语言调控人形机器人系统无法显式预判未来接触变化与平衡需求的问题，本文提出 DAJI（动力学对齐关节意图）分层框架，学习一个在语言生成与闭环控制之间的预判关节意图接口。通过蒸馏未来感知教师模型，DAJI-Act 产生的控制信号能够提前准备支撑转移和平衡调整。实验结果表明，该方法能有效提升人形机器人全身控制在语言指令下的主动性和鲁棒性，为语言接口的人形机器人运动控制提供了一种新范式。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.15336v1",
+      "source": "arxiv",
+      "title": "HoloMotion-1 Technical Report",
+      "abstract": "In this report, we present HoloMotion-1, a humanoid motion foundation model for zero-shot whole-body motion tracking. A key innovation of HoloMotion-1 is to scale control-policy training with a large-scale hybrid motion corpus, where video-reconstructed motions from in-the-wild videos provide the dominant source of motion diversity, while curated motion-capture and in-house motion data provide higher-fidelity supervision and deployment-oriented coverage. This data regime enables HoloMotion-1 to move beyond conventional MoCap-only training and exposes the policy to substantially broader behaviors, capture conditions, and motion styles.   Learning from such heterogeneous data introduces new challenges, including reconstruction noise, source-domain mismatch, uneven motion quality, and the need for temporal modeling under large behavioral variation. To address these challenges, HoloMotion-1 integrates large-capacity temporal modeling, a sparsely activated Mixture-of-Experts Transformer with KV-cache inference for real-time control, and a sequence-level training strategy that improves learning efficiency on extended motion sequences. Extensive experiments on multiple unseen motion benchmarks show that HoloMotion-1 generalizes robustly across diverse motion types and capture conditions, significantly improves tracking accuracy over prior methods, and transfers directly to a real humanoid robot without task-specific fine-tuning.",
+      "authors": [
+        "Maiyue Chen",
+        "Kaihui Wang",
+        "Bo Zhang",
+        "Xihan Ma",
+        "Zhiyuan Yang",
+        "Yi Ren",
+        "Qijun Huang",
+        "Zihao Zhu",
+        "Yucheng Wang",
+        "Zhizhong Su"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-14T18:59:43+00:00",
+      "link": "https://arxiv.org/pdf/2605.15336v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "humanoid motion foundation model for zero-shot whole-body motion tracking using large-scale hybrid motion data",
+      "llm_evidence_cn": "利用大规模混合运动数据训练的人形运动基础模型，实现零样本全身运动跟踪",
+      "llm_evidence": "利用大规模混合运动数据训练的人形运动基础模型，实现零样本全身运动跟踪",
+      "canonical_evidence": "利用大规模混合运动数据训练的人形运动基础模型，实现零样本全身运动跟踪",
+      "llm_tldr_en": "HoloMotion-1 is a humanoid motion foundation model trained on a hybrid corpus of video-reconstructed and motion-capture data, enabling zero-shot whole-body motion tracking with diverse behaviors.",
+      "llm_tldr_cn": "现有人形机器人运动控制策略多仅依赖动捕数据，行为多样性受限。本报告提出的 HoloMotion-1 是一个运动基础模型，创新地采用大规模混合运动语料训练，其中来自互联网视频的三维重建运动提供了主要的行为多样性，而动捕和自采集数据提供高保真监督。模型实现了零样本全身运动跟踪，能够复现广泛的运动风格和捕获条件。该数据驱动范式突破了传统训练的数据瓶颈，为通用人形运动控制开辟了新路径。",
+      "llm_tldr": "现有人形机器人运动控制策略多仅依赖动捕数据，行为多样性受限。本报告提出的 HoloMotion-1 是一个运动基础模型，创新地采用大规模混合运动语料训练，其中来自互联网视频的三维重建运动提供了主要的行为多样性，而动捕和自采集数据提供高保真监督。模型实现了零样本全身运动跟踪，能够复现广泛的运动风格和捕获条件。该数据驱动范式突破了传统训练的数据瓶颈，为通用人形运动控制开辟了新路径。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.18842v1",
+      "source": "arxiv",
+      "title": "Safe Continual Reinforcement Learning under Nonstationarity via Adaptive Safety Constraints",
+      "abstract": "Safe reinforcement learning in nonstationary environments requires safety mechanisms that adapt as environmental conditions change. Standard safe reinforcement learning methods often assume fixed constraints or stable environmental conditions, which can become inadequate under distribution shift. We propose LILAC+, a framework for safe continual reinforcement learning under nonstationarity that combines three adaptive safety mechanisms: context-based safety constraints, adaptation-speed constraints, and budget-to-state safety enforcement. Context-based constraints adjust safety requirements using inferred and predicted environmental context. Adaptation-speed constraints tighten safety requirements when the rate of environmental change exceeds the agent's ability to adapt safely. Budget-to-state enforcement converts cumulative safety requirements into local state-level control constraints that can be enforced at decision time. Together, these mechanisms provide a unified approach for proactive and reactive safety adaptation in continual reinforcement learning. We evaluate the framework in simulated driving environments under stationary, seen nonstationary, and unseen nonstationary conditions. The results show that adaptive safety constraints substantially reduce safety violations under distribution shift while maintaining competitive task performance compared with unconstrained and fixed-constraint baselines. These findings suggest that safe continual reinforcement learning requires adaptive constraint mechanisms that respond not only to current state information but also to predicted environmental context, adaptation demand, and remaining safety budget.",
+      "authors": [
+        "Timofey Tomashevskiy"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-13T04:10:10+00:00",
+      "link": "https://arxiv.org/pdf/2605.18842v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "adaptive safety constraints for nonstationary safe continual RL",
+      "llm_evidence_cn": "非平稳环境中的自适应安全约束持续强化学习",
+      "llm_evidence": "非平稳环境中的自适应安全约束持续强化学习",
+      "canonical_evidence": "非平稳环境中的自适应安全约束持续强化学习",
+      "llm_tldr_en": "Proposes LILAC+, a framework for safe continual RL under nonstationarity, combining context-based, adaptation-speed, and budget-to-state safety mechanisms.",
+      "llm_tldr_cn": "针对非平稳环境中安全强化学习需随环境变化调整安全机制的问题，提出LILAC+框架，组合三种自适应安全机制：基于上下文的安全约束、自适应速度约束和预算-状态安全强制执行，以在分布漂移下维持安全。实验表明，LILAC+在非平稳任务中相比固定约束方法显著提升了安全性和任务性能，该框架为动态环境中的安全RL提供了实用的自适应解决方案。",
+      "llm_tldr": "针对非平稳环境中安全强化学习需随环境变化调整安全机制的问题，提出LILAC+框架，组合三种自适应安全机制：基于上下文的安全约束、自适应速度约束和预算-状态安全强制执行，以在分布漂移下维持安全。实验表明，LILAC+在非平稳任务中相比固定约束方法显著提升了安全性和任务性能，该框架为动态环境中的安全RL提供了实用的自适应解决方案。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.19469v1",
+      "source": "arxiv",
+      "title": "Sampling-Based Safe Reinforcement Learning",
+      "abstract": "Safe exploration remains a fundamental challenge in reinforcement learning (RL), limiting the deployment of RL agents in the real world. We propose Sampling-Based Safe Reinforcement Learning (SBSRL), a model-based RL algorithm that maintains safety throughout the learning process by enforcing constraints jointly across a finite set of dynamics samples. This formulation approximates an intractable worst-case optimization over uncertain dynamics and enables practical safety guarantees in continuous domains. We further introduce an exploration strategy based on constraining epistemic uncertainty, eliminating the need for explicit exploration bonuses. Under regularity conditions, we derive high-probability guarantees of safety throughout learning and a finite-time sample complexity bound for recovering a near-optimal policy. Empirically, SBSRL achieves safe and efficient exploration both in simulation and in real robotic hardware, and readily extends to practical deep-ensemble implementations that scale to high-dimensional continuous control problems.",
+      "authors": [
+        "Luca Vignola",
+        "Bruce D. Lee",
+        "Manish Prajapat",
+        "Manuel Wendl",
+        "Melanie Zeilinger",
+        "Andreas Krause",
+        "Yarden As"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-05-19T07:21:53+00:00",
+      "link": "https://arxiv.org/pdf/2605.19469v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "model-based safe RL algorithm with safety guarantees via dynamics sampling",
+      "llm_evidence_cn": "基于采样的模型安全强化学习算法",
+      "llm_evidence": "基于采样的模型安全强化学习算法",
+      "canonical_evidence": "基于采样的模型安全强化学习算法",
+      "llm_tldr_en": "Proposes Sampling-Based Safe RL, a model-based algorithm that enforces safety constraints across dynamics samples for safe exploration in continuous domains.",
+      "llm_tldr_cn": "针对强化学习中安全探索的挑战，提出基于采样的安全强化学习（SBSRL）算法，通过在一组动力学样本上联合实施约束来近似最坏情况优化，保障连续域中的安全。引入基于认知不确定性约束的探索策略，无需显式探索奖励。在正则条件下，证明了学习过程中的高概率安全保证和有限样本复杂度，为真实世界RL部署提供了安全性基础。",
+      "llm_tldr": "针对强化学习中安全探索的挑战，提出基于采样的安全强化学习（SBSRL）算法，通过在一组动力学样本上联合实施约束来近似最坏情况优化，保障连续域中的安全。引入基于认知不确定性约束的探索策略，无需显式探索奖励。在正则条件下，证明了学习过程中的高概率安全保证和有限样本复杂度，为真实世界RL部署提供了安全性基础。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.21935v1",
+      "source": "arxiv",
+      "title": "Learning to Evolve: Multi-modal Interactive Fields for Robust Humanoid Navigation in Dynamic Environments",
+      "abstract": "Safe manipulation-oriented navigation for humanoid robots requires scene memory that remains reliable under locomotion-induced perceptual distortion, environmental changes, and interaction-level geometric safety constraints. Existing semantic mapping and scene-graph systems are difficult to deploy directly in this setting because they often assume stable camera trajectories, static environments, or coarse object geometry. We introduce the Multi-modal Interactive Field (MIF), a humanoid-oriented system that integrates confidence-aware semantic 3D Gaussian Splatting, discrepancy-triggered spatial memory updates, and task-driven geometric reconstruction within a closed-loop perception-adaptation pipeline. MIF couples three fields: an uncertainty-aware 3DGS Appearance Field that suppresses gait-induced blur, a Spatial Field that maintains topological memory, and a Geometry Field that supports Interaction Pose Safety (IPS) before manipulation. A discrepancy detection score is introduced to separate locomotion-induced false-positive changes from persistent changes and updates only locally inconsistent regions. On a Unitree-G1 humanoid in a real dynamic office, MIF improves relocation success in non-static environments from 12% to 94% compared with static scene-graph memory, while reducing semantic memory footprint by 91.4% through feature distillation for practical online operation. Project page and code: https://ziya-jiang.github.io/MIF-homepage/",
+      "authors": [
+        "Peifeng Jiang",
+        "Hong Liu",
+        "Jin Jin",
+        "Wenshuai Wang",
+        "Xia Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-21T03:11:43+00:00",
+      "link": "https://arxiv.org/pdf/2605.21935v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Humanoid navigation with scene memory and perceptual adaptation",
+      "llm_evidence_cn": "人形机器人导航，具有场景记忆和感知适应能力",
+      "llm_evidence": "人形机器人导航，具有场景记忆和感知适应能力",
+      "canonical_evidence": "人形机器人导航，具有场景记忆和感知适应能力",
+      "llm_tldr_en": "Introduces Multi-modal Interactive Field (MIF), a humanoid-oriented system that combines confidence-aware 3D Gaussian Splatting and spatial memory updates for reliable navigation under perceptual distortion and environmental changes.",
+      "llm_tldr_cn": "针对人形机器人在运动导致感知失真下安全导航的难题，提出多模态交互场MIF，融合置信度感知的3D高斯泼溅与差异触发空间记忆更新，实现鲁棒导航。",
+      "llm_tldr": "针对人形机器人在运动导致感知失真下安全导航的难题，提出多模态交互场MIF，融合置信度感知的3D高斯泼溅与差异触发空间记忆更新，实现鲁棒导航。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Research on humanoid robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.23762v1",
+      "source": "arxiv",
+      "title": "Direct Dynamic Retargeting for Humanoid Imitation Learning from Videos",
+      "abstract": "Imitation Learning from monocular video demonstrations provides a scalable approach for teaching complex skills to humanoid robots. However, translating human motion to humanoids requires overcoming significant morphological mismatches. Standard approaches rely on Geometric Retargeting or Indirect Dynamic Retargeting pipelines. We identify that these intermediate kinematic projections introduce a geometric bias, restricting the search space and yielding suboptimal dynamic behaviors. In this paper, we propose Direct Dynamic Retargeting (DDR), a novel single-stage framework that generates high-fidelity, dynamically feasible trajectories directly from expert videos. By formulating the problem in the task space and leveraging a sampling-based Model Predictive Control solver within a physics simulator, DDR natively optimizes over complex contact sequences while mitigating input drift. Our experiments demonstrate that bypassing the geometric bias allows DDR to outperform state-of-the-art baselines in demonstration tracking accuracy. Furthermore, we establish that providing such physically viable references to RL agents accelerates training convergence and enhances the final execution of agile and balancing behaviors. Source code will be made publicly available.",
+      "authors": [
+        "Constant Roux",
+        "Ludovic De Matteïs",
+        "Armand Jordana",
+        "Valentin Guillet",
+        "Nicolas Mansard",
+        "Olivier Stasse",
+        "Philippe Souères"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-22T15:33:40+00:00",
+      "link": "https://arxiv.org/pdf/2605.23762v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Imitation learning framework for humanoid motion retargeting from videos",
+      "llm_evidence_cn": "从视频中人形运动模仿学习的动态重定向框架",
+      "llm_evidence": "从视频中人形运动模仿学习的动态重定向框架",
+      "canonical_evidence": "从视频中人形运动模仿学习的动态重定向框架",
+      "llm_tldr_en": "DDR directly retargets human motion to humanoids from videos via task-space optimization and sampling-based MPC, avoiding kinematic bias and generating dynamically feasible trajectories for high-fidelity imitation learning.",
+      "llm_tldr_cn": "DDR提出一种直接动态重定向框架，绕过传统几何重定向的中间投影，直接在任务空间中利用采样型模型预测控制生成动态可行的人形轨迹。该方法从单目视频中提取专家运动，并实时优化以适应机器人形态差异。在多种动作模仿实验中，DDR显著提高了动作保真度和执行稳定性，对比几何重定向方法在动态性能和抗干扰方面均表现更优，为人形机器人从视频高效学习复杂技能铺平了道路。",
+      "llm_tldr": "DDR提出一种直接动态重定向框架，绕过传统几何重定向的中间投影，直接在任务空间中利用采样型模型预测控制生成动态可行的人形轨迹。该方法从单目视频中提取专家运动，并实时优化以适应机器人形态差异。在多种动作模仿实验中，DDR显著提高了动作保真度和执行稳定性，对比几何重定向方法在动态性能和抗干扰方面均表现更优，为人形机器人从视频高效学习复杂技能铺平了道路。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.26006v1",
+      "source": "arxiv",
+      "title": "MIND: Multi-Scale Intent Diffusion for Text-Driven Physics-Based Humanoid Control",
+      "abstract": "Enabling physics-based humanoids to execute diverse behaviors from high-level textual commands remains a significant challenge. Existing methods typically follow either a two-stage paradigm that combines kinematic motion generation with physics-based tracking, or an end-to-end imitation-learning paradigm that directly generates actions from text. However, the former suffers from the inherent domain shift between kinematic generation and physics-based tracking, while the latter struggles with the substantial modality gap between textual commands and low-level actions, limiting effective semantic alignment. Notably, humanoid states encode rich motion dynamics that are more semantically aligned with textual descriptions than low-level actions, making them a natural basis for deriving behavioral intent. Building upon this insight, we propose MIND, a novel end-to-end diffusion framework for text-driven physics-based humanoid control that leverages behavioral intent as a semantic bridge between textual commands and low-level actions. At its core, MIND introduces a multi-scale intent diffusion mechanism, where a holistic intent predictor captures global behavioral dynamics to guide overall behavior synthesis, while an immediate intent predictor provides step-wise, fine-grained signals for local behavior refinement at each diffusion step. This hierarchical intent formulation imposes a structured inductive bias for humanoid control, improving semantic alignment and behavioral naturalness. Furthermore, MIND encodes humanoid states into a latent space to enable more effective semantic intent modeling. Extensive experiments demonstrate that MIND outperforms existing methods and synthesizes coherent, physically plausible, and semantically aligned humanoid behaviors from text commands. Our code will be released to facilitate future research.",
+      "authors": [
+        "Bin Li",
+        "Ruichi Zhang",
+        "Han Liang",
+        "Jingyan Zhang",
+        "Juze Zhang",
+        "Xin Chen",
+        "Jingya Wang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.RO"
+      ],
+      "published": "2026-05-25T16:23:10+00:00",
+      "link": "https://arxiv.org/pdf/2605.26006v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "text-driven physics-based humanoid control using multi-scale intent diffusion, bridging semantic gap between text and actions",
+      "llm_evidence_cn": "利用多尺度意图扩散实现文本驱动物理人形机器人控制，弥合文本与动作间的语义鸿沟",
+      "llm_evidence": "利用多尺度意图扩散实现文本驱动物理人形机器人控制，弥合文本与动作间的语义鸿沟",
+      "canonical_evidence": "利用多尺度意图扩散实现文本驱动物理人形机器人控制，弥合文本与动作间的语义鸿沟",
+      "llm_tldr_en": "MIND framework uses multi-scale intent diffusion to align textual commands with humanoid states, enabling physics-based humanoids to perform diverse behaviors from high-level text without domain shift issues.",
+      "llm_tldr_cn": "文本指令控制物理仿真人形机器人面临两大难题：两阶段方法的运动学到物理跟踪域偏移，以及端到端方法的文本-动作模态差距。本文提出 MIND（多尺度意图扩散）框架，将扩散模型用于人形状态层面的意图生成，利用人形状态蕴含的丰富运动动态与文本描述对齐，从而弥合语义鸿沟。MIND 能直接从文本生成物理上可行的动作，并在仿真中驱动人形完成多样行为，实现了更鲁棒的文本驱动人形控制。",
+      "llm_tldr": "文本指令控制物理仿真人形机器人面临两大难题：两阶段方法的运动学到物理跟踪域偏移，以及端到端方法的文本-动作模态差距。本文提出 MIND（多尺度意图扩散）框架，将扩散模型用于人形状态层面的意图生成，利用人形状态蕴含的丰富运动动态与文本描述对齐，从而弥合语义鸿沟。MIND 能直接从文本生成物理上可行的动作，并在仿真中驱动人形完成多样行为，实现了更鲁棒的文本驱动人形控制。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.28549v1",
+      "source": "arxiv",
+      "title": "SPRINT: Efficient Spectral Priors for Humanoid Athletic Sprints",
+      "abstract": "The pursuit of humanoid athletic sprints is hindered by a scarcity of humanoid-viable kinematic reference data and the inability of existing frameworks to maintain stability during sprints. To overcome these limitations, we introduce SPRINT, a novel framework driven by efficient, frequency-adaptive spectral priors. By characterizing the fundamental periodicity of human locomotion in the frequency domain using a reference library of five discrete motion sequences, these priors generate kinematically feasible joint trajectories across a broad velocity spectrum, successfully extrapolating to speeds that exceed the reference distribution. Guided by these pretrained priors, the SPRINT policy achieves zero-shot sim-to-real transfer in field experiments on the Unitree G1 platform, reaching a peak sprinting velocity of 6 m/s and demonstrating seamless gait transitions while preserving biomimetic naturalness. Ultimately, this work establishes frequency-adaptive spectral priors as a highly data-efficient foundation for humanoid athletic sprints. The project page is available at https://anonymous.4open.science/w/SPRINT-138A/.",
+      "authors": [
+        "Yantong Wei",
+        "Kaihong Huang",
+        "Hainan Pan",
+        "Jiawei Luo",
+        "Jiawei Zhou",
+        "Ziyan Mai",
+        "Zhiwen Zeng",
+        "Yaonan Wang",
+        "Huimin Lu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-05-27T14:40:29+00:00",
+      "link": "https://arxiv.org/pdf/2605.28549v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "spectral priors for humanoid sprinting locomotion control",
+      "llm_evidence_cn": "用于人形机器人短跑运动控制的频谱先验",
+      "llm_evidence": "用于人形机器人短跑运动控制的频谱先验",
+      "canonical_evidence": "用于人形机器人短跑运动控制的频谱先验",
+      "llm_tldr_en": "SPRINT uses frequency-adaptive spectral priors to generate humanoid sprint trajectories, enabling zero-shot sim-to-real transfer on a Unitr robot for high-speed locomotion.",
+      "llm_tldr_cn": "人形机器人运动短跑因缺乏可行运动学参考和稳定性难以实现。本文提出SPRINT框架，利用频率自适应频谱先验从五段离散动作序列中学习步态周期性，跨速度生成关节轨迹。该策略在Unitr机器人上实现了零样本仿真到真实迁移，并能外推至超出参考分布的速度，显著提升了人形机器人高速运动能力。",
+      "llm_tldr": "人形机器人运动短跑因缺乏可行运动学参考和稳定性难以实现。本文提出SPRINT框架，利用频率自适应频谱先验从五段离散动作序列中学习步态周期性，跨速度生成关节轨迹。该策略在Unitr机器人上实现了零样本仿真到真实迁移，并能外推至超出参考分布的速度，显著提升了人形机器人高速运动能力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.04185v1",
+      "source": "arxiv",
+      "title": "Constraint-Enhanced Reinforcement Learning Based on Dynamic Decoupled Spherical Radial Squashing",
+      "abstract": "When deploying reinforcement learning policies to physical robots, actuator rate constraints -- hard limits on how fast each joint can move per control step -- are unavoidable. These limits vary substantially across joints due to differences in motor inertia, power bandwidth, and transmission stiffness, creating pronounced heterogeneity that existing methods fail to handle geometrically: the per-joint feasible region forms a high-dimensional box in action-increment space, yet QP projection and spherical parameterization methods impose isotropic ball-shaped constraints, exponentially under-covering the true feasible set as heterogeneity grows. This paper proposes Dynamic Decoupled Spherical Radial Squashing (DD-SRad), which resolves this mismatch by computing a position-adaptive radius independently for each actuator, achieving tight alignment with the true per-joint feasible region. DD-SRad satisfies per-step hard constraints with probability~1, preserves well-conditioned gradients throughout training, and admits exact policy gradient backpropagation with zero runtime solver overhead. MuJoCo benchmark experiments demonstrate the highest task return at zero constraint violation -- matching the unconstrained upper bound -- with 30%--50% improvement in constraint-space coverage over spherical baselines. High-fidelity IsaacLab simulations with Unitree H1 and G1 humanoid robots confirm end-to-end optimality parameterized directly from official joint specifications, validating a systematic pathway from hardware datasheets to safe deployment.",
+      "authors": [
+        "Qijun Liao",
+        "Zhaoxin Yu",
+        "Jue Yang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-05-05T18:24:46+00:00",
+      "link": "https://arxiv.org/pdf/2605.04185v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Handles heterogeneous actuator rate constraints for RL on physical robots",
+      "llm_evidence_cn": "处理物理机器人强化学习中异质执行器速率约束",
+      "llm_evidence": "处理物理机器人强化学习中异质执行器速率约束",
+      "canonical_evidence": "处理物理机器人强化学习中异质执行器速率约束",
+      "llm_tldr_en": "Proposes DD-SRad to handle heterogeneous joint rate constraints in RL, avoiding the under-coverage of isotropic spherical methods.",
+      "llm_tldr_cn": "针对物理机器人执行器速率约束异质性导致传统球形参数化方法可行域严重欠覆盖的问题，本文提出动态解耦球形径向压缩（DD-SRad）方法，通过对每个维度独立径向压缩来精确匹配实际盒状约束，实验表明该方法在约束满足上显著优于现有方法。",
+      "llm_tldr": "针对物理机器人执行器速率约束异质性导致传统球形参数化方法可行域严重欠覆盖的问题，本文提出动态解耦球形径向压缩（DD-SRad）方法，通过对每个维度独立径向压缩来精确匹配实际盒状约束，实验表明该方法在约束满足上显著优于现有方法。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.05110v1",
+      "source": "arxiv",
+      "title": "LineRides: Line-Guided Reinforcement Learning for Bicycle Robot Stunts",
+      "abstract": "Designing reward functions for agile robotic maneuvers in reinforcement learning remains difficult, and demonstration-based approaches often require reference motions that are unavailable for novel platforms or extreme stunts. We present LineRides, a line-guided learning framework that enables a custom bicycle robot to acquire diverse, commandable stunt behaviors from a user-provided spatial guideline and sparse key-orientations, without demonstrations or explicit timing. LineRides handles physically infeasible guidelines using a tracking margin that permits controlled deviation, resolves temporal ambiguity by measuring progress via traveled distance along the guideline, and disambiguates motion details through position- and sequence-based key-orientations. We evaluate LineRides on the Ultra Mobility Vehicle (UMV) and show that the policy trained with our methods supports seamless transitions between normal driving and stunt execution, enabling five distinct stunts on command: MiniHop, LargeHop, ThreePointTurn, Backflip, and DriftTurn.",
+      "authors": [
+        "Seungeun Rho",
+        "Shamel Fahmi",
+        "Jeonghwan Kim",
+        "Arianna Ilvonen",
+        "Sehoon Ha",
+        "Gabriel Nelson"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-06T16:43:28+00:00",
+      "link": "https://arxiv.org/pdf/2605.05110v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Uses reinforcement learning for robot motion control",
+      "llm_evidence_cn": "使用强化学习进行机器人运动控制",
+      "llm_evidence": "使用强化学习进行机器人运动控制",
+      "canonical_evidence": "使用强化学习进行机器人运动控制",
+      "llm_tldr_en": "LineRides is a line-guided reinforcement learning framework that enables a bicycle robot to learn agile stunt behaviors from spatial guidelines and sparse orientations, without demonstrations.",
+      "llm_tldr_cn": "LineRides 提出一种线路引导的强化学习框架，使自行车机器人能够从用户提供的空间引导线和稀疏关键方向中学习多样化、可指令的特技行为，无需参考动作演示。该框架通过跟踪裕度处理物理不可行引导，利用行进距离推进解决时序歧义，并通过位置和顺序关键方向细化动作细节。实验表明，该方法能实现多种特技动作，为新型机器人平台的敏捷机动学习提供了高效方案。",
+      "llm_tldr": "LineRides 提出一种线路引导的强化学习框架，使自行车机器人能够从用户提供的空间引导线和稀疏关键方向中学习多样化、可指令的特技行为，无需参考动作演示。该框架通过跟踪裕度处理物理不可行引导，利用行进距离推进解决时序歧义，并通过位置和顺序关键方向细化动作细节。实验表明，该方法能实现多种特技动作，为新型机器人平台的敏捷机动学习提供了高效方案。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.12689v1",
+      "source": "arxiv",
+      "title": "3D RL-DWA: A Hybrid Reinforcement Learning and Dynamic Window Approach for Goal-Directed Local Navigation in Multi-DoF Robots",
+      "abstract": "In this paper, we present a novel hybrid approach that combines Reinforcement Learning (RL) with Dynamic Window Approach (DWA) for adaptive 3D local navigation of high-degree-of-freedom robotic systems. Our method leverages sparse point cloud data to dynamically adjust both the motion and the shape of a deformable microrobot, enabling the system to navigate toward a goal in complex, constrained environments while maximizing the occupied volume. We evaluate our framework in a simulated vascular network. Experimental results, based on 1080 trials, indicate that integrating RL with a DWA-based local planner significantly enhances both deformation and navigation capabilities compared to a pure RL and a model-based methods. In particular, the proposed autonomous controller consistently achieves high deformation and near-perfect path completion during training and maintains robust performance in unseen scenarios. These findings highlight the potential of hybrid planning strategies for efficient and adaptive 3D navigation under sparse sensory conditions.",
+      "authors": [
+        "Chiara Castellani",
+        "Enrico Turco",
+        "Domenico Prattichizzo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-12T19:37:32+00:00",
+      "link": "https://arxiv.org/pdf/2605.12689v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Hybrid RL and DWA for 3D local navigation of multi-DoF robots",
+      "llm_evidence_cn": "结合强化学习与动态窗口法进行多自由度机器人3D局部导航",
+      "llm_evidence": "结合强化学习与动态窗口法进行多自由度机器人3D局部导航",
+      "canonical_evidence": "结合强化学习与动态窗口法进行多自由度机器人3D局部导航",
+      "llm_tldr_en": "Proposes 3D RL-DWA, a hybrid approach that uses RL to dynamically adjust a deformable microrobot's motion and shape for goal-directed navigation in complex environments, demonstrating improved deformation and navigation over pure RL.",
+      "llm_tldr_cn": "针对高自由度机器人在约束环境中导航的需求，提出3D RL-DWA混合方法，利用强化学习动态调整微机器人形态与运动，在模拟血管网络中显著提升变形和导航能力。",
+      "llm_tldr": "针对高自由度机器人在约束环境中导航的需求，提出3D RL-DWA混合方法，利用强化学习动态调整微机器人形态与运动，在模拟血管网络中显著提升变形和导航能力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.25720v1",
+      "source": "arxiv",
+      "title": "Learning to Search and Searching to Learn for Generalization in Planning",
+      "abstract": "Combinatorial generalization remains a central challenge in Deep Reinforcement Learning (DRL). Classical planning provides a simple yet challenging setting to study this problem through explicit relational descriptions, without requiring learning from perception. In sparse-reward domains, standard RL exploration via real-time search is ineffective, and learning-based planning methods often rely on expert demonstrations, hindsight relabeling, or random walks from the goal state. In contrast, planners rely on best-first search methods such as $\\mathrm{A}^\\star$ to solve problems from scratch. We propose a self-improving $\\mathrm{WA}^\\star$ learning framework in combination with a value heuristic represented by a Relational Graph Neural Network: the heuristic guides search, and the resulting search data updates the heuristic via $Q$-learning. This loop yields heuristics that can function as general policies and solve new instances even without search, where DRL otherwise fails, as we show on puzzles such as Sokoban, PushWorld, The Witness, and the 2023 International Planning Competition benchmarks. Notably, we demonstrate strong zero-shot generalization: For example, heuristics trained on Blocksworld instances with fewer than 30 blocks successfully solve instances with 488 blocks without search.",
+      "authors": [
+        "Michael Aichmüller",
+        "Yannik Hesse",
+        "Hector Geffner"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-05-25T11:25:13+00:00",
+      "link": "https://arxiv.org/pdf/2605.25720v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "proposes self-improving WA* learning framework with relational GNN for generalization in DRL planning",
+      "llm_evidence_cn": "提出结合关系图神经网络的自改进 WA* 学习框架，提升深度强化学习规划中的泛化性",
+      "llm_evidence": "提出结合关系图神经网络的自改进 WA* 学习框架，提升深度强化学习规划中的泛化性",
+      "canonical_evidence": "提出结合关系图神经网络的自改进 WA* 学习框架，提升深度强化学习规划中的泛化性",
+      "llm_tldr_en": "To address combinatorial generalization in deep reinforcement learning, this paper combines WA* search with relational graph neural network value heuristics in a self-improving framework, improving planning in sparse-reward domains.",
+      "llm_tldr_cn": "深度强化学习在组合泛化中遇困，尤其在稀疏奖励规划任务中。本文提出自改进 WA* 学习框架，将关系图神经网络价值启发式与最佳优先搜索结合，通过交替搜索与学习实现自我提升。实验在经典规划域中验证了该方法无需奖励塑形即可从零开始求解，并展现出良好的泛化性。该框架为将经典规划算法融入深度强化学习以提升泛化能力提供了新思路。",
+      "llm_tldr": "深度强化学习在组合泛化中遇困，尤其在稀疏奖励规划任务中。本文提出自改进 WA* 学习框架，将关系图神经网络价值启发式与最佳优先搜索结合，通过交替搜索与学习实现自我提升。实验在经典规划域中验证了该方法无需奖励塑形即可从零开始求解，并展现出良好的泛化性。该框架为将经典规划算法融入深度强化学习以提升泛化能力提供了新思路。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.28186v1",
+      "source": "arxiv",
+      "title": "Visualizing Latent Phase Structures in Locomotion Policies: A Multi-Environment Study with Temporal Feature Extension",
+      "abstract": "Deep reinforcement learning (DRL) has been shown to achieve high performance on locomotion control tasks in MuJoCo benchmarks such as HalfCheetah, Ant, and Walker2D. However, visualizing the motion structures internally obtained by a trained policy function implemented as a deep neural network remains challenging. It is known from biomechanics and related fields that locomotion control is realized through the repetition of motion phases such as the stance phase and swing phase. In this study, we propose a framework for uncovering latent motion phase structures from trajectories generated by locomotion control policies through interaction with the environment. The proposed method extends the clustering features from state observations alone to augmented features including actions, next states, and next actions, and introduces a method for determining the number of clusters that suppresses self-transitions. Applying the proposed method to three environments -- Ant-v5, HalfCheetah-v5, and Walker2D-v5 -- we successfully identified phase structures with clearer and more regular transition rules than those obtained by the existing method.",
+      "authors": [
+        "Daisuke Yasui",
+        "Toshitaka Matuki",
+        "Hiroshi Sato"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-27T09:09:09+00:00",
+      "link": "https://arxiv.org/pdf/2605.28186v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "framework to uncover latent phase structures from DRL locomotion policies on bipedal Walker2D among other MuJoCo environments",
+      "llm_evidence_cn": "提出从双足 Walker2D 等 MuJoCo 环境的 DRL 运动策略中揭示潜相位结构的框架",
+      "llm_evidence": "提出从双足 Walker2D 等 MuJoCo 环境的 DRL 运动策略中揭示潜相位结构的框架",
+      "canonical_evidence": "提出从双足 Walker2D 等 MuJoCo 环境的 DRL 运动策略中揭示潜相位结构的框架",
+      "llm_tldr_en": "Proposes a framework to visualize latent motion phase structures from deep reinforcement learning locomotion policies, tested on MuJoCo tasks including bipedal Walker2D, revealing underlying gait patterns.",
+      "llm_tldr_cn": "深度强化学习在 MuJoCo 运动控制任务上取得高性能，但其策略内部的运动时空结构难以解释。本文提出一种结合时间特征扩展的框架，对运动轨迹聚类以揭示潜运动相位结构。在 HalfCheetah、Ant 和 bipedal Walker2D 等多环境测试中，成功识别出支撑相、摆动相等典型相位模式。该工作为分析 DRL 运动控制策略提供了可视化工具，有助于理解生物启发的运动生成机制，并可用于指导策略设计。",
+      "llm_tldr": "深度强化学习在 MuJoCo 运动控制任务上取得高性能，但其策略内部的运动时空结构难以解释。本文提出一种结合时间特征扩展的框架，对运动轨迹聚类以揭示潜运动相位结构。在 HalfCheetah、Ant 和 bipedal Walker2D 等多环境测试中，成功识别出支撑相、摆动相等典型相位模式。该工作为分析 DRL 运动控制策略提供了可视化工具，有助于理解生物启发的运动生成机制，并可用于指导策略设计。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Research on bipedal locomotion control using learning methods",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch"
+    }
+  ]
+}

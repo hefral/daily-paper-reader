@@ -1,0 +1,373 @@
+Title: LineRides: Line-Guided Reinforcement Learning for Bicycle Robot Stunts
+
+URL Source: https://arxiv.org/pdf/2605.05110v1
+
+Published Time: Thu, 07 May 2026 01:24:36 GMT
+
+Number of Pages: 8
+
+Markdown Content:
+# LineRides: Line-Guided Reinforcement Learning for Bicycle Robot Stunts 
+
+Seungeun Rho 1,2, Shamel Fahmi 1, Jeonghwan Kim 1,2, Arianna Ilvonen 1 Sehoon Ha 2, and Gabriel Nelson 1
+
+Abstract — Designing reward functions for agile robotic maneuvers in reinforcement learning remains difficult, and demonstration-based approaches often require reference mo-tions that are unavailable for novel platforms or extreme stunts. We present LineRides, a line-guided learning framework that enables a custom bicycle robot to acquire diverse, commandable stunt behaviors from a user-provided spatial guideline and sparse key-orientations, without demonstrations or explicit timing. LineRides handles physically infeasible guidelines using a tracking margin that permits controlled deviation, resolves temporal ambiguity by measuring progress via traveled distance along the guideline, and disambiguates motion details through position- and sequence-based key-orientations. We evaluate LineRides on the Ultra Mobility Vehicle (UMV) and show that the policy trained with our methods supports seamless transitions between normal driving and stunt execution, en-abling five distinct stunts on command: MiniHop , LargeHop ,
+
+ThreePointTurn , Backflip , and DriftTurn .
+
+I. I NTRODUCTION 
+
+Training reinforcement learning (RL) policies to perform agile maneuvers on robots is inherently challenging, as it is difficult to design reward functions that accurately capture the intended motion. Even for a seemingly simple skill such as jumping , which is conceptually intuitive, translating this intuition into effective reward terms is nontrivial. Prior works have explored a wide range of reward formulations, includ-ing contact-based penalties, waypoint tracking, and phase-specific reward shaping [1]–[3]. However, these rewards are often task-specific and not easily generalizable to new behaviors. Alternative motion-imitation approaches leverage demon-strations to guide learning [4]–[9]. These methods are ef-fective when high-quality references are available. However, references for novel robots or extreme maneuvers and stunts may be difficult to acquire. For example, when demonstra-tions originate from different embodiments, such as other robots or animals [10], retargeting introduces additional sources of error, especially when the target robot has a unique structure such as UMV shown in Fig. 2. In this work, we introduce LineRides, a general learning framework that enables robots to acquire versatile stunt behaviors from a simple user-provided line and a sequence of key-orientations .The line provides an intuitive way to specify the desired motion. Users can define virtually any stunt trajectory using either a parameterized function, such as a Hermite curve, or a trajectory optimization based on simplified dynamics models. As illustrated in Fig. 1, once a line is given, the   
+
+> 1RAI Institute, Cambridge, MA, USA. 2Georgia Institute of Technology, Atlanta, GA, USA. Work done during S. Rho and J. Kim’s internships. Project page: seungeunrho.github.io/projects/LineRides Guideline
+> RL
+> training Key -
+> orientations
+
+Fig. 1: Once the desired behavior is specified as a line and key-orientations, LineRides learns to accomplish the corresponding stunt maneuvers. robot learns to follow it, thereby realizing the intended agile motion. We refer to this user-specified line as the guideline .Designing a method to follow such a guideline involves three key challenges. First, the user-provided gudieline could be physically infeasible. For example, to draw a line for defining backflip stunt illustraed in Fig. 1, user cannot know of the right height, width, and curvature of the curve. To deal with this, we introduce a margin parameter that allows a controlled amount of deviation from the line, providing the policy with flexibility to satisfy physical constraints while still following the intended path. Second, unlike conventional demonstration-based ap-proaches [4], [11], [12], our guideline does not include explicit temporal information. As a result, it is unclear apriori when the robot should reach each point along the guideline. This introduces ambiguity in determining appro-priate early termination conditions during training. Since early termination plays a critical role in training efficiency, this ambiguity poses a significant challenge. To address this issue, we use the robot’s cumulative traveled distance as a progression measure along the guideline, enabling consistent target selection without requiring explicit timing information. We describe this mechanism in detail in Section V. Finally, while the guideline specifies the overall spatial trajectory, it does not encode orientation information. Ori-entation is often critical for controlling fine-grained motion details, such as distinguishing between rear-wheel-first and front-wheel-first landings in the mini-hop example shown in Fig. 3. To address this limitation, we introduce key-orientations , which specify desired base orientations at se-lected waypoints along the guideline. We consider two types of key-orientations. Position-based key-orientations associate a target orientation with a specific waypoint, while sequence-based key-orientations define a sequence of orientations that guide smooth transitions between two position-based key-orientations. Both formulations are described in detail in 
+
+> arXiv:2605.05110v1 [cs.RO] 6 May 2026
+
+Section V-B. In addition, stunt skills are only meaningful when inte-grated with normal driving behavior. To this end, LineRides trains a single policy in an end-to-end manner that supports both driving mode and stunt mode . In driving mode, the robot maintains ground contact and follows user-issued joystick commands for basic locomotion, including forward and back-ward motion, turning, acceleration, and deceleration. Upon pressing a designated button, the robot transitions into stunt mode, executes the stunt behavior defined by the guideline, and seamlessly returns to driving mode upon completion. We validate our framework across a diverse set of stunt skills. In simulation, we train challenging maneuvers such as drift turns and backflips, while on real hardware, we demonstrate three-point turns and two levels of jumping. The results show that LineRides offers a generic framework for acquiring agile behaviors on UMV. In summary, our contributions are as follows:  
+
+> •
+
+We present LineRides, a general reinforcement learning framework that enables robots to acquire diverse stunt behaviors from a simple user-provided spatial guideline, without requiring joint-level demonstrations.  
+
+> •
+
+We propose a traveled-distance-based termination cri-terion that enables early termination without requiring time-coupled data.  
+
+> •
+
+We introduce key-orientations as an explicit mechanism for resolving orientation ambiguity and controlling fine-grained motion details along the guideline.  
+
+> •
+
+We demonstrate the effectiveness of LineRides across five challenging stunt behaviors in simulation and three real-world behaviors on the UMV platform. II. R ELATED WORK 
+
+A. Learning Agile Stunt Maneuvers 
+
+With the advancement of reinforcement learning (RL), both legged and wheeled robots have demonstrated the ability to learn highly agile stunt maneuvers. Legged robots have shown capabilities in learning dynamic and acrobatic behav-iors [1], [3], [13], [14], while wheeled platforms have also learned diverse and agile motion skills [15]–[19]. Beyond skill learning, legged robots have achieved robustness across various terrains [20], [21] and even exhibited high-speed running near their physical limits [22], [23]. More recently, bipedal robots have also demonstrated the ability to acquire a wide range of agile behaviors [24]–[28]. Here, we highlight how diverse efforts have been required to enable robots to learn agile behaviors. For instance, to train a relatively simple jump skill, [1] introduced a virtual obstacle and penalized the robot’s body overlap with it to induce a jumping motion. [2] designed a phase-based reward that distinguishes between pre-landing and post-landing stages, assigning distinct objectives to each phase. [3] shaped the behavior using human-specified waypoints as intermediate guidance signals. To reduce the reliance on such hand-crafted rewards, [13] adopted unsupervised skill discovery for learning diverse locomotion behaviors, Lower Body Joint Upper Body Lower Body Fork Joint Base Front Wheel Rear Wheel Upper Body Joint Front Wheel Joint Rear Wheel Joint Boing 
+
+Fig. 2: A 2D overview of the UMV model used in this work. although the agility and expressiveness of the resulting skills remained limited. Overall, these studies explore a wide spectrum of reward design and training paradigms for agile locomotion. In contrast, our work introduces a general learning framework that can learn different stunt skills through a single motion-representation based on lines .
+
+B. Lines as Goal Describing Modality 1) Manipulation: Lines or waypoints have emerged as an expressive modality for specifying goals in recent robotic manipulation. Gu et al. [29] first proposed a robot-arm control policy conditioned on trajectory sketches. Similarly, [30] and [31] leveraged human-drawn sketches as an in-tuitive representation of task intent, providing dense goal information. [32], [33] further introduced waypoint-based RL frameworks, where agents learn high-level waypoint sequences instead of low-level motor commands. Inspired by these advances, we aim to extend this idea to the domain of agile locomotion and stunt skill learning. 
+
+2) Locomotion: Several recent works have explored geo-metric interfaces for specifying locomotion behaviors. Bus-sola et al. use B´ ezier curves to guide quadruped jump-ing [34], but in their framework the curve serves as a high-level action that is converted into joint trajectories via inverse kinematics and then tracked by a PD controller, rather than as a target behavior specification itself. WASABI [6] and RobotKeyFraming (RKF) [35] are more closely related to our setting. WASABI learns from par-tial demonstrations represented as time-indexed observation sequences, while RKF specifies motions as time-assigned keyframes. In both cases, the user must specify not only the desired motion, but also its temporal schedule. This can be difficult for highly dynamic stunt behaviors, where the required timing and velocity profile are not known in advance and may vary across initial conditions. In contrast, LineRides is purely position-based: the user specifies only a spatial guideline, and the reinforcement learning process discovers the timing and control strategy needed to realize the stunt. III. T HE ULTRA MOBILITY VEHICLE (UMV) UMV is a custom-built, two-wheeled robot that resem-bles a child-sized bicycle (Fig. 2). Unlike a conventional bike, it features a large articulated module, referred to as boing , mounted on top of the frame. Boing can be actu-ated vertically—either lifted upward or contracted down-ward—through two joints, namely the upper-body and lower-body joints. This module contains the majority of the robot’s mass (approximately 18 kg out of the total 26 kg), including the batteries and actuators. By shifting this concentrated mass, the robot can generate substantial momentum, enabling highly dynamic and acrobatic maneuvers. The remainder of the robot follows a conventional bicycle design: the fork joint steers the front wheel, the rear wheel provides driving torque, and the front wheel remains passive. In total, the version of the UMV used in this work has four actuated joints. Overall, the addition of the boing transforms an otherwise simple bicycle frame into a platform capable of agile, stunt-like behaviors. IV. P ROBLEM FORMULATION 
+
+We formulate the stunt skill learning problem for UMV as a Markov Decision Process (MDP), defined as 
+
+M = {S , A, R, P, γ },
+
+where S denotes the state space, A the action space, R
+
+the reward function, and P = Pr( s′ | s, a ) the transition dynamics that describe the probability of reaching the next state s′ given the current state s and action a. The scalar 
+
+γ ∈ [0 , 1] is the discount factor. The agent follows a stochastic policy π(a | s), parame-terized by a neural network with parameters θ, denoted as 
+
+πθ . The goal of reinforcement learning is to optimize θ to maximize the expected discounted return: 
+
+J (θ) = Eπ, P
+
+" ∞X
+
+> t=0
+
+γtrt
+
+#
+
+. (1) We adopt Proximal Policy Optimization (PPO) [36] as the RL algorithm for training πθ .V. L INE RIDES 
+
+In this section, we describe how the provided line and key-orientations are used to enable the robot to perform agile stunt behaviors. We then explain how the guideline can be generated, and finally discuss how stunt execution is integrated into the normal driving mode and activated by a human trigger. 
+
+A. Tracking Guideline 
+
+Our objective is to enable the robot to execute a stunt behavior represented by a guideline l = [ p1, p 2, . . . , p n],expressed in the robot’s local coordinate frame, where each waypoint pi ∈ R3.
+
+Rewards. At each timestep, a single waypoint pi is selected as the active target pgoal , and rewards are computed with respect to this target. When the robot’s position xstunt t
+
+reaches the current target pgoal , the active target is updated to the next waypoint pi+1 . Given pgoal , we define the tracking reward as the negative change in distance to the target: 
+
+rline  
+
+> t
+
+= −  ∥xstunt t − pgoal ∥2 − ∥ xstunt  
+
+> t−1
+
+− pgoal ∥2
+
+ , (2) : Guideline with waypoints, : Actual path traveled for 1.2m    
+
+> 0.5m 0.5m
+> 0.2m
+> 𝑝 !𝑝 "
+> 𝑝 #Key -
+> orientation
+> 𝜃
+> 𝑝 $
+> 𝑝 %
+> 𝑝 &𝑝 '
+> Current
+> target
+
+Fig. 3: An example guideline for a mini-hop motion with 7 waypoints and one key-orientation. The target waypoint is determined based on the traveled distance along the path. which yields a positive reward whenever the robot moves closer to the target waypoint. 
+
+Early Termination. Since the guideline provides no ex-plicit temporal information, determining when to terminate an episode is nontrivial. Instead, we leverage the known cumulative distance required to reach each waypoint and infer progression along the guideline based on the distance traveled by the robot. For each waypoint pi, we precompute the cumulative arc-length of the guideline up to that waypoint, denoted by di.The guideline can thus be redefined as 
+
+l = [( p1, d 1), (p2, d 2), . . . , (pn, d n)] ,
+
+where d1 < d 2 < · · · < d n.During training, we continuously integrate the distance traveled by the robot’s base, denoted by dt. When the i-th waypoint pi is the active target and the condition dt > d i
+
+is satisfied, we evaluate whether the robot has successfully reached pi. If the waypoint has not been reached, the episode is terminated. As illustrated in Fig. 3, if the robot has traveled 
+
+1.2 m and d3 = 1 .2 m , we terminate the episode if robot deviate too far from p3.
+
+Margin. Because user-provided guidelines may not cor-respond to physically feasible trajectories, we introduce a margin parameter dmargin that provides tolerance for devia-tions from the guideline. In detail, a waypoint is considered reached when the distance between the robot’s current position xstunt t and the target pgoal is below a threshold dmargin :
+
+∥xstunt t − pgoal ∥2 < d margin . (3) A larger margin allows the policy to tolerate tracking error without premature termination, enabling robust learning even when exact adherence to the guideline is infeasible. 
+
+B. Controlling Motion Details via Key-Orientation Tracking 
+
+Key-orientations specify the desired orientation of the robot’s base at selected waypoints along the guideline. As illustrated in Fig. 3, the user can encourage a rear-wheel-first landing, which helps absorb impact more effectively, by assigning a positive pitch angle at the waypoint at landing. Formally, key-orientations can be defined in two ways: 
+
+position-based and sequence-based .
+
+Position-Based. The most straightforward approach is to associate each desired orientation directly with a spatial position. Each key-orientation ki = ( pi, q i) is defined as a tuple consisting of a waypoint pi ∈ R3 and an orientation 
+
+qi ∈ R4 represented as a quaternion. When the robot reaches sufficiently close to pi, we compute the angular difference θdiff between its current orientation qt and the target orientation qi, and assign a reward that increases as this difference decreases: 
+
+rrot  
+
+> t
+
+= exp( −θdiff ) = exp(2 arccos( |qt · qi|)) . (4) Additionally, we terminate the episode when the robot’s orientation deviates excessively from the target. Specifically, if θdiff > θ thres , the episode is terminated immediately. 
+
+Sequence-Based. A limitation of the position-based ap-proach is that it requires specifying the exact positions of desired orientations before training , which is often difficult or impossible. For example, in a backflip, we may want the robot to pass through 90 ◦, inverted, and 270 ◦ poses before returning upright, but the exact positions of these poses depend on the robot’s dynamics and are hard to know in advance. To overcome this limitation, we introduce sequence-based 
+
+key-orientations, which allow omitting explicit spatial posi-tions for intermediate key-orientations between the position-based ones, as follows: 
+
+k = {(pinit , q init ), q 1, q 2, . . . , q n, (pfin , q fin )}. (5) These sequence-based key-orientations are not necessarily tied to explicit spatial coordinates but instead define atemporal sequence of desired orientations. This formulation assumes that the angular gap between the robot’s base ori-entation and the current target orientation qi should decrease monotonically over time, as in the backflip example. The reward is computed based on the angular progress toward the current target orientation. Let θdiff  
+
+> t
+
+denote the angle between the robot’s current orientation qt and the target orientation qi. The reward is then defined as 
+
+rrot  
+
+> t
+
+= −(θdiff  
+
+> t
+
+− θdiff 
+
+> t−1
+
+), where θdiff  
+
+> t
+
+= 2 arccos( |qt · qi|) ,
+
+which yields a positive reward when the robot’s orientation moves closer to the target key-orientation. Early termination is applied when monotonicity is violated; if the orientation difference increases, the episode terminates. 
+
+C. Drawing Guidelines 1) Hermite Curve: To generate smooth and diverse spatial lines using user-specified parameters, we employ a cubic Hermite curve representation. Hermite curves allow explicit control over both position and tangent (velocity) at each endpoint, enabling intuitive shaping of the desired trajectory. Given two points x0, x 1 ∈ R3 and their corresponding tangent vectors m0, m 1 ∈ R3, the Hermite curve p(u) for h 
+
+> launch land
+> 𝜑
+
+Fig. 4: Trajectory optimization with simplified two-mass models can provide guidelines. (a) Simulated backflip using a two-mass model. (b) Two-mass model, including degrees of freedom. (c) Backflip trajectory from the full simulated robot. 
+
+u ∈ [0 , 1] is defined as 
+
+p(u) = (2 u3 − 3u2 + 1) x0 + ( u3 − 2u2 + u) m0
+
++ ( −2u3 + 3 u2) x1 + ( u3 − u2) m1. (6) Because the curve is parameterized, we can sample as many intermediate waypoints as needed. In practice, we first densely sample approximately 1,000 points to compute the empirical cumulative distance di for each pi ∈ l. We then re-sample a smaller subset (typically 10–20 waypoints) to form the final guideline l.
+
+2) Trajectory optimization with simplified model: We can also generate a guideline through trajectory optimization with a simplified dynamic model. For the backflip, we model the bike-like robot as a two-mass system connected by a prismatic joint, as shown in Fig. 4. The state and control are 
+
+x = [ xcom , z com , ˙xcom , ˙zcom , ϕ, ˙ϕ, h, ˙h] ∈ R8,u = [ ¨h, τ, r w] ∈ R3. (7) We solve a two-phase optimization problem with ground-contact and flight phases, and use the resulting base trajectory directly as the guideline for backflip training. 
+
+D. Combining Stunt Execution with Driving Mode 
+
+While the proposed method enables the robot to execute agile stunt behaviors, it does not by itself determine when these behaviors should be activated. In realistic operation, the robot should remain in a stable driving mode by default and initiate a stunt only when explicitly commanded by the user, with smooth transitions between modes. To support this, LineRides trains a single end-to-end policy that takes desirable mode, either driving and stunt as user input. This user input is randomly instantiated during training, and each mode comes with designated reward function and termination conditions. 
+
+1) Training in Driving Mode: In driving mode, the robot tracks three types of user commands: a target forward linear velocity vdrive , a target yaw angular velocity ωdrive ,and desired upper- and lower-body joint angles ρdrive . Each TABLE I: Rewards for Both Stunt and Driving Modes                                                                             
+
+> Component Formulation Range Interval(s)
+> Stunt Mode Rewards
+> Guideline Track ∥xstunt t−pgoal ∥2− ∥ xstunt
+> t−1−pgoal ∥2––Key-orientation Track exp(2 arccos( |qt·qi|)) ––or, −(θdiff
+> t−θdiff
+> t−1)
+> Driving Mode Rewards
+> Lin-vel Track 3∗exp( ∥vbase −vdrive ∥2)U[ −1,2] U[2 ,15]
+> Ang-vel Track 3∗exp( ∥ωbase −ωdrive ∥2)U[ −1.5,1.5] U[3 ,8]
+> Boing-pos Track 3∗exp( ∥ρboing −ρdrive ∥2)U[0 .06 ,1.0] U[3 ,10]
+> Regularization Penalties for Both Modes
+> Action Smoothness −10 −4∗ ∥ at−at−1∥2––Fork Velocity −0.001 ∗˙q2
+> fork ––Contact Force −10 −6∗ ∥ max (Fcontact −350 ,0) ∥2––Body Joint Limits −I(qjoint /∈[qmin , q max ]) ––Velocity Penalty −3∗ ∥ max (vbase −2,0) ∥2––
+
+command is sampled from a predefined distribution with its own resampling interval, exposing the robot to a diverse combination of command inputs. The reward function is designed to minimize the deviation between the robot’s actual motion and commanded targets. Regularization penalties are added to improve robustness for both of the modes. The complete reward formulation, command ranges, and command sampling intervals are sum-marized in Table I. The linear velocity command can take both zero and negative values. A negative value instructs the robot to drive backward, while a zero value corresponds to a track-stand 
+
+behavior, where the robot maintains balance without forward motion through active fork control. 
+
+2) Mode Transitions: During training, all robot begins in driving mode, and after a random duration tswitch ∼
+
+Uniform(2 , 5) seconds, the agent switches to stunt mode. At this point, the reward function and termination conditions are replaced with those defined for the stunt mode as well. The robot is informed of the current mode through a mode variable c ∈ ot. During deployment, this value is given by the user through a joystick button trigger. Once the agent enters stunt mode, it returns to driving mode only after the robot successfully reaches the final way-point of the guideline. After completion, a new tswitch value is sampled, and after the duration elapses, the robot re-enters stunt mode. Each episode lasts 20 seconds, during which the robot typically performs two to five stunt executions depending on the sampled switch duration. 
+
+E. Observations, Actions, Control, and Domain Randomiza-tion 
+
+Observations: The robot’s observation at time step t is defined as 
+
+ot = [ q, ˙q, ω, g, a t−1, c, v drive , ω drive , ρ drive , x stunt t ] ∈ R25 
+
+where q ∈ R4 denotes the actuated joint positions, ˙q ∈ R4
+
+the joint velocities, ω ∈ R3 the base angular velocity, g ∈
+
+R3 the gravity vector expressed in the robot’s base frame, 
+
+at−1 ∈ R4 the previous action, and c ∈ { 0, 1} the user command indicating whether the robot is in driving mode or 
+
+stunt mode .In the driving mode, the user command for driving such as vdrive ∈ R1, ωdrive and ρdrive ∈ R2 are active. These driving command values are masked to zero during stunt TABLE II: Domain Randomization Parameters 
+
+Parameter Range / Distribution Unit 
+
+Added Mass U[0.9, 1.1] ratio Friction Coefficient U[0.7, 1.5] -Motor Strength U[0.85, 1.05] ratio Actuator Gains Scale U[0.85, 1.15] ratio Actuation Delay U[0, 1] steps Obs. Noise (Joint Pos) N (0 , 0.001) rad Obs. Noise (Joint Vel) N (0 , 0.1) rad/s Obs. Noise (Ang Vel) U[-0.1, 0.1] rad/s Obs. Noise (Proj Gravity) U[-0.015, 0.015] -Body Velocity Disturbance U[-0.1, 0.1] m/s 
+
+mode. Conversely, xstunt t ∈ R3 is active only in stunt mode and measures the robot’s base position relative to its position at the moment when stunt mode is triggered. Note that the guideline and key-orientations are used only during training to compute the reward. They are not provided as policy inputs during either training or testing. 
+
+Actions: The policy outputs a four-dimensional continu-ous action vector 
+
+at = [ aupper-body , a lower-body , a fork , a rearwheel ] ∈ R4.
+
+It specifies desired joint position setpoints for the upper-body, lower-body, and fork joints, which have well-defined joint limits, and a velocity target for the continuously rotating rear wheel, whose absolute joint angle is unbounded. 
+
+Control: The final joint torques τ are computed using a proportional–derivative (PD) controller: 
+
+τ = kp(qdes − q) + kd( ˙ qdes − ˙q), (8) where qdes and ˙qdes denote the desired joint position and velocity setpoints, respectively. 
+
+Domain Randomization: To reduce the sim-to-real gap, we apply domain randomization [37], [38] in both driving and stunt modes. The full set of randomized parameters is given in Table II. VI. E XPERIMENTAL RESULTS 
+
+We train our policy in the high-throughput, GPU-based simulator IsaacLab [39], and then deploy it on real hardware for evaluation. Depending on the task, training takes 12–24 hours on an NVIDIA L40 GPU. 
+
+A. LineRides Can Learn Diverse Stunt Maneuvers 
+
+To evaluate the capability of LineRides in learning diverse stunt skills, we trained and tested a separate control policy for each of five distinct bike maneuvers in both real-world and simulated environments:  
+
+> •
+
+MiniHop : a small vertical hop reaching approximately 32 cm in height and 50 cm in distance (real, sim)  
+
+> •
+
+LargeHop : a larger vertical hop reaching about 56 cm in height and 80 cm in distance (real, sim)  
+
+> •
+
+ThreePointsTurn : a planar two-step pivot turn that requires precise balance adjustments (real, sim)  
+
+> •
+
+DriftTurn : a planar left drift-turn maneuver of roughly 90° involving controlled rear-wheel slip (sim)  
+
+> •
+
+Backflip : a full vertical backward flip executed while moving forward (sim) (1) forward       
+
+> -turn
+> (2) backward -turn
+> (1)
+> left 90º drift -turn
+> (1)
+> (3) (2) 32cm
+> height jump (2) 58cm
+> height jump
+> (3)
+> (a) MiniHop (b) LargeHop
+> (c) ThreePoint -Turn (d) Drift -Turn
+> (e) Backflip
+> (1)
+> : Key -orientation, sequence based ( -, orientation)
+> : Guideline with waypoint
+> : Key -orientation, position based (pos, orientation)
+
+Fig. 5: LineRides converts a user-drawn guideline (left) into a corresponding robot stunt maneuver (right). Cases (a), (b), and (c) are generated using cubic Hermite curves, (d) is drawn manually as it consists of simple straight lines, and (e) is produced via trajectory optimization. All five stunt skills are successfully trained and demonstrated. For safety reasons, DriftTurn and Backflip were eval-uated only in simulation, since failed hardware trials could significantly damage the robot. The user-provided guidelines, along with the correspond-ing key-orientations and the resulting learned stunt behaviors, are visualized in Fig. 5. As shown in the figure, between one and five key-orientations were sufficient to specify each stunt motion. The learned skills exhibited strong robustness under re-peated execution. In each driving trial, the robot was com-manded to execute the consecutive stunt three to five times, consistently achieving a 100% success rate. Please refer to the supplementary video for additional details. We also evaluated the robustness of the learned policy in driving mode. After completing each stunt, the robot seamlessly returned to driving mode and continued following the user’s driving commands. The driving tasks included a variety of maneuvers such as turns with varying angles, acceleration and deceleration phases, track-stand balancing (zero-velocity command), and backward driving. We con-firmed that the driving policy remained highly stable and responsive, faithfully following user commands. A repre-sentative 50-second driving sequence is provided in the supplementary video. 
+
+B. LineRides Can Handle Physically Infeasible Guidelines 
+
+As discussed in Section V-A, we introduce a margin to account for potential infeasibility in user-drawn guidelines. A fixed margin of 30,cm is used across all stunt motions. To z  
+
+> xx
+> MiniHop LargeHop
+
+Fig. 6: Trajectory of the robot’s base during hardware de-ployment, along with its guideline. examine the effect of this design, we study how the robot behaves when a provided guideline is physically infeasible but still close to a feasible trajectory. Specifically, we record the realized base trajectory on hardware for five trials of 
+
+MiniHop and three trials of LargeHop , and overlay the resulting trajectories with their corresponding guidelines. As shown in Fig. 6, the realized trajectories deviate from the idealized guidelines. Nevertheless, with the help of the margin, the robot is able to successfully execute the intended maneuvers. This deviation illustrates that the tolerance mar-gin allows the robot to depart from the guideline when neces-sary while still preserving the intended behavior. Moreover, the realized trajectories are highly consistent across repeated hardware trials, resulting in nearly overlapping curves, which indicates the robustness of the learned controller. 0 5 10 15 20 25 30       
+
+> # of updates (k)
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> 3.0
+> Progress
+> MiniHop
+> LineRides
+> WASABI 2m/s
+> WASABI 1.5m/s
+> WASABI 1m/s
+> 0510 15 20 25 30
+> # of updates (k)
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> 3.0
+> Progress
+> Three-Point Turn
+> LineRides
+> WASABI 1.5m/s
+> WASABI 1m/s
+> WASABI 0.5m/s
+
+Fig. 7: Comparison between LineRides and the WASABI baseline. Each policy attempted three consecutive stunts per episode; a score of 3 indicates success on all three. TABLE III: Effect of key-orientations on the Robot’s Pitch Angle                   
+
+> Without key-orientations With key-orientations Run 1 Run 2 Run 3 Run 1 Run 2 Run 3 Target Orientation –––17 ◦17 ◦17 ◦
+> Realized −5.7◦−6.3◦−4.6◦13 .2◦11 .5◦12 .6◦
+
+C. LineRides Can Control Fine-Grained Motion Details 
+
+Augmenting the guideline with key-orientations provides a mechanism for controlling subtle yet critical aspects of motion. For instance, to achieve a rear-wheel-first landing, the robot must coordinate its body extension and contraction to absorb impact efficiently. This can be encouraged by adding an additional key-orientation on the guideline right before landing. To evaluate this effect, we conducted an experiment com-paring two policies trained with and without key-orientation supervision during the same MiniHop maneuver. We mea-sured the pitch angle of the robot’s base at a height of 15 cm—corresponding to the moment when the rear wheel begins to make ground contact. Table III summarizes the commanded and realized pitch angles across three trials. Without key-orientations, the robot’s pitch angle before landing varied between −6◦ and −4.6◦, indicating undesired front-wheel-first postures. In contrast, when a key-orientation explicitly specifying a 17 ◦ pitch was provided, the resulting motions closely matched the intended orientation, with re-alized angles between 11 ◦ and 13 ◦. These results confirm that key-orientations enable precise modulation of motion semantics while maintaining the overall trajectory learned from the guideline. 
+
+D. Baseline comparison 
+
+For a quantitative baseline comparison, we evaluated LineRides against WASABI [6], a prior method for learning agile behaviors from partial demonstrations. The key difference is that WASABI requires a time-parameterized target trajectory, whereas LineRides uses only a geometric guideline, with the timing emerging naturally during training. To enable the comparison, we converted each guideline into equally spaced waypoints and treated them as a time-indexed reference for WASABI, which effectively imposes an average-speed traversal. We tested multiple way-point intervals, corresponding to different average speeds, and trained a separate WASABI policy for each setting. 2. TurnLeft  
+
+> 1. MultiHop
+> 3. Circle
+> 4. WallJump 5. Backflip
+
+Fig. 8: We applied LineRides on quadruped for 5 stunt skills. The red dots indicate the guideline, and the yellow lines indicate the actual trajectory of the robot’s base. Figure 7 shows results on MiniHop and 
+
+ThreePointsTurn . In both tasks, LineRides consistently outperforms WASABI. We believe this is because agile stunt behaviors require substantial speed variation within a single execution, which is difficult to capture with a fixed time-parameterized reference. Moreover, such timing is difficult for a human to specify accurately before training. These results highlight an important advantage of LineRides: it does not require timing information to be specified in advance. 
+
+E. LineRides Can Be Applied to Quadrupeds 
+
+To demonstrate the generality of our method, we applied LineRides to a quadruped platform and trained five diverse stunt skills: MultiHop , TurnLeft , Circle , WallJump ,and Backflip . The resulting motions are included in the supplementary video. As shown in Fig. 8, the quadruped successfully acquires all five skills using the same guideline-based task specification, suggesting that the framework is not limited to bicycle robots. VII. C ONCLUSION 
+
+We introduced LineRides, a line-guided RL framework that transforms a simple user-drawn guideline and sparse key-orientations into commandable stunt behaviors on a bike-like robot. Experiments on the UMV demonstrate robust execution of five distinct skills and stable post-stunt driving, showing that lines and key-orientations provide a compact yet expressive interface that effectively connects human intent to low-level control. 
+
+Limitations & Future works. Our method assumes that the user-provided guideline is at least approximately con-sistent with a physically realizable base trajectory, which may make it difficult to specify highly complex or long-horizon behaviors. The current stunt-mode implementation also depends on a motion-capture system for state estimation, limiting deployment to instrumented indoor environments. A promising future direction is to distill the learned policy into a phase-conditioned policy using DAGGER [40], replacing explicit position input with a phase variable to enable de-ployment without motion capture. REFERENCES [1] Z. Zhuang, Z. Fu, J. Wang, C. G. Atkeson, S. Schwertfeger, C. Finn, and H. Zhao, “Robot parkour learning,” in Conference on Robot Learning . PMLR, 2023, pp. 73–92. [2] Z. Li, X. B. Peng, P. Abbeel, S. Levine, G. Berseth, and K. Sreenath, “Robust and versatile bipedal jumping control through reinforcement learning,” in Robotics science and systems . RSS, 2023. [3] X. Cheng, K. Shi, A. Agarwal, and D. Pathak, “Extreme parkour with legged robots,” in 2024 IEEE International Conference on Robotics and Automation (ICRA) . IEEE, 2024, pp. 11 443–11 450. [4] X. B. Peng, P. Abbeel, S. Levine, and M. Van de Panne, “Deepmimic: Example-guided deep reinforcement learning of physics-based char-acter skills,” ACM Transactions On Graphics (TOG) , vol. 37, no. 4, pp. 1–14, 2018. [5] X. B. Peng, E. Coumans, T. Zhang, T.-W. E. Lee, J. Tan, and S. Levine, “Learning agile robotic locomotion skills by im-itating animals,” in Robotics: Science and Systems , 07 2020, DOI:10.15607/RSS.2020.XVI.064. [6] C. Li, M. Vlastelica, S. Blaes, J. Frey, F. Grimminger, and G. Mar-tius, “Learning agile skills via adversarial imitation of rough partial demonstrations,” in Conference on Robot Learning . PMLR, 2023, pp. 342–352. [7] J. Wu, G. Xin, C. Qi, and Y. Xue, “Learning robust and agile legged locomotion using adversarial motion priors,” IEEE Robotics and Automation Letters , vol. 8, no. 8, pp. 4975–4982, 2023. [8] C. Tessler, Y. Guo, O. Nabati, G. Chechik, and X. B. Peng, “Masked-mimic: Unified physics-based character control through masked mo-tion inpainting,” ACM Transactions on Graphics (TOG) , vol. 43, no. 6, pp. 1–21, 2024. [9] S. Rho, A. Trinh, D. Xu, and S. Ha, “Reference grounded skill discovery,” arXiv preprint arXiv:2510.06203 , 2025. [10] D. Kang, J. Cheng, F. Zargarbashi, T. Yoon, S. Choi, and S. Coros, “Learning steerable imitation controllers from unstructured animal motions,” arXiv preprint arXiv:2507.00677 , 2025. [11] X. B. Peng, Y. Guo, L. Halper, S. Levine, and S. Fidler, “Ase: Large-scale reusable adversarial skill embeddings for physically simulated characters,” ACM Transactions On Graphics (TOG) , vol. 41, no. 4, pp. 1–17, 2022. [12] C. Tessler, Y. Kasten, Y. Guo, S. Mannor, G. Chechik, and X. B. Peng, “Calm: Conditional adversarial latent models for directable virtual characters,” in ACM SIGGRAPH 2023 Conference Proceedings , 2023, pp. 1–9. [13] S. Rho, K. Garg, M. Byrd, and S. Ha, “Unsupervised skill discovery as exploration for learning agile locomotion,” in 9th Annual Conference on Robot Learning .[14] D. Hoeller, N. Rudin, D. Sako, and M. Hutter, “Anymal parkour: Learning agile navigation for quadrupedal robots,” Science Robotics ,vol. 9, no. 88, p. eadi7566, 2024. [15] Q. Zheng, D. Wang, Z. Chen, Y. Sun, and B. Liang, “Continuous reinforcement learning based ramp jump control for single-track two-wheeled robots,” Transactions of the Institute of Measurement and Control , vol. 44, no. 4, pp. 892–904, 2022. [16] J. Baltes, G. Christmann, and S. Saeedvand, “A deep reinforcement learning algorithm to control a two-wheeled scooter with a humanoid robot,” Engineering Applications of Artificial Intelligence , vol. 126, p. 106941, 2023. [17] B. Wang, F. Jing, Y. Deng, Z. Chen, and B. Liang, “Bayesian optimization-based ideal landing planning for ramp jump of single-track two-wheeled robots,” in 2024 IEEE International Conference on Robotics and Biomimetics (ROBIO) . IEEE, 2024, pp. 396–401. [18] M. Bjelonic, V. Klemm, J. Lee, and M. Hutter, “A survey of wheeled-legged robots,” in Climbing and walking robots conference . Springer, 2022, pp. 83–94. [19] J. Kim, S. Fahmi, S. Rho, S. Ha, and G. Nelson, “Flip stunts on bicycle robots using iterative motion imitation,” arXiv preprint arXiv:2603.27944 , 2026. [20] J. He, C. Zhang, F. Jenelten, R. Grandia, M. B¨ acher, and M. Hutter, “Attention-based map encoding for learning generalized legged loco-motion,” Science Robotics , vol. 10, no. 105, p. eadv3604, 2025. [21] H. Kim, H. Oh, J. Park, Y. Kim, D. Youm, M. Jung, M. Lee, and J. Hwangbo, “High-speed control and navigation for quadrupedal robots on complex and discrete terrain,” Science Robotics , vol. 10, no. 102, p. eads6192, 2025. [22] A. Miller, F. Yu, M. Brauckmann, and F. Farshidian, “High-performance reinforcement learning on spot: Optimizing simulation parameters with distributional measures,” in 2025 IEEE International Conference on Robotics and Automation (ICRA) . IEEE, 2025, pp. 9981–9988. [23] G. B. Margolis, G. Yang, K. Paigwar, T. Chen, and P. Agrawal, “Rapid locomotion via reinforcement learning,” The International Journal of Robotics Research , vol. 43, no. 4, pp. 572–587, 2024. [24] W. Xie, J. Han, J. Zheng, H. Li, X. Liu, J. Shi, W. Zhang, C. Bai, and X. Li, “Kungfubot: Physics-based humanoid whole-body control for learning highly-dynamic skills,” arXiv preprint arXiv:2506.12851 ,2025. [25] T. He, Z. Luo, X. He, W. Xiao, C. Zhang, W. Zhang, K. M. Kitani, C. Liu, and G. Shi, “Omnih2o: Universal and dexterous human-to-humanoid whole-body teleoperation and learning,” in Conference on Robot Learning . PMLR, 2025, pp. 1516–1540. [26] Z. Chen, M. Ji, X. Cheng, X. Peng, X. B. Peng, and X. Wang, “Gmt: General motion tracking for humanoid whole-body control,” arXiv preprint arXiv:2506.14770 , 2025. [27] T. He, J. Gao, W. Xiao, Y. Zhang, Z. Wang, J. Wang, Z. Luo, G. He, N. Sobanbab, C. Pan et al. , “Asap: Aligning simulation and real-world physics for learning agile humanoid whole-body skills,” arXiv preprint arXiv:2502.01143 , 2025. [28] Z. Li, X. B. Peng, P. Abbeel, S. Levine, G. Berseth, and K. Sreenath, “Reinforcement learning for versatile, dynamic, and robust bipedal locomotion control,” The International Journal of Robotics Research ,vol. 44, no. 5, pp. 840–888, 2025. [29] J. Gu, S. Kirmani, P. Wohlhart, Y. Lu, M. G. Arenas, K. Rao, W. Yu, C. Fu, K. Gopalakrishnan, Z. Xu et al. , “Rt-trajectory: Robotic task generalization via hindsight trajectory sketches,” in The Twelfth International Conference on Learning Representations .[30] W. Zhi, T. Zhang, and M. Johnson-Roberson, “Instructing robots by sketching: Learning from demonstration via probabilistic diagram-matic teaching,” in 2024 IEEE International Conference on Robotics and Automation (ICRA) . IEEE, 2024, pp. 15 047–15 053. [31] P. Yu, A. Bhaskar, A. Singh, Z. Mahammad, and P. Tokekar, “Sketch-to-skill: Bootstrapping robot learning with human drawn trajectory sketches,” arXiv preprint arXiv:2503.11918 , 2025. [32] S. A. Mehta, S. Habibian, and D. P. Losey, “Waypoint-based rein-forcement learning for robot manipulation tasks,” in 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) .IEEE, 2024, pp. 541–548. [33] S. A. Mehta, H. Nemlekar, H. Sumant, and D. P. Losey, “L2d2: Robot learning from 2d drawings,” Autonomous Robots , vol. 49, no. 3, p. 25, 2025. [34] R. Bussola, M. Focchi, G. Turrisi, C. Semini, and L. Palopoli, “Guided reinforcement learning for omnidirectional 3d jumping in quadruped robots,” arXiv preprint arXiv:2507.16481 , 2025. [35] F. Zargarbashi, J. Cheng, D. Kang, R. Sumner, and S. Coros, “Robotkeyframing: Learning locomotion with high-level objectives via mixture of dense and sparse rewards,” in Conference on Robot Learning . PMLR, 2025, pp. 916–932. [36] J. Schulman, F. Wolski, P. Dhariwal, A. Radford, and O. Klimov, “Proximal policy optimization algorithms,” arXiv preprint arXiv:1707.06347 , 2017. [37] J. Tobin, R. Fong, A. Ray, J. Schneider, W. Zaremba, and P. Abbeel, “Domain randomization for transferring deep neural networks from simulation to the real world,” in 2017 IEEE/RSJ international con-ference on intelligent robots and systems (IROS) . IEEE, 2017, pp. 23–30. [38] X. B. Peng, M. Andrychowicz, W. Zaremba, and P. Abbeel, “Sim-to-real transfer of robotic control with dynamics randomization,” in 2018 IEEE international conference on robotics and automation (ICRA) .IEEE, 2018, pp. 3803–3810. [39] M. Mittal, P. Roth, J. Tigue, A. Richard, O. Zhang, P. Du, A. Serrano-Mu˜ noz, X. Yao, R. Zurbr¨ ugg, N. Rudin et al. , “Isaac lab: A gpu-accelerated simulation framework for multi-modal robot learning,” 
+
+arXiv preprint arXiv:2511.04831 , 2025. [40] S. Ross, G. Gordon, and D. Bagnell, “A reduction of imitation learning and structured prediction to no-regret online learning,” in Proceedings of the fourteenth international conference on artificial intelligence and statistics . JMLR Workshop and Conference Proceedings, 2011, pp. 627–635.
