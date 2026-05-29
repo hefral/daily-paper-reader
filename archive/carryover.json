@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-29T12:42:49.927566+00:00",
-  "updated_date": "20260430-20260529",
+  "generated_at": "2026-05-29T21:38:56.090269+00:00",
+  "updated_date": "20260529",
   "carryover_days": 9,
   "tag_states": {
     "rl-humanoid": {
-      "updated_date": "20260430-20260529",
+      "updated_date": "20260529",
       "carryover_days": 9,
       "items": []
     }

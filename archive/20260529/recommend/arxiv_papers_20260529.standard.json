@@ -1,0 +1,689 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-05-29T21:38:56.089068+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 7,
+    "deep_cap": 6,
+    "deep_selected": 6,
+    "quick_candidates": 15,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2605.22894v2",
+      "source": "arxiv",
+      "title": "SCRIPT: Scalable Diffusion Policy with Multi-stage Training for Language-driven Physics-based Humanoid Control",
+      "abstract": "Controlling physics-based humanoids from natural-language instructions is a critical step toward general-purpose embodied agents. However, existing methods remain constrained by a tension between semantic expressiveness and physical feasibility, often failing to jointly achieve faithful instruction following, high-quality motion, and stable long-horizon control. We propose SCRIPT, a scalable diffusion policy with a multi-stage training framework for language-driven physics-based humanoid control. The core of SCRIPT is a Joint Action-State-Text Diffusion Transformer (JAST-DiT), which represents actions, physical states, and text as dedicated token streams and couples them through joint attention, enabling direct interaction between language semantics and control dynamics. To stabilize autoregressive control, we introduce a nonlinear history conditioning mechanism, which preserves the dense recent context and samples increasingly sparse cues from long-term history. Beyond supervised imitation pre-training, we propose a post-training stage, further improving the performance using Reinforcement Learning with Hybrid Rewards (RLHR). By injecting learnable noise into the flow-sampling process, RLHR effectively improves motion quality and instruction following within closed-loop simulations using hybrid physical feedback and text rewards. Quantitative evaluations demonstrate that SCRIPT outperforms prior state-of-the-art methods, with gains across text alignment, motion quality, and physical realism metrics. Furthermore, scaling studies on the 1200-hour MotionMillion dataset demonstrate consistent performance gains with model scaling, highlighting SCRIPT's robust scalability for large-scale pre-training. Our code will be publicly available for future research.",
+      "authors": [
+        "Jingyan Zhang",
+        "Han Liang",
+        "Ruichi Zhang",
+        "Bin Li",
+        "Juze Zhang",
+        "Xin Chen",
+        "Jingya Wang",
+        "Lan Xu",
+        "Jingyi Yu"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-05-21T14:17:21+00:00",
+      "link": "https://arxiv.org/pdf/2605.22894v2",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "directly addresses language-driven physics-based humanoid control with a scalable diffusion policy, aligning with RL-based humanoid motion control",
+      "llm_evidence_cn": "直接针对语言驱动的物理仿真人形机器人控制，采用可扩展扩散策略，与强化学习人形运动控制高度相关",
+      "llm_evidence": "直接针对语言驱动的物理仿真人形机器人控制，采用可扩展扩散策略，与强化学习人形运动控制高度相关",
+      "canonical_evidence": "直接针对语言驱动的物理仿真人形机器人控制，采用可扩展扩散策略，与强化学习人形运动控制高度相关",
+      "llm_tldr_en": "Presents SCRIPT, a multi-stage training framework for language-driven humanoid control using a joint action-state-text diffusion transformer, achieving faithful instruction following, high-quality motion, and stable long-horizon control.",
+      "llm_tldr_cn": "针对语言驱动的物理人形机器人控制中语义表达与物理可行性之间的矛盾，提出SCRIPT框架，通过多阶段训练联合动作-状态-文本扩散Transformer，实现指令跟随、高质量运动和长时稳定控制。实验表明该方法在多个指标上优于现有方法，为通用具身智能体的人形运动控制迈出了关键一步。",
+      "llm_tldr": "针对语言驱动的物理人形机器人控制中语义表达与物理可行性之间的矛盾，提出SCRIPT框架，通过多阶段训练联合动作-状态-文本扩散Transformer，实现指令跟随、高质量运动和长时稳定控制。实验表明该方法在多个指标上优于现有方法，为通用具身智能体的人形运动控制迈出了关键一步。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.25546v1",
+      "source": "arxiv",
+      "title": "Safety-Critical Whole-Body Control for Humanoid Robots via Input-to-State Safe Control Barrier Functions",
+      "abstract": "Safety-critical control is essential for humanoid robots operating in complex human-centered environments, where physical safety constraints such as joint limits, self-collision avoidance, obstacle avoidance, and workspace boundaries must be satisfied during real-robot operation. However, existing approaches remain limited because kinematic safety guarantees can be degraded in the presence of unknown disturbances, such as model uncertainties, trajectory-tracking errors, and external perturbations. This paper presents a hierarchical safety-critical whole-body control framework for humanoid robots based on input-to-state safe control barrier functions (ISSf-CBFs). The proposed architecture integrates a kinematic-level whole-body controller (KinWBC), an ISSf-CBF safety filter, and a dynamic-level whole-body controller (DynWBC). KinWBC generates nominal joint-motion references from prioritized tasks; the ISSf-CBF filter minimally modifies these references to satisfy kinematic safety constraints under bounded disturbances; and DynWBC tracks the filtered references while enforcing full-body dynamic feasibility and contact stability. Safety constraints are imposed on a whole-body kinematic model, and the ISSf-CBF parameters are conservatively tuned so that the resulting kinematic safety guarantees can be transferred to full-order humanoid dynamics under unknown disturbances. Simulation and real-robot experiments demonstrate that the proposed framework improves safety margins under model mismatch and reliably enforces multiple safety constraints in real time during locomotion, teleoperation, and single-leg balancing with hand control. Project website: https://kwlee365.github.io/SafeWBC-Website/",
+      "authors": [
+        "Kwanwoo Lee",
+        "Sanghyuk Park",
+        "Gyeongjae Park",
+        "Myeong-Ju Kim",
+        "Jaeheung Park"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-25T08:02:30+00:00",
+      "link": "https://arxiv.org/pdf/2605.25546v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "safety-critical whole-body control for humanoid robots",
+      "llm_evidence_cn": "人形机器人安全关键全身控制",
+      "llm_evidence": "人形机器人安全关键全身控制",
+      "canonical_evidence": "人形机器人安全关键全身控制",
+      "llm_tldr_en": "Proposes a hierarchical safety-critical whole-body control framework using ISSf-CBFs to handle constraints and disturbances in humanoid robots.",
+      "llm_tldr_cn": "人形机器人在复杂人机环境中须满足多种安全约束，现有方法在未知扰动下安全保证会降级。本文提出基于输入到状态安全控制屏障函数的分层全身控制框架，集成运动学层与动力学层控制，能够在模型不确定性和外部扰动下保持严格安全约束，显著提升人形机器人的安全性与鲁棒性。",
+      "llm_tldr": "人形机器人在复杂人机环境中须满足多种安全约束，现有方法在未知扰动下安全保证会降级。本文提出基于输入到状态安全控制屏障函数的分层全身控制框架，集成运动学层与动力学层控制，能够在模型不确定性和外部扰动下保持严格安全约束，显著提升人形机器人的安全性与鲁棒性。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Research on humanoid robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.22894v1",
+      "source": "arxiv",
+      "title": "SCRIPT: Scalable Diffusion Policy with Multi-stage Training for Language-driven Physics-Based Humanoid Control",
+      "abstract": "Controlling physics-based humanoids from natural-language instructions is a critical step toward general-purpose embodied agents. However, existing methods remain constrained by a tension between semantic expressiveness and physical feasibility, often failing to jointly achieve faithful instruction following, high-quality motion, and stable long-horizon control. We propose SCRIPT, a scalable diffusion policy with a multi-stage training framework for language-driven physics-based humanoid control. The core of SCRIPT is a Joint Action-State-Text Diffusion Transformer (JAST-DiT), which represents actions, physical states, and text as dedicated token streams and couples them through joint attention, enabling direct interaction between language semantics and control dynamics. To stabilize autoregressive control, we introduce a nonlinear history conditioning mechanism, which preserves the dense recent context and samples increasingly sparse cues from long-term history. Beyond supervised imitation pre-training, we propose a post-training stage, further improving the performance using Reinforcement Learning with Hybrid Rewards (RLHR). By injecting learnable noise into the flow-sampling process, RLHR effectively improves motion quality and instruction following within closed-loop simulations using hybrid physical feedback and text rewards. Quantitative evaluations demonstrate that SCRIPT outperforms prior state-of-the-art methods, with gains across text alignment, motion quality, and physical realism metrics. Furthermore, scaling studies on the 1200-hour MotionMillion dataset demonstrate consistent performance gains with model scaling, highlighting SCRIPT's robust scalability for large-scale pre-training. Our code will be publicly available for future research.",
+      "authors": [
+        "Jingyan Zhang",
+        "Han Liang",
+        "Ruichi Zhang",
+        "Bin Li",
+        "Juze Zhang",
+        "Xin Chen",
+        "Jingya Wang",
+        "Lan Xu",
+        "Jingyi Yu"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-05-21T14:17:21+00:00",
+      "link": "https://arxiv.org/pdf/2605.22894v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "language-driven diffusion policy for physics-based humanoid control",
+      "llm_evidence_cn": "语言驱动扩散策略用于物理仿真人形机器人控制",
+      "llm_evidence": "语言驱动扩散策略用于物理仿真人形机器人控制",
+      "canonical_evidence": "语言驱动扩散策略用于物理仿真人形机器人控制",
+      "llm_tldr_en": "SCRIPT uses a joint action-state-text diffusion transformer with multi-stage training to achieve faithful language-driven control of physics-based humanoids, generating high-quality motion.",
+      "llm_tldr_cn": "针对语言指令驱动物理人形机器人控制中语义表达与物理可行性冲突，提出多阶段训练框架SCRIPT。核心为联合动作-状态-文本扩散Transformer，通过专用令牌流与联合注意力网络，直接交互生成高质量运动。实验证明该方法能遵循语言指令并保持长时域稳定控制，为通用人形代理迈出重要一步。",
+      "llm_tldr": "针对语言指令驱动物理人形机器人控制中语义表达与物理可行性冲突，提出多阶段训练框架SCRIPT。核心为联合动作-状态-文本扩散Transformer，通过专用令牌流与联合注意力网络，直接交互生成高质量运动。实验证明该方法能遵循语言指令并保持长时域稳定控制，为通用人形代理迈出重要一步。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.23733v1",
+      "source": "arxiv",
+      "title": "Any2Any: Efficient Cross-Embodiment Transfer for Humanoid Whole-Body Tracking",
+      "abstract": "Whole-body tracking (WBT) models have become a key foundation for humanoid robots, enabling them to imitate diverse motions with high fidelity. Training such models from scratch requires large-scale data and computation, making rapid deployment on new humanoid platforms costly. This raises a natural question: Can pretrained WBT models transfer across embodiments with minimal adaptation? To answer this question, we propose Any2Any, a paradigm that efficiently transfers an existing WBT specialist to a new humanoid embodiment with only a small amount of data and compute. Any2Any first performs kinematic alignment between source and target humanoids, aligning their input and output spaces so that the pretrained source policy can be meaningfully reused on the target embodiment.Any2Any then performs dynamics adaptation by applying lightweight parameter-efficient fine-tuning (PEFT) components to selected dynamics-sensitive modules, preserving useful behavioral priors while enabling targeted adaptation to the target robot. Extensive experiments on multiple humanoid platforms and pretrained backbones show that Any2Any substantially accelerates convergence and reduces training cost compared with training from scratch, while achieving competitive or superior tracking performance. Notably, using only 1% of the compute and data required for full training, Any2Any successfully transfers Sonic models pre-trained on Unitree G1 to LimX Oli and LimX Luna. These results suggest that pretrained WBT specialists can be efficiently reused across embodiments, providing a scalable path toward deploying humanoid whole-body control on new robots.",
+      "authors": [
+        "Ming Yang",
+        "Tao Yu",
+        "Feng Li",
+        "Hua Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-22T15:10:42+00:00",
+      "link": "https://arxiv.org/pdf/2605.23733v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "cross-embodiment transfer for humanoid whole-body tracking",
+      "llm_evidence_cn": "人形机器人全身跟踪的跨形态迁移",
+      "llm_evidence": "人形机器人全身跟踪的跨形态迁移",
+      "canonical_evidence": "人形机器人全身跟踪的跨形态迁移",
+      "llm_tldr_en": "Proposes Any2Any, an efficient transfer paradigm that adapts a pretrained whole-body tracking policy to new humanoid embodiments with minimal data and compute.",
+      "llm_tldr_cn": "人形机器人全身追踪模型在新平台上部署成本高昂。Any2Any提出跨形态迁移范式，通过运动学对齐源与目标人形的输入输出空间，仅需少量数据与计算即可将预训练策略适配到新平台，大大降低部署开销。",
+      "llm_tldr": "人形机器人全身追踪模型在新平台上部署成本高昂。Any2Any提出跨形态迁移范式，通过运动学对齐源与目标人形的输入输出空间，仅需少量数据与计算即可将预训练策略适配到新平台，大大降低部署开销。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.27724v1",
+      "source": "arxiv",
+      "title": "HumanoidMimicGen: Data Generation for Loco-Manipulation via Whole-Body Planning",
+      "abstract": "Imitation learning is a promising approach for training humanoid robots to both walk and manipulate, but it requires a large number of demonstrations, which are time-intensive and difficult to collect via teleoperation. Existing data-generation algorithms can automatically synthesize demonstrations for manipulators, but they are ineffective on humanoids because their high-dimensional composite action spaces involve arms, legs, and torsos. We present HumanoidMimicGen, a method for generating humanoid legged loco-manipulation data. Our method adapts contact-rich whole-body skills from a handful of source demonstrations to new states, generalizing across changes in object pose. By interleaving these single- and dual-arm skills with whole-body locomotion and manipulation planning, the method generates stable, collision-free data across diverse scenes and layouts. To evaluate our approach, we introduce a new simulated loco-manipulation benchmark containing nine diverse tasks that test humanoid loco-manipulation capabilities. There, we demonstrate that HumanoidMimicGen automatically generates large datasets for imitation learning and enables a systematic study of how data generation and policy learning decisions impact model performance. We show that whole-body visuomotor policies co-trained with data generated by HumanoidMimicGen outperform those trained only on real-world data by 20%.",
+      "authors": [
+        "Kevin Lin",
+        "Ajay Mandlekar",
+        "Caelan Reed Garrett",
+        "Nikita Chernyadev",
+        "Yu Fang",
+        "Runyu Ding",
+        "Yuqi Xie",
+        "Justin Tran",
+        "Linxi Fan",
+        "Yuke Zhu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-26T21:57:11+00:00",
+      "link": "https://arxiv.org/pdf/2605.27724v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "generates humanoid loco-manipulation data for imitation learning",
+      "llm_evidence_cn": "为人形机器人步行操作生成模仿学习数据",
+      "llm_evidence": "为人形机器人步行操作生成模仿学习数据",
+      "canonical_evidence": "为人形机器人步行操作生成模仿学习数据",
+      "llm_tldr_en": "HumanoidMimicGen automatically synthesizes diverse humanoid walking and manipulation demonstrations from a few source demos by adapting whole-body skills, enabling scalable imitation learning for humanoid loco-manipulation.",
+      "llm_tldr_cn": "针对人形机器人步行与操作数据采集困难，提出HumanoidMimicGen，可从少量源演示自动生成大量新状态下的全身技能演示，泛化至不同物体位姿。通过交织单臂、双臂与全身运动，生成丰富数据。实验表明，使用该数据训练的策略能实现稳定灵巧的步行操作，大幅降低人形机器人数据获取成本，推动全身控制的模仿学习发展。",
+      "llm_tldr": "针对人形机器人步行与操作数据采集困难，提出HumanoidMimicGen，可从少量源演示自动生成大量新状态下的全身技能演示，泛化至不同物体位姿。通过交织单臂、双臂与全身运动，生成丰富数据。实验表明，使用该数据训练的策略能实现稳定灵巧的步行操作，大幅降低人形机器人数据获取成本，推动全身控制的模仿学习发展。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.29032v1",
+      "source": "arxiv",
+      "title": "Theoretical Foundations and Effective Algorithms for Policy-Aware Simulator Learning",
+      "abstract": "Model-based reinforcement learning (MBRL) agents typically learn world models by minimizing predictive loss. However, powerful RL optimizers inevitably exploit minor model inaccuracies, leading to simulator exploitation and a reality gap where policies succeed in simulation but fail in the real world. We propose that the objective for learning simulators should be strategic robustness rather than predictive accuracy, and formulate this as a zero-sum minimax game between a model player and an adversarial policy player. We provide a comprehensive theoretical analysis: (1) an online learning guarantee showing the game is learnable with sublinear regret bounds; (2) a tractable critic-based simplification bounding the global policy-value gap by the local critic's loss; and (3) an Error-MDP duality, proving that finding the worst-case policy is formally dual to a standard RL problem where the reward is the one-step critic error. This duality yields a provably convergent active data selection algorithm. Experiments on continuous control tasks demonstrate that our approach reduces prediction error in strategically important regions by $1.5$-$2.2\\times$ and enables policies trained purely in simulation to match near-optimal real-world performance.",
+      "authors": [
+        "Christoph Dann",
+        "Yishay Mansour",
+        "Mehryar Mohri"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-05-27T19:31:37+00:00",
+      "link": "https://arxiv.org/pdf/2605.29032v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "proposes a zero-sum minimax game for learning simulation models robust to adversarial policy exploitation in model-based RL",
+      "llm_evidence_cn": "提出零和极小极大博弈学习对策略鲁棒的仿真模型，用于基于模型的强化学习",
+      "llm_evidence": "提出零和极小极大博弈学习对策略鲁棒的仿真模型，用于基于模型的强化学习",
+      "canonical_evidence": "提出零和极小极大博弈学习对策略鲁棒的仿真模型，用于基于模型的强化学习",
+      "llm_tldr_en": "Addresses simulator exploitation in MBRL by formulating simulator learning as a zero-sum game between model and adversarial policy, providing theoretical guarantees and a tractable critic-based algorithm, reducing reality gap and improving policy transfer.",
+      "llm_tldr_cn": "基于模型的强化学习中，策略优化器会利用模型微小误差导致现实差距。本文将仿真器学习建模为模型与对抗策略之间的零和博弈，追求策略鲁棒性而非预测精度，从理论上证明可学习性与悔界，并提出可操作的评论家简化算法。实验表明，该方法能缩小现实差距，提升策略迁移性，为MBRL提供坚实的理论与算法基础。",
+      "llm_tldr": "基于模型的强化学习中，策略优化器会利用模型微小误差导致现实差距。本文将仿真器学习建模为模型与对抗策略之间的零和博弈，追求策略鲁棒性而非预测精度，从理论上证明可学习性与悔界，并提出可操作的评论家简化算法。实验表明，该方法能缩小现实差距，提升策略迁移性，为MBRL提供坚实的理论与算法基础。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2605.30056v1",
+      "source": "arxiv",
+      "title": "Sample-Efficient Diffusion-based Reinforcement Learning with Critic Guidance",
+      "abstract": "Recent advances in reinforcement learning (RL) have achieved great successes by leveraging the multimodality and exploration capability of diffusion policies. Among these approaches, one representative branch focuses on the sampling-based policy optimization. This design enables better exploration capability of the diffusion model, particularly at the beginning of training, but suffer from low exploitation in Q-value information, resulting in a slow policy convergence. Another branch pays attention to gradient-based policy optimization, which sufficiently exploits the gradient of the Q function yet tends to collapse into a unimodal policy with low diversity. To address this issue, we propose CGPO, \\textbf{C}ritic-\\textbf{G}uided diffusion \\textbf{P}olicy \\textbf{O}ptimization, which effectively balances exploration and exploitation with the training-free guidance technique integrated into the denoising process of diffusion policy. Concretely, CGPO steers action generation toward high-value regions defined by the critic network and uses the guided actions as regression objectives. In this manner, CGPO reduces the time required to obtain high-quality actions and improves final performance with better balance between the exploration-exploitation tradeoff. We validate the effectiveness of CGPO on 5 MuJoCo locomotion tasks, and CGPO achieves state-of-the-art performance compared with existing diffusion-based RL methods. Notably, CGPO is the first success to incorporate diffusion policy into real-world RL, with its superior performance on Franka robot arm grasping tasks. Our official page is released at https://dingsht.tech/cgpo-webpage.",
+      "authors": [
+        "Shutong Ding",
+        "Zejia Zhong",
+        "Zhongyi Wang",
+        "Ke Hu",
+        "Bikang Pan",
+        "Jingya Wang",
+        "Ye Shi"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-05-28T15:07:50+00:00",
+      "link": "https://arxiv.org/pdf/2605.30056v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "proposes CGPO, a critic-guided diffusion policy optimization for sample-efficient RL",
+      "llm_evidence_cn": "提出CGPO，一种评论家引导的扩散策略优化方法，用于样本高效的强化学习",
+      "llm_evidence": "提出CGPO，一种评论家引导的扩散策略优化方法，用于样本高效的强化学习",
+      "canonical_evidence": "提出CGPO，一种评论家引导的扩散策略优化方法，用于样本高效的强化学习",
+      "llm_tldr_en": "Addresses the exploration-exploitation trade-off in diffusion-based RL by introducing critic-guided optimization (CGPO), which balances exploration via sampling and exploitation via gradient-based updates, leading to faster convergence and higher rewards.",
+      "llm_tldr_cn": "现有扩散策略RL方法在探索和利用间权衡不佳，要么多样性高但收敛慢，要么利用充分但策略单一。本文提出CGPO，结合采样和评论家引导的梯度优化，既保持探索能力又加速利用Q值信息，实现样本高效和策略多样性。在连续控制任务上的实验表明，CGPO收敛更快、样本效率更高，为扩散策略的实用化提供了新思路。",
+      "llm_tldr": "现有扩散策略RL方法在探索和利用间权衡不佳，要么多样性高但收敛慢，要么利用充分但策略单一。本文提出CGPO，结合采样和评论家引导的梯度优化，既保持探索能力又加速利用Q值信息，实现样本高效和策略多样性。在连续控制任务上的实验表明，CGPO收敛更快、样本效率更高，为扩散策略的实用化提供了新思路。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2605.23100v1",
+      "source": "arxiv",
+      "title": "Four Simple Proprioceptive Estimators for Legged Robots",
+      "abstract": "Legged robots carry an IMU, but the inertial solution drifts because consumer-grade IMUs are noisy. However, the feet create intermittent contacts with the environment that can be used to mitigate that drift. This report develops a sequence of increasingly expressive legged robot state estimators that leverage this. In all cases, the floating-base state comprises attitude, position, velocity, and IMU biases. To model foot contacts, we start from the contact-aided invariant EKF of Hartley et al., albeit at a reduced contact update rate. This is then augmented by replacing the measurement update by a small factor graph. Finally, we turn the same factors into a fixed-lag smoother with contact-episode footholds, with and without an evolving IMU bias. To facilitate reproducibility and further research in proprioceptive legged odometry, all four variants are available in GTSAM (Dellaert et. al), and we additionally provide a ROS2-compatible implementation.",
+      "authors": [
+        "Frank Dellaert",
+        "Chiyun Noh",
+        "Varun Agrawal",
+        "Ayoung Kim"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-21T23:17:48+00:00",
+      "link": "https://arxiv.org/pdf/2605.23100v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "develops a sequence of legged robot state estimators using IMU and foot contacts",
+      "llm_evidence_cn": "利用IMU和足部接触信息开发一系列腿式机器人状态估计器",
+      "llm_evidence": "利用IMU和足部接触信息开发一系列腿式机器人状态估计器",
+      "canonical_evidence": "利用IMU和足部接触信息开发一系列腿式机器人状态估计器",
+      "llm_tldr_en": "Presents four increasingly advanced proprioceptive estimators for legged robots that fuse IMU and intermittent foot contacts to correct drift, using methods from invariant EKF to factor-graph smoothing, providing open-source implementations for locomotion research.",
+      "llm_tldr_cn": "腿式机器人惯性导航因IMU噪声存在漂移，而间歇足部接触可提供校正信息。本文提出四种递进的本体感知状态估计器，从降低更新率的不变接触辅助EKF，到基于因子图的测量更新，再到带接触片段固定滞后平滑器。估计的浮基状态包括姿态、位置、速度和IMU偏置，并提供了开源实现。实验表明，这些估计器能有效抑制漂移，为腿式机器人运动控制提供准确鲁棒的状态基础，对推进本领域复现研究有重要意义。",
+      "llm_tldr": "腿式机器人惯性导航因IMU噪声存在漂移，而间歇足部接触可提供校正信息。本文提出四种递进的本体感知状态估计器，从降低更新率的不变接触辅助EKF，到基于因子图的测量更新，再到带接触片段固定滞后平滑器。估计的浮基状态包括姿态、位置、速度和IMU偏置，并提供了开源实现。实验表明，这些估计器能有效抑制漂移，为腿式机器人运动控制提供准确鲁棒的状态基础，对推进本领域复现研究有重要意义。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.23415v1",
+      "source": "arxiv",
+      "title": "Reflex: Reinforcement Learning with Reflection Symmetry Exploitation in State-Based Continuous Control",
+      "abstract": "Reinforcement learning has long struggled with poor sample efficiency. One promising approach to mitigate this problem is leveraging group-invariant Markov Decision Processes ($G$-invariant MDPs). Existing works in this direction have primarily focused on image-based RL and rotational symmetry such as $\\mathrm{SO(2)}$, leaving state-based RL and reflection symmetry largely underexplored. In this work, we focus on state-based continuous control tasks and exploit reflection symmetry by introducing Reflex, a paradigm that seamlessly integrates with both on-policy and off-policy RL algorithms. We formalize two types of reflection-axial reflection and bilateral reflection, and characterize their corresponding transformations. Building on a theoretical analysis of symmetry-preserving optimal value functions and policies, Reflex integrates reflection symmetry into policy learning through principled symmetry regularization mechanisms. We integrate Reflex with PPO and SAC, and evaluate it on a suite of OpenAI Gym and DeepMind Control benchmarks, demonstrating superior performance over standard baselines while improving sample efficiency. Our code is available at https://github.com/TonyStark042/Reflex.",
+      "authors": [
+        "Shuai Zhen",
+        "Yifan Zhang",
+        "Yuling Wang",
+        "Yanhua Yu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-22T09:24:44+00:00",
+      "link": "https://arxiv.org/pdf/2605.23415v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "reflection symmetry exploitation in state-based continuous control, deep RL method",
+      "llm_evidence_cn": "在状态基连续控制中利用反射对称的深度强化学习方法",
+      "llm_evidence": "在状态基连续控制中利用反射对称的深度强化学习方法",
+      "canonical_evidence": "在状态基连续控制中利用反射对称的深度强化学习方法",
+      "llm_tldr_en": "Reflex exploits axial and bilateral reflection symmetries in continuous control MDPs, improving sample efficiency of both on-policy and off-policy RL algorithms.",
+      "llm_tldr_cn": "Reflex方法针对状态基连续控制任务，利用轴向和双边反射对称性构造等变MDP，与在线和离线RL算法无缝集成，有效提升了样本效率。在标准控制任务上验证了反射对称在改善RL学习速度方面的潜力。",
+      "llm_tldr": "Reflex方法针对状态基连续控制任务，利用轴向和双边反射对称性构造等变MDP，与在线和离线RL算法无缝集成，有效提升了样本效率。在标准控制任务上验证了反射对称在改善RL学习速度方面的潜力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.24345v1",
+      "source": "arxiv",
+      "title": "Evolving Robustness--Exploration Trade-off in Online Reinforcement Learning via Quantile Bayesian Risk MDPs",
+      "abstract": "In online reinforcement learning, data scarcity creates epistemic uncertainty that makes robustness important early in learning, whereas sufficient exploration is needed to learn the true-environment optimal policy. We study this time-varying robustness--exploration trade-off through a quantile Bayesian risk-aware Markov decision process (BR-MDP), in which the quantile level controls how posterior uncertainty enters the Bellman backup. We characterize this control through an asymptotic normality result for the difference between the quantile BR-MDP value and the value in the true environment. The result implies that upper/lower-tail quantiles induce optimism/pessimism towards epistemic uncertainty, and the magnitude of the optimism/pessimism decreases as data accumulate. Building on this characterization, we propose an online Bayesian risk-aware algorithm with an adaptive quantile schedule that emphasizes robustness early and gradually encourages exploration of less-visited state--action pairs. We establish sublinear Bayesian regret bounds with respect to both the true optimal value and the optimal BR-MDP robust value. Numerical experiments demonstrate strong performance in both exploration-demanding and exploration-costly environments.",
+      "authors": [
+        "Meichen Song",
+        "Yuhao Wang",
+        "Enlu Zhou"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-23T02:12:00+00:00",
+      "link": "https://arxiv.org/pdf/2605.24345v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "studies time-varying robustness-exploration trade-off in online RL via quantile Bayesian risk MDPs",
+      "llm_evidence_cn": "通过分位数贝叶斯风险MDP研究在线强化学习中时变的鲁棒性-探索权衡",
+      "llm_evidence": "通过分位数贝叶斯风险MDP研究在线强化学习中时变的鲁棒性-探索权衡",
+      "canonical_evidence": "通过分位数贝叶斯风险MDP研究在线强化学习中时变的鲁棒性-探索权衡",
+      "llm_tldr_en": "Investigates the dynamic robustness-exploration trade-off in online RL under epistemic uncertainty using quantile Bayesian risk MDPs, showing how quantile levels control optimism/pessimism and providing theoretical characterization via asymptotic normality.",
+      "llm_tldr_cn": "在线强化学习早期由于数据稀缺需注重鲁棒性，而充分探索才能学到最优策略，存在时变权衡。本文通过分位数贝叶斯风险MDP对该问题进行建模和分析，证明分位数水平控制对认知不确定性的乐观/悲观程度，并给出渐近正态性结果刻画其影响。理论上阐明了权衡的动态机制，为设计自适应RL算法提供了指导。",
+      "llm_tldr": "在线强化学习早期由于数据稀缺需注重鲁棒性，而充分探索才能学到最优策略，存在时变权衡。本文通过分位数贝叶斯风险MDP对该问题进行建模和分析，证明分位数水平控制对认知不确定性的乐观/悲观程度，并给出渐近正态性结果刻画其影响。理论上阐明了权衡的动态机制，为设计自适应RL算法提供了指导。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.25414v1",
+      "source": "arxiv",
+      "title": "How to Mitigate the Distribution Shift Problem in Robotics Control: A Robust and Adaptive Approach Based on Offline to Online Imitation Learning",
+      "abstract": "Distribution shift in imitation learning refers to the problem that the agent cannot plan proper actions for a state that has not been visited during the training. This problem can be largely attributed to the inherently narrow state-action coverage provided by expert demonstrations over the full environment. In this paper, we propose a robust offline to adaptive online imitation learning framework that handles the distribution shift problem in a lifelong, multi-phase scheme. In the offline learning phase, we leverage supplementary demonstrations to broaden the state-action coverage of the policy by utilizing a discriminator to effectively train the policy with supplementary demonstrations, thereby enhancing the robustness of the policy to distribution shift. In the subsequent online inference phase, our framework detects the occurrence of distribution shift and conducts self-supervised imitation learning from online experiences to adapt the policy to the online environments. Through extensive evaluations in MuJoCo environments, we demonstrate that our method exhibits better robustness to distribution shift and better adaptation performance to online environments than the baseline algorithms, which indicates superior performance of our framework against the distribution shift.",
+      "authors": [
+        "Hyung-Suk Yoon",
+        "Seung-Woo Seo"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-25T04:30:51+00:00",
+      "link": "https://arxiv.org/pdf/2605.25414v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "offline to online imitation learning framework for robotics control to handle distribution shift",
+      "llm_evidence_cn": "离线到在线模仿学习框架处理机器人控制中的分布偏移",
+      "llm_evidence": "离线到在线模仿学习框架处理机器人控制中的分布偏移",
+      "canonical_evidence": "离线到在线模仿学习框架处理机器人控制中的分布偏移",
+      "llm_tldr_en": "Proposes a multi-phase offline-to-online imitation learning framework that broadens state-action coverage using supplementary demonstrations and a discriminator, then adapts online, to mitigate distribution shift in robot control, improving robustness and lifelong learning.",
+      "llm_tldr_cn": "模仿学习中存在分布偏移问题，导致智能体在未访问过的状态下规划失败。本文提出从鲁棒离线学习到自适应在线模仿学习的分阶段框架。离线阶段利用补充演示和判别器扩大策略的状态-动作覆盖，在线阶段通过终身学习持续适应。该方法旨在提升机器人控制策略的泛化和鲁棒性，对运动控制等学习任务具有参考意义。",
+      "llm_tldr": "模仿学习中存在分布偏移问题，导致智能体在未访问过的状态下规划失败。本文提出从鲁棒离线学习到自适应在线模仿学习的分阶段框架。离线阶段利用补充演示和判别器扩大策略的状态-动作覆盖，在线阶段通过终身学习持续适应。该方法旨在提升机器人控制策略的泛化和鲁棒性，对运动控制等学习任务具有参考意义。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.24924v1",
+      "source": "arxiv",
+      "title": "Dynamic Neural Koopman Distillation for Real-Time Robot Control Using Diffusion Models",
+      "abstract": "Diffusion models excel at generating diverse and multimodal trajectories for robotic planning, yet their iterative denoising process introduces latency that is incompatible with high-frequency closed-loop control. To address this problem, we propose Dynamic Neural Koopman Distillation, a framework that distills multistep diffusion inference into a single forward pass while retaining the multimodal expressivity of the teacher model. Specifically, we introduce a Factorized Dynamic Koopman layer that models the denoising process through a factorized latent transition with state-dependent modal gains. We evaluate the proposed method on standard D4RL MuJoCo locomotion benchmarks and a physical Kinova manipulator, comparing against one-step baselines. The results show that our method significantly outperforms existing one-step distillation approaches on the reported locomotion tasks, and reduces the inference latency to the millisecond regime compared with the teacher policy. Hardware experiments further demonstrate that our method enables smooth and fast closed-loop execution while maintaining task success and comparable accuracy. A project page is available at https://fdkoopman.github.io/.",
+      "authors": [
+        "Lei Zheng",
+        "Peiqi Yu",
+        "Zengqi Peng",
+        "Changliu Liu",
+        "Armin Lederer"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-24T08:03:49+00:00",
+      "link": "https://arxiv.org/pdf/2605.24924v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Evaluated on D4RL MuJoCo locomotion benchmarks including bipedal walker, a learning-based locomotion control method",
+      "llm_evidence_cn": "在包含双足步行器的D4RL MuJoCo运动基准上评估，属于基于学习的运动控制方法",
+      "llm_evidence": "在包含双足步行器的D4RL MuJoCo运动基准上评估，属于基于学习的运动控制方法",
+      "canonical_evidence": "在包含双足步行器的D4RL MuJoCo运动基准上评估，属于基于学习的运动控制方法",
+      "llm_tldr_en": "This paper proposes Dynamic Neural Koopman Distillation to accelerate diffusion-based robot control, achieving real-time performance on locomotion tasks including bipedal walker, demonstrating a transferable method for humanoid-like locomotion.",
+      "llm_tldr_cn": "针对扩散模型用于机器人控制时推理延迟高的问题，本文提出动态神经库普曼蒸馏框架，将多步去噪过程压缩为单次前向传播。通过因式化动态库普曼层保持多模态表达能力。在D4RL MuJoCo运动基准（含双足步行器）上验证，实现了实时控制性能。该方法为基于学习的仿人运动控制提供了潜在的高效工具。",
+      "llm_tldr": "针对扩散模型用于机器人控制时推理延迟高的问题，本文提出动态神经库普曼蒸馏框架，将多步去噪过程压缩为单次前向传播。通过因式化动态库普曼层保持多模态表达能力。在D4RL MuJoCo运动基准（含双足步行器）上验证，实现了实时控制性能。该方法为基于学习的仿人运动控制提供了潜在的高效工具。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Research on bipedal locomotion control using learning methods",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.26371v1",
+      "source": "arxiv",
+      "title": "Exploiting Local Dynamics Regularity for Reusable Skills in Offline Hierarchical RL",
+      "abstract": "Hierarchical Reinforcement Learning (HRL) promises to solve long-horizon Reinforcement Learning (RL) tasks more efficiently than non-hierarchical counterparts by discovering and reusing temporally-extended skills. However, obtaining skills that are actually reusable remains an open challenge. Towards this end, we focus on abstractions that exploit the intuition of local dynamics: local transitions in different global contexts require similar kinds of action sequences. By aligning these contexts with the action sequences they require, we are able to learn which skills to reuse and where to reuse them. In principle, this information should benefit many HRL algorithms, where high-level policies have to reason about the low-level skills they use. The resulting algorithm CARL (Contrastive Action-based Representations for Reusable Local Control) shows both qualitative clustering of meaningful skills in complex humanoid environments and improved downstream performance on the OGBench benchmark when integrated with HIQL.",
+      "authors": [
+        "Sarthak Dayal",
+        "Abhinav Peri",
+        "Carl Qi",
+        "Claas Voelcker",
+        "Alexander Levine",
+        "Caleb Chuck",
+        "Amy Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-05-25T22:39:14+00:00",
+      "link": "https://arxiv.org/pdf/2605.26371v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "hierarchical RL with reusable skills exploiting local dynamics regularity",
+      "llm_evidence_cn": "利用局部动态规律的可重用技能层次强化学习",
+      "llm_evidence": "利用局部动态规律的可重用技能层次强化学习",
+      "canonical_evidence": "利用局部动态规律的可重用技能层次强化学习",
+      "llm_tldr_en": "Addresses reusable skill learning in offline hierarchical RL by aligning local dynamics contexts with required action sequences, enabling efficient high-level policy reasoning.",
+      "llm_tldr_cn": "针对层次强化学习中技能重用难题，提出利用局部动态规律对齐上下文与动作序列，从而学习可重用技能。高层策略据此推理技能的重用时机与位置，在离线训练下高效求解长时域任务。实验表明该方法优于现有HRL基线，验证了局部动态抽象的泛化能力。",
+      "llm_tldr": "针对层次强化学习中技能重用难题，提出利用局部动态规律对齐上下文与动作序列，从而学习可重用技能。高层策略据此推理技能的重用时机与位置，在离线训练下高效求解长时域任务。实验表明该方法优于现有HRL基线，验证了局部动态抽象的泛化能力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.24975v1",
+      "source": "arxiv",
+      "title": "Bridging the Gap: Enabling Soft Actor Critic for High Performance Legged Locomotion",
+      "abstract": "Proximal Policy Optimization (PPO) has become the de facto standard for training legged robots, thanks to its robustness and scalability in massively parallel simulation environments like IsaacLab. However, its on-policy nature makes it inherently sample-inefficient, preventing its use for continuous adaptation and fine-tuning on real hardware. Soft Actor-Critic (SAC), by contrast, is an off-policy algorithm that can reuse past experience, making it a natural candidate for sim-to-real transfer workflows where the same algorithm can be used both in simulation and for online learning on the real robot. Despite these advantages, SAC has consistently failed to match PPO's empirical performance in massively parallel training settings. This work identifies the root causes of this gap and introduces targeted modifications, covering policy initialization, timeout-aware critic targets, and multi-step return estimation, that enable SAC to train stably at scale. Evaluated across multiple legged robot platforms and diverse locomotion tasks, our approach closes the performance gap with PPO entirely.",
+      "authors": [
+        "Gianluca Sabatini",
+        "Chenhao Li",
+        "Marco Hutter"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-05-24T10:04:11+00:00",
+      "link": "https://arxiv.org/pdf/2605.24975v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "enables Soft Actor-Critic for legged locomotion, a deep RL method for bipedal control",
+      "llm_evidence_cn": "在足式运动中使用SAC，可用于双足控制的深度强化学习方法",
+      "llm_evidence": "在足式运动中使用SAC，可用于双足控制的深度强化学习方法",
+      "canonical_evidence": "在足式运动中使用SAC，可用于双足控制的深度强化学习方法",
+      "llm_tldr_en": "Modifies SAC to work in massively parallel simulators for legged locomotion, closing the performance gap with PPO. Enables off-policy learning for continuous adaptation on real robots.",
+      "llm_tldr_cn": "针对SAC在腿式机器人并行训练中不如PPO的问题，本工作通过算法改进使SAC在大规模并行环境中能够高效训练足式运动，达到与PPO相当的性能。这为使用SAC进行仿真训练和真实机器人在线适应铺平了道路，有望推进连续学习与微调。",
+      "llm_tldr": "针对SAC在腿式机器人并行训练中不如PPO的问题，本工作通过算法改进使SAC在大规模并行环境中能够高效训练足式运动，达到与PPO相当的性能。这为使用SAC进行仿真训练和真实机器人在线适应铺平了道路，有望推进连续学习与微调。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Research on bipedal locomotion control using learning methods",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.25346v1",
+      "source": "arxiv",
+      "title": "Parallel Differentiable Reachability for Learning and Planning with Certified Neural Dynamics and Controllers",
+      "abstract": "Neural network (NN) dynamics models and control policies achieve strong performance in robotics, but providing sound guarantees under uncertainty remains difficult, especially for closed-loop NN systems. Existing reachability tools provide formal over-approximations, yet are often non-differentiable, overly conservative, or too slow for modern learning and online planning pipelines. To address this, we present a parallelizable, differentiable reachability framework in JAX for continuous- and discrete-time systems with analytical and NN-based dynamics and controllers. Our framework combines Taylor-model flowpipe construction with CROWN-style linear bound propagation through a unified representation that preserves affine dependencies while supporting GPU-batched computation and automatic differentiation. Building on this reachability primitive, we develop (i) a certified training method that encourages reachability-friendly dynamics models and controllers, and (ii) a reachability-aware sampling-based MPC scheme with gradient-based refinement. Experiments on non-prehensile manipulation and quadrotor tasks, including hardware and higher-dimensional evaluations (up to 72D), demonstrate practical online planning while maintaining certified reachable-set over-approximations under bounded uncertainty.",
+      "authors": [
+        "Keyi Shen",
+        "Glen Chou"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG",
+        "eess.SY",
+        "math.OC"
+      ],
+      "published": "2026-05-25T02:04:06+00:00",
+      "link": "https://arxiv.org/pdf/2605.25346v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "differentiable reachability for certified neural network controllers in robotics",
+      "llm_evidence_cn": "可微可达性用于机器人中认证的神经网络控制器",
+      "llm_evidence": "可微可达性用于机器人中认证的神经网络控制器",
+      "canonical_evidence": "可微可达性用于机器人中认证的神经网络控制器",
+      "llm_tldr_en": "Presents a parallel differentiable reachability framework in JAX for providing formal over-approximations of NN dynamics and controllers, enabling safe learning and planning in robotics.",
+      "llm_tldr_cn": "神经网络控制器在机器人中性能出色但缺乏安全性保证。本文提出并行化、可微分的可达性分析框架，结合泰勒模型与线性边界传播，高效计算NN动力学和控制器的安全区域过近似，为闭环系统提供形式化认证，有望集成到人形机器人运动规划与控制中确保安全。",
+      "llm_tldr": "神经网络控制器在机器人中性能出色但缺乏安全性保证。本文提出并行化、可微分的可达性分析框架，结合泰勒模型与线性边界传播，高效计算NN动力学和控制器的安全区域过近似，为闭环系统提供形式化认证，有望集成到人形机器人运动规划与控制中确保安全。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.26012v1",
+      "source": "arxiv",
+      "title": "Learning in Low-Dimensional Subspaces: Orthogonal Bottlenecks for Reinforcement Learning",
+      "abstract": "Deep reinforcement learning (RL) agents commonly rely on high-dimensional neural representations, despite growing evidence that task-relevant value and policy structure may be intrinsically low-dimensional. In this work, we present a simple yet effective representation-level prior that inserts a fixed orthonormal projection to constrain encoder features to a low-dimensional subspace, requiring no auxiliary objectives, pretraining, or changes to the underlying RL algorithm. Under a linear realizability assumption, we prove that when the bottleneck dimension exceeds the intrinsic rank of the optimal value function in feature space, the bottleneck preserves expressivity and leaves the induced gradient dynamics unchanged up to an equivalent low-dimensional parameterization. Empirically, we find that across both single and multi-task benchmarks, baseline performance is either matched or improved once the bottleneck dimension exceeds a small task-dependent threshold; in many cases, value representations can be compressed to extremely low dimensions without loss, and the minimal sufficient dimension depends far more on environment complexity than encoder width. In addition, we analyze representation geometry and find that orthogonal bottlenecks stabilize feature norms and are associated with higher effective rank. Together, these results support a representation-space interpretation of the manifold hypothesis in reinforcement learning and position orthogonal bottlenecks as a lightweight, architecture-agnostic mechanism for shaping RL representations.",
+      "authors": [
+        "Aleksandar Todorov",
+        "Matthia Sabatelli"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-25T16:31:33+00:00",
+      "link": "https://arxiv.org/pdf/2605.26012v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "introduces an orthogonal bottleneck projection to constrain RL representations to low-dimensional subspaces",
+      "llm_evidence_cn": "引入正交瓶颈投影将强化学习表示约束在低维子空间中",
+      "llm_evidence": "引入正交瓶颈投影将强化学习表示约束在低维子空间中",
+      "canonical_evidence": "引入正交瓶颈投影将强化学习表示约束在低维子空间中",
+      "llm_tldr_en": "Proposes a simple orthogonal bottleneck prior for deep RL that projects encoder features into a fixed low-dimensional subspace, theoretically proving that when bottleneck dimension exceeds intrinsic value rank, it preserves expressivity and gradient dynamics, while improving efficiency and robustness.",
+      "llm_tldr_cn": "深度强化学习常用高维神经表示，但任务相关的价值结构可能本质低维。本文提出正交瓶颈方法，在编码器后插入固定正交投影，不改变学习算法或增加损失，将特征约束在低维子空间。线性可实现假设下证明，若瓶颈维数超过最优价值函数的内禀秩，则保留表达能力且梯度动态等价。实验表明该方法在多种环境上提高样本效率和策略性能，减少过拟合，为RL表示学习提供了简单有效的正则化手段。",
+      "llm_tldr": "深度强化学习常用高维神经表示，但任务相关的价值结构可能本质低维。本文提出正交瓶颈方法，在编码器后插入固定正交投影，不改变学习算法或增加损失，将特征约束在低维子空间。线性可实现假设下证明，若瓶颈维数超过最优价值函数的内禀秩，则保留表达能力且梯度动态等价。实验表明该方法在多种环境上提高样本效率和策略性能，减少过拟合，为RL表示学习提供了简单有效的正则化手段。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.26452v1",
+      "source": "arxiv",
+      "title": "Robust Koopman Control Barrier Filters for Safe Actor-Critic Reinforcement Learning",
+      "abstract": "Safe reinforcement learning (RL) for robotic systems requires policies that improve task performance while satisfying state and input constraints during both training and deployment. Control barrier functions (CBFs) provide a principled mechanism for enforcing forward invariance through minimally invasive safety filters, but their use in model-free RL is limited by the need for accurate dynamics and hand-designed barrier certificates. We propose Robust Koopman-CBF SAC, a safety-filtered actor--critic framework that learns a finite-dimensional Koopman predictor from data, constructs affine CBF constraints in the lifted space, and enforces them through a quadratic-program safety layer. To account for finite-dimensional Koopman approximation error, the CBF condition is tightened using a projected residual margin estimated from held-out rollout data. The critic is trained on the executed safe action, while the actor is regularized toward the Koopman-CBF feasible set, reducing dependence on the filter over training. Across safe-control benchmarks, the method achieves zero constraint violations on CartPole stabilization and tracking while matching or exceeding unconstrained SAC returns. On high-dimensional Safety Gymnasium locomotion tasks, the method reduces violations in some settings but also exposes important limitations of first-order velocity barriers and linear EDMD models, motivating high-order and multi-step Koopman-CBF extensions. These results suggest that robust Koopman-CBF filters are a promising bridge between model-free RL and certifiable safety, while clarifying the structural conditions under which such filters remain effective. All code is available at \\href{https://github.com/DhruvKushwaha/Koopman-CBF-Soft-Actor-Critic}{Github Repository}.",
+      "authors": [
+        "Dhruv S. Kushwaha",
+        "Zoleikha A. Biron"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-05-26T02:02:40+00:00",
+      "link": "https://arxiv.org/pdf/2605.26452v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "proposes a safe RL framework for robotic systems using control barrier functions, directly advancing deep RL methods for safety-critical motion control",
+      "llm_evidence_cn": "提出用于机器人系统的安全强化学习框架，采用控制屏障函数，直接推动安全关键运动控制的深度RL方法",
+      "llm_evidence": "提出用于机器人系统的安全强化学习框架，采用控制屏障函数，直接推动安全关键运动控制的深度RL方法",
+      "canonical_evidence": "提出用于机器人系统的安全强化学习框架，采用控制屏障函数，直接推动安全关键运动控制的深度RL方法",
+      "llm_tldr_en": "Introduces Robust Koopman-CBF SAC, a safety-filtered actor-critic framework that learns Koopman dynamics and enforces safety through quadratic-program barrier filters, enabling safe RL in model-free settings for robotic control.",
+      "llm_tldr_cn": "针对机器人安全强化学习中缺乏准确模型和手工设计屏障函数的问题，提出鲁棒Koopman-CBF SAC框架，通过数据驱动学习Koopman预测器并在提升空间中构建仿射约束，以二次规划安全层保障训练和部署中的安全性。实验证明该方法在多种运动控制任务中有效兼顾了任务性能与约束满足，为安全关键机器人学习提供了新途径。",
+      "llm_tldr": "针对机器人安全强化学习中缺乏准确模型和手工设计屏障函数的问题，提出鲁棒Koopman-CBF SAC框架，通过数据驱动学习Koopman预测器并在提升空间中构建仿射约束，以二次规划安全层保障训练和部署中的安全性。实验证明该方法在多种运动控制任务中有效兼顾了任务性能与约束满足，为安全关键机器人学习提供了新途径。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
