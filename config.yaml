@@ -25,3 +25,57 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: rl-humanoid
+      description: 查找强化学习及人行机器人运动控制相关论文
+      enabled: true
+      paper_sources:
+        - arxiv
+      keywords:
+        - keyword: reinforcement learning
+          keyword_cn: 强化学习
+          query: Find papers on reinforcement learning
+        - keyword: humanoid robot
+          keyword_cn: 人形机器人
+          query: Research on humanoid robots
+        - keyword: motion control
+          keyword_cn: 运动控制
+          query: Motion control for robots
+        - keyword: deep reinforcement learning
+          keyword_cn: 深度强化学习
+          query: Deep reinforcement learning methods
+        - keyword: humanoid locomotion
+          keyword_cn: 人形机器人运动
+          query: Humanoid locomotion and balance
+      intent_queries:
+        - query: Find papers on reinforcement learning for humanoid robot motion control
+          query_cn: 查找关于强化学习用于人形机器人运动控制的论文
+          enabled: true
+          source: manual
+          note: ''
+        - query: Literature review on deep reinforcement learning in robotics
+          query_cn: 关于深度强化学习在机器人领域的文献综述
+          enabled: true
+          source: manual
+          note: ''
+        - query: Research on bipedal locomotion control using learning methods
+          query_cn: 使用学习方法进行双足运动控制的研究
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-05-29T12:30:23.310Z'
+source_backends:
+  arxiv:
+    papers_table: arxiv_papers
+    use_vector_rpc: true
+    vector_rpc: match_arxiv_papers
+    vector_rpc_exact: match_arxiv_papers_exact
+    use_bm25_rpc: true
+    bm25_rpc: match_arxiv_papers_bm25
+    sync_table: arxiv_sync_status
+    sync_success_value: success
+    schema: public
+    kind: supabase
+    enabled: true
+    url: https://lyucdwgefyfbmaiopjbk.supabase.co
+    anon_key: sb_publishable_lX-oi64Uxyd7SIVv3_w2Uw_MTOojeKq
