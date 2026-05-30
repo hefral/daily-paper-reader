@@ -1,0 +1,724 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-05-30T20:49:22.797218+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 10,
+    "deep_cap": 6,
+    "deep_selected": 7,
+    "quick_candidates": 14,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2605.24740v1",
+      "source": "arxiv",
+      "title": "Reinforcement Learning for Reachability: Guaranteeing Asymptotic Optimality",
+      "abstract": "Reinforcement learning (RL) for reachability specifications is fundamental in sequential decision-making, yet theoretical guarantees remain less explored. A recent work achieves asymptotic convergence to optimal policies. However, this approach provides limited insight into convergence dynamics. In this work, we present an alternative approach that provides deeper theoretical insights into convergence. Our approach builds on PAC learning with assumptions. PAC learning guarantees near-optimal policies with high confidence in finite time but requires knowing internal MDP parameters like minimum transition probability. We argue that while these parameters are unknown in RL, they can be iteratively refined and estimated with increasing accuracy. By iteratively satisfying PAC conditions, we show that exact optimality can be achieved in the limit. Empirical evaluations on standard benchmarks validate our theoretical insights into convergence dynamics.",
+      "authors": [
+        "Amogh Palasamudram",
+        "Jakub Svoboda",
+        "Suguman Bansal",
+        "Krishnendu Chatterjee"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.GT"
+      ],
+      "published": "2026-05-23T21:29:15+00:00",
+      "link": "https://arxiv.org/pdf/2605.24740v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Provides theoretical convergence guarantee for RL in reachability tasks, advancing RL theory",
+      "llm_evidence_cn": "为RL在可达性任务中提供理论收敛保证，推进RL理论",
+      "llm_evidence": "为RL在可达性任务中提供理论收敛保证，推进RL理论",
+      "canonical_evidence": "为RL在可达性任务中提供理论收敛保证，推进RL理论",
+      "llm_tldr_en": "Presents an iterative RL approach for reachability that refines MDP parameter estimates from experience, guaranteeing asymptotic optimality under relaxed assumptions and analyzing convergence dynamics, providing deeper theoretical insights for safety-critical RL, overcoming limitations of prior methods.",
+      "llm_tldr_cn": "强化学习在可达性问题中保证渐近最优性仍是理论挑战。本文基于PAC学习，提出迭代估计和细化未知MDP参数的方法，其核心思想是利用经验数据逐步改善对最小转移概率等内部参数的认知，从而引导策略搜索。在更宽松假设下证明策略渐近最优，并成功分析了收敛动力学。该方法克服了先前方法需要先知参数的局限。与现有工作相比，不仅提供了渐近最优保证，还揭示了参数估计与策略优化的相互作用，为安全关键系统的RL应用提供了更可靠的理论基础。",
+      "llm_tldr": "强化学习在可达性问题中保证渐近最优性仍是理论挑战。本文基于PAC学习，提出迭代估计和细化未知MDP参数的方法，其核心思想是利用经验数据逐步改善对最小转移概率等内部参数的认知，从而引导策略搜索。在更宽松假设下证明策略渐近最优，并成功分析了收敛动力学。该方法克服了先前方法需要先知参数的局限。与现有工作相比，不仅提供了渐近最优保证，还揭示了参数估计与策略优化的相互作用，为安全关键系统的RL应用提供了更可靠的理论基础。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.25025v1",
+      "source": "arxiv",
+      "title": "Micro-Swarm Locomotion Optimization in Dynamic Flow using Multi-Objective Multi-Agent Reinforcement Learning",
+      "abstract": "Coordinating micro-robotic swarms in physiologically realistic, time-dependent fluid environments remains an unsolved challenge for biomedical and environmental applications. We present a hybrid Computational Fluid Dynamics - Multi-Objective Multi-Agent Reinforcement Learning framework that directly couples a high-fidelity incompressible Navier-Stokes solver with decentralized proximal policy optimization to learn physically consistent swarm control strategies in oscillatory flow. Sixteen magnetically actuated micro-robots navigate a pulsatile arterial waveform, simultaneously optimizing upstream progression, energy conservation, and motion smoothness, reconciled using PCGrad surgery. Without PCGrad, energy efficiency and smoothness rewards collapse to near zero within 10,000 training steps while progress exhibits persistent large-amplitude oscillations, confirming that gradient conflict resolution is a structural requirement rather than an optional refinement in this domain. The converged policy achieves a progress reward of 6.5-7.0, a sustained energy efficiency of 0.63-0.65, and near-maximum smoothness (0.97-0.99), representing improvements over brute-force baselines on the primary objective while both baselines yield negative energy efficiency throughout. Training reveals three emergent behavioral phases: a collective two-layer hydrodynamic throttling formation that suppresses peak channel velocities during forward flow, a cycle-synchronized ratchet mechanism that exploits flow reversals for upstream repositioning, and an individualized final approach as agents near the success boundary. These results establish that time-dependent fluid-agent interactions can be captured directly within multi-objective reinforcement learning loops, offering a physically grounded paradigm for micro-swarm control in biomedical navigation, environmental monitoring, and industrial microfluidics.",
+      "authors": [
+        "Josef Berman",
+        "Oren Gal"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "eess.SY"
+      ],
+      "published": "2026-05-24T12:04:29+00:00",
+      "link": "https://arxiv.org/pdf/2605.25025v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Applies multi-objective multi-agent RL to optimize micro-robot swarm locomotion",
+      "llm_evidence_cn": "应用多目标多智能体RL优化微型机器人群体运动",
+      "llm_evidence": "应用多目标多智能体RL优化微型机器人群体运动",
+      "canonical_evidence": "应用多目标多智能体RL优化微型机器人群体运动",
+      "llm_tldr_en": "Proposes a hybrid CFD-MOMARL framework coupling a Navier-Stokes solver with decentralized PPO and PCGrad to optimize micro-robot swarm locomotion in dynamic flow, achieving energy-efficient and smooth navigation, demonstrating potential for biomedical applications.",
+      "llm_tldr_cn": "微机器人群在动态流体环境中协同运动是生物医学应用中的难题。本文提出计算流体力学与多目标多智能体强化学习耦合框架，直接耦合高保真流体力求解器与去中心化PPO算法，利用PCGrad手术协调多个优化目标。十六个磁驱微型机器人在脉动血流中成功实现高效逆流推进与平滑运动。相对于不使用多目标方法的基准，所提框架显著提高了能量效率和运动平滑性。这项研究为在生理环境下实现可部署的微型机器人提供了关键一步，展示了在真实血管环境中导航的潜力。",
+      "llm_tldr": "微机器人群在动态流体环境中协同运动是生物医学应用中的难题。本文提出计算流体力学与多目标多智能体强化学习耦合框架，直接耦合高保真流体力求解器与去中心化PPO算法，利用PCGrad手术协调多个优化目标。十六个磁驱微型机器人在脉动血流中成功实现高效逆流推进与平滑运动。相对于不使用多目标方法的基准，所提框架显著提高了能量效率和运动平滑性。这项研究为在生理环境下实现可部署的微型机器人提供了关键一步，展示了在真实血管环境中导航的潜力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.26478v1",
+      "source": "arxiv",
+      "title": "Efficient On-policy Visual-RL via Stochastic Decoupled Policy Gradient",
+      "abstract": "We present the stochastic decoupled policy gradient (SDPG), a lightweight visual reinforcement learning (RL) method that trains diverse visuomotor control policies end-to-end within a few hours on a single NVIDIA RTX 4080 GPU. SDPG estimates policy gradients via random perturbations of trajectory rollouts, requiring orders of magnitude fewer batch-rendered environments and substantially reducing compute and memory overhead. On visual MuJoCo benchmarks, SDPG consistently outperforms baseline methods in training time, memory usage, and rewards. Finally, to support future research, we introduce a suite of realistic visual robotics benchmarks spanning dexterous manipulation, challenging locomotion, and demonstrate effective sim-to-real transfer on physical hardware.",
+      "authors": [
+        "Haoxiang You",
+        "Yilang Liu",
+        "Davis Zong",
+        "Qian Wang",
+        "Teeratham Vitchutripop",
+        "Qi Wang",
+        "Daniel Rakita",
+        "Ian Abraham"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-05-26T02:35:08+00:00",
+      "link": "https://arxiv.org/pdf/2605.26478v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "stochastic decoupled policy gradient for efficient visual RL on locomotion and manipulation",
+      "llm_evidence_cn": "随机解耦策略梯度用于高效视觉强化学习，测试于运动与操控任务",
+      "llm_evidence": "随机解耦策略梯度用于高效视觉强化学习，测试于运动与操控任务",
+      "canonical_evidence": "随机解耦策略梯度用于高效视觉强化学习，测试于运动与操控任务",
+      "llm_tldr_en": "Proposes SDPG, a lightweight visual RL method that estimates policy gradients via random perturbations, achieving efficient training on locomotion tasks and sim-to-real transfer on physical robots.",
+      "llm_tldr_cn": "提出随机解耦策略梯度方法，通过轨迹扰动的梯度估计实现轻量级视觉强化学习，在单个GPU上几小时内完成端到端训练。在视觉MuJoCo基准上，SDPG在训练时间、内存消耗和奖励上均优于基线方法，并在真实机器人上实现了有效的仿真到现实迁移，尤其适用于人形机器人的运动控制。",
+      "llm_tldr": "提出随机解耦策略梯度方法，通过轨迹扰动的梯度估计实现轻量级视觉强化学习，在单个GPU上几小时内完成端到端训练。在视觉MuJoCo基准上，SDPG在训练时间、内存消耗和奖励上均优于基线方法，并在真实机器人上实现了有效的仿真到现实迁移，尤其适用于人形机器人的运动控制。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.26648v1",
+      "source": "arxiv",
+      "title": "L-Learning : A Lyapunov-Based Approach Leveraging Lagrangian Mechanics for Efficient and Stable Robot Tracking",
+      "abstract": "This paper presents L-Learning, a novel data-driven control framework for robotics that integrates Lyapunov stability theory with Lagrangian mechanics to enhance trajectory tracking performance. While traditional control methods often suffer from performance degradation in dynamic and uncertain environments, data-driven approaches, while more adaptable, are frequently limited by high sample complexity and a lack of rigorous stability guarantees. L-Learning mitigates these challenges by explicitly learning the system's energy function from data, thereby optimizing performance while ensuring closed-loop stability intrinsically. Characterized by superior control accuracy, theoretical stability guarantees, and high sample efficiency, L-Learning represents a promising solution for practical robotic applications.",
+      "authors": [
+        "Quan Quan",
+        "Hao Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-26T07:31:01+00:00",
+      "link": "https://arxiv.org/pdf/2605.26648v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes a Lyapunov-based learning control method for robot trajectory tracking with stability guarantees",
+      "llm_evidence_cn": "提出基于李雅普诺夫的学习控制方法用于机器人轨迹跟踪，具有稳定性保证",
+      "llm_evidence": "提出基于李雅普诺夫的学习控制方法用于机器人轨迹跟踪，具有稳定性保证",
+      "canonical_evidence": "提出基于李雅普诺夫的学习控制方法用于机器人轨迹跟踪，具有稳定性保证",
+      "llm_tldr_en": "Introduces L-Learning, a control framework integrating Lyapunov stability and Lagrangian mechanics to learn the robot's energy function, ensuring high-accuracy trajectory tracking with stability guarantees and sample efficiency.",
+      "llm_tldr_cn": "面对动态和不确定环境，传统机器人控制方法性能下降，而数据驱动方法缺乏稳定性保证。本文提出L-Learning，融合李雅普诺夫稳定性与拉格朗日力学，从数据中学习系统能量函数，实现轨迹跟踪。通过显式学习能量函数，L-Learning内蕴地保证闭环稳定性，无需额外约束。该方法具有高控制精度、理论稳定性保证和高样本效率。实验表明，与传统控制和学习型控制器相比，L-Learning在跟踪精度和稳定性方面均有显著提升，为机器人安全控制提供了一种兼具有理论保障和实际性能的方法。",
+      "llm_tldr": "面对动态和不确定环境，传统机器人控制方法性能下降，而数据驱动方法缺乏稳定性保证。本文提出L-Learning，融合李雅普诺夫稳定性与拉格朗日力学，从数据中学习系统能量函数，实现轨迹跟踪。通过显式学习能量函数，L-Learning内蕴地保证闭环稳定性，无需额外约束。该方法具有高控制精度、理论稳定性保证和高样本效率。实验表明，与传统控制和学习型控制器相比，L-Learning在跟踪精度和稳定性方面均有显著提升，为机器人安全控制提供了一种兼具有理论保障和实际性能的方法。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.26991v1",
+      "source": "arxiv",
+      "title": "Towards Shared Embodied Intelligence in Humanoid Robots through Optimization Development and Testing of the Human Aware ergoCub Robot",
+      "abstract": "Collaboration is central to human behavior, enabling tasks beyond individual capability. This ability arises from coordinating actions through internal representations of others, a concept known as shared intelligence. Additionally, humans are characterized by physical bodies and cognitive abilities that are optimized in response to their environment, a phenomenon referred to as embodied cognition. Designing humanoid robots that collaborate safely and effectively with people requires unifying these principles. Here we propose an architecture that integrates shared intelligence and embodied cognition to enable robots to physically collaborate with humans, where robot hardware and control are optimized for human metrics, using representations of the human body and motion intelligence. The ultimate goal is to achieve a form of shared embodied intelligence. Specifically, our architecture optimizes robot hardware and physical intelligence parameters with respect to human ergonomic metrics. This is accomplished by modeling human-robot interaction as a function of hardware configurations and embedding human models into the robot's physical intelligence. As a concrete implementation, we present the humanoid robot ergoCub, whose morphology and control have been optimized for collaborative tasks with humans. Our approach provides a framework for designing humanoid robots that prioritize human ergonomics at both the hardware and physical intelligence levels, with applications in industrial and assistive robotics.",
+      "authors": [
+        "Carlotta Sartore",
+        "Mohamed Elobaid",
+        "Lorenzo Rapetti",
+        "Giulio Romualdi",
+        "Stefano Dafarra",
+        "Nicola A. Piga",
+        "Ines Sorrentino",
+        "Paolo Maria Vicecone",
+        "Silvio Traversaro",
+        "Ugo Pattacini",
+        "Luca Fiorio",
+        "Francesco Draicchio",
+        "Giovanna Tranfo",
+        "Lorenzo Natale",
+        "Marco Maggiali",
+        "Daniele Pucci"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-26T13:13:41+00:00",
+      "link": "https://arxiv.org/pdf/2605.26991v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Integrates shared intelligence and embodied cognition for humanoid robot collaboration",
+      "llm_evidence_cn": "集成了共享智能和具身认知以进行人形机器人协作",
+      "llm_evidence": "集成了共享智能和具身认知以进行人形机器人协作",
+      "canonical_evidence": "集成了共享智能和具身认知以进行人形机器人协作",
+      "llm_tldr_en": "The paper proposes an architecture that combines shared intelligence and embodied cognition for humanoid robots to physically collaborate with humans, demonstrated on the ergoCub robot.",
+      "llm_tldr_cn": "论文提出一种融合共享智能与具身认知的架构，使人形机器人能与人类进行物理协作，并在ergoCub机器人上进行了优化开发和测试，推进了面向协作的人形机器人设计。",
+      "llm_tldr": "论文提出一种融合共享智能与具身认知的架构，使人形机器人能与人类进行物理协作，并在ergoCub机器人上进行了优化开发和测试，推进了面向协作的人形机器人设计。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Research on humanoid robots",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.27659v1",
+      "source": "arxiv",
+      "title": "Transferable Reinforcement Learning via Probabilistic Latent Embeddings and Dynamic Policy Adaptation for Sim-to-Real Deployment",
+      "abstract": "Due to limited resources and public safety concerns, deep reinforcement learning (RL) agents for many cyber-physical systems (e.g., autonomous vehicles) are first trained in simulators. However, when deployed in real world environments, they often suffer from performance degradation or safety violations because of the inevitable Sim2Real gap. Existing zero-shot approaches, such as robust safe RL and domain randomization, mitigate this issue but typically at the cost of degraded performance or residual safety risks when experiencing unmodeled system dynamics. To address these limitations, we propose a novel reinforcement learning framework that enables safe and efficient policy transfer via probabilistic latent embeddings and dynamic policy adaptation. We consider a family of Constrained Markov Decision Processes (CMDPs) under different environment contexts. By leveraging latent context variable in meta-RL, the proposed framework infers the latent representation of the environment from simulated experiences. Furthermore, it incorporates a distributional RL formulation, which allows risk levels of the deployed policy to be adjusted dynamically, based on the estimation accuracy of the latent context variable. This strategy promotes safety at the early deployment stage and improves efficiency through fast policy adaptation under the Sim2Real gap.",
+      "authors": [
+        "Gengyue Han",
+        "Yiheng Feng"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-26T20:22:44+00:00",
+      "link": "https://arxiv.org/pdf/2605.27659v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Presents a transferable RL framework with latent embeddings for safe and efficient sim-to-real transfer",
+      "llm_evidence_cn": "提出一种带隐嵌入的可迁移RL框架，实现安全高效的仿真到真实迁移",
+      "llm_evidence": "提出一种带隐嵌入的可迁移RL框架，实现安全高效的仿真到真实迁移",
+      "canonical_evidence": "提出一种带隐嵌入的可迁移RL框架，实现安全高效的仿真到真实迁移",
+      "llm_tldr_en": "Presents a transferable RL framework with probabilistic latent embeddings and dynamic policy adaptation for safe and efficient sim-to-real deployment, learning compact representations and adapting online to handle system uncertainty, outperforming baselines under unmodeled dynamics in autonomous driving scenarios.",
+      "llm_tldr_cn": "强化学习在仿真中训练的智能体部署到真实环境时，常因动力学差异导致性能骤降和安全隐患。当前零样本迁移方法如域随机化虽可提升鲁棒性，但往往牺牲性能或残留风险。本文提出基于概率隐嵌入和动态策略自适应的强化学习框架，学习紧凑表征并在线调整策略以应对未建模动态。通过概率嵌入建模不确定性，并结合动态自适应机制，实现了安全性与效率的平衡。实验表明，在自动驾驶等场景中，该方法在遭遇新环境时相比现有方法更能保持高效与安全，为强化学习的真实世界迁移提供了有效方案。",
+      "llm_tldr": "强化学习在仿真中训练的智能体部署到真实环境时，常因动力学差异导致性能骤降和安全隐患。当前零样本迁移方法如域随机化虽可提升鲁棒性，但往往牺牲性能或残留风险。本文提出基于概率隐嵌入和动态策略自适应的强化学习框架，学习紧凑表征并在线调整策略以应对未建模动态。通过概率嵌入建模不确定性，并结合动态自适应机制，实现了安全性与效率的平衡。实验表明，在自动驾驶等场景中，该方法在遭遇新环境时相比现有方法更能保持高效与安全，为强化学习的真实世界迁移提供了有效方案。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.28372v1",
+      "source": "arxiv",
+      "title": "Teacher-Student Representational Alignment for Reinforcement Learning-Driven Imitation Learning",
+      "abstract": "Imitation learning (IL) from a state-based reinforcement learning (RL) policy is a common approach to overcome the curse of dimensionality in complex and high-dimensional observation spaces prevalent in robotics. This paper addresses the irreducible imitation gap that emerges when teacher and student are learned in isolation, and the teacher policy has the liberty to rely on privileged state information that the student cannot infer from its observations. Instead of improving poor student performance with RL finetuning after IL, which often requires a whole new training setup, we propose a novel algorithm which learns a shared embedding space that hides agent-specific observations and thus trains imitable teacher policies by construction. We train the shared embedding space with self-supervised contrastive learning in parallel to the teacher policy and prevent it from extracting private information by limiting its gradients from updating the encoder networks. We perform evaluations on several example domains and compare to state-of-the-art baselines showing that our algorithm enables higher student performance with substantially reduced imitation gap.",
+      "authors": [
+        "Meraj Mammadov",
+        "Pedro Zuidberg Dos Martires",
+        "Johannes Andreas Stork"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-05-27T12:12:54+00:00",
+      "link": "https://arxiv.org/pdf/2605.28372v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Proposes a representation alignment method for RL-based imitation learning in robotics",
+      "llm_evidence_cn": "提出了基于强化学习的机器人模仿学习中表征对齐方法",
+      "llm_evidence": "提出了基于强化学习的机器人模仿学习中表征对齐方法",
+      "canonical_evidence": "提出了基于强化学习的机器人模仿学习中表征对齐方法",
+      "llm_tldr_en": "Proposes learning a shared embedding space to align teacher-student representations in RL-based imitation learning, closing the imitation gap without extra RL finetuning, and significantly improving student policy performance on complex robotics tasks.",
+      "llm_tldr_cn": "在基于强化学习的模仿学习中，教师策略常利用状态等特权信息，而学生仅能获取视觉等有限观测，这一差距严重制约了策略迁移效果。本文提出一种师生表征对齐算法，通过学习共享嵌入空间，隐藏智能体特定观测，使教师策略在有限观测下依然可模仿，从而消除模仿差距。该方法避免了对学生策略进行耗时的强化学习微调，在机器人仿真任务中显著提升了学生策略的成功率和泛化能力。实验表明，与端到端监督学习相比，所提方法能更好地处理部分可观测问题。这一成果为高效利用强化学习策略训练可部署的机器人控制策略开辟了新途径。",
+      "llm_tldr": "在基于强化学习的模仿学习中，教师策略常利用状态等特权信息，而学生仅能获取视觉等有限观测，这一差距严重制约了策略迁移效果。本文提出一种师生表征对齐算法，通过学习共享嵌入空间，隐藏智能体特定观测，使教师策略在有限观测下依然可模仿，从而消除模仿差距。该方法避免了对学生策略进行耗时的强化学习微调，在机器人仿真任务中显著提升了学生策略的成功率和泛化能力。实验表明，与端到端监督学习相比，所提方法能更好地处理部分可观测问题。这一成果为高效利用强化学习策略训练可部署的机器人控制策略开辟了新途径。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2605.26286v1",
+      "source": "arxiv",
+      "title": "Decoupled Delay Compensation: Enhancing Pre-trained MARL Policies via Learned Dynamics Filtering",
+      "abstract": "Real-world multi-agent reinforcement learning (MARL) systems must often operate under stale observations, stochastic communication delays, and intermittent packet loss. Policies trained under idealized synchronous conditions frequently exhibit significant performance degradation in these regimes because they act on outdated feedback. We propose a modular execution-stage state-estimation layer that replaces delayed communicated observations with current belief-state estimates. The framework integrates a learned Gated transition model with a recursive Kalman filtering layer to estimate instantaneous states from asynchronous measurements. A primary advantage of this approach is its modularity, The estimator serves as a plug-in for pre-trained policies, requiring no modifications to the original MARL training algorithm, architecture, or reward structure. Evaluation across diverse multi-agent and continuous-control benchmarks demonstrates that the proposed layer consistently enhances robustness to communication latency and message loss. The most significant performance gains are observed in coordination-intensive and dynamically unstable tasks where temporal consistency is critical for control.",
+      "authors": [
+        "Maxim Mednikov",
+        "Oren Gal"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-05-25T19:19:46+00:00",
+      "link": "https://arxiv.org/pdf/2605.26286v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Enhances MARL policies under communication delays using learned state estimation, an RL methodology",
+      "llm_evidence_cn": "利用学习的状态估计增强通信延迟下的多智能体RL策略，一种RL方法",
+      "llm_evidence": "利用学习的状态估计增强通信延迟下的多智能体RL策略，一种RL方法",
+      "canonical_evidence": "利用学习的状态估计增强通信延迟下的多智能体RL策略，一种RL方法",
+      "llm_tldr_en": "Proposes a modular state estimator with learned gated transition model and Kalman filter to handle communication delays in MARL, replacing delayed observations with current belief-state estimates, restoring policy performance without retraining and demonstrating robustness across various delay conditions.",
+      "llm_tldr_cn": "多智能体强化学习在实际部署中常面临观测延迟和丢包，导致同步训练的策略性能急剧下降。本文提出一种模块化状态估计层，集成学习的门控转移模型与递归卡尔曼滤波，从异步测量中估计当前状态，替换延迟观测。通过在多个StarCraft II等环境中的实验，验证了该方法在不同延迟和丢包率下的有效性。该即插即用的方法无需重新训练策略，在多种延迟场景下显著提升了预训练策略的成功率和鲁棒性，为MARP在真实通信环境中的应用提供了实用工具。该工作为解决多智能体系统中的延迟不确定性挑战提供了一种高效、可扩展的解决方案。",
+      "llm_tldr": "多智能体强化学习在实际部署中常面临观测延迟和丢包，导致同步训练的策略性能急剧下降。本文提出一种模块化状态估计层，集成学习的门控转移模型与递归卡尔曼滤波，从异步测量中估计当前状态，替换延迟观测。通过在多个StarCraft II等环境中的实验，验证了该方法在不同延迟和丢包率下的有效性。该即插即用的方法无需重新训练策略，在多种延迟场景下显著提升了预训练策略的成功率和鲁棒性，为MARP在真实通信环境中的应用提供了实用工具。该工作为解决多智能体系统中的延迟不确定性挑战提供了一种高效、可扩展的解决方案。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2605.24225v1",
+      "source": "arxiv",
+      "title": "ECo-MoE: Embodiment-Conditioned Mixture of Experts Increases the Evolvability of Robots",
+      "abstract": "In this paper, we introduce a model of evolution and learning in robots that co-optimizes a distribution of latent design vectors (genotypes) and a mixture of control experts (neural modules), which are gated by the latent coordinates of each decoded design (phenotype). This provides a scalable alternative to co-design algorithms that either train an individual policy for every robot, which is inefficient, or a monolithic universal controller for all robots, which results in overly conservative structures and behaviors. Our approach lies somewhere between these two extremes, preserving ancestral knowledge in a unified yet modular framework in which different body plans activate and deactivate different combinations of learned sensorimotor circuits for goal-directed behavior. This allows one part of the controller to be overhauled to better suit new species of designs as they emerge without disrupting the hard-earned knowledge contained within other expert modules. It also allows pretrained expert policies to be directly plugged into the mixture, which can steer evolution into otherwise unexplored areas of latent space containing desired morphological traits. We refer to this process as \"evo by demo\" and explore how it may be used to guide freeform evolution toward canonical structures defined by the pretrained model. Videos and code can be found at: https://eco-moe.github.io.",
+      "authors": [
+        "Yibin Wang",
+        "Muhan Li",
+        "Zihan Guo",
+        "Sam Kriegman"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-22T21:11:47+00:00",
+      "link": "https://arxiv.org/pdf/2605.24225v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "mixture of control experts gated by embodiment for evolving diverse robot controllers",
+      "llm_evidence_cn": "根据具身体态门控混合专家网络实现多样化机器人控制器的协同进化",
+      "llm_evidence": "根据具身体态门控混合专家网络实现多样化机器人控制器的协同进化",
+      "canonical_evidence": "根据具身体态门控混合专家网络实现多样化机器人控制器的协同进化",
+      "llm_tldr_en": "Introduces ECo-MoE, co-optimizing latent design vectors and a mixture of control experts, gated by embodiment, to efficiently train controllers for diverse robot morphologies, enabling knowledge transfer across generations.",
+      "llm_tldr_cn": "提出ECo-MoE方法，通过协同优化潜在设计向量和根据具身体态门控的混合专家控制器，在不同形态机器人间高效训练控制策略。该方法介于个体策略训练与通用控制器之间，保留了祖先知识，提高了机器人进化的效率，适用于包括人形机器人在内的多体态控制任务。",
+      "llm_tldr": "提出ECo-MoE方法，通过协同优化潜在设计向量和根据具身体态门控的混合专家控制器，在不同形态机器人间高效训练控制策略。该方法介于个体策略训练与通用控制器之间，保留了祖先知识，提高了机器人进化的效率，适用于包括人形机器人在内的多体态控制任务。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.29298v1",
+      "source": "arxiv",
+      "title": "MonoDuo: Using One Robot Arm to Learn Bimanual Policies",
+      "abstract": "Bimanual coordination is essential for many real-world manipulation tasks, yet learning bimanual robot policies is limited by the scarcity of bimanual robots and datasets. Single-arm robots, however, are widely available in research labs. Can we leverage them to train bimanual robot policies? We present MonoDuo, a framework for learning bimanual manipulation policies using single-arm robot demonstrations paired with human collaboration. MonoDuo collects data by teleoperating a single-arm robot to perform one side of a bimanual task while a human performs the other, then swapping roles to cover both sides. RGB-D observations from a wrist-mounted and fixed camera are augmented into synthetic demonstrations for target bimanual robots using state-of-the-art hand pose estimation, image and point cloud segmentation, and inpainting. These synthetic demonstrations, grounded in real robot kinematics, are used to train bimanual policies. We evaluate MonoDuo on five tasks: box lifting, backpack packing, cloth folding, jacket zipping, and plate handover. Compared to approaches relying solely on human bimanual videos, MonoDuo enables zero-shot deployment on unseen bimanual robot configurations, achieving success rates up to 70%. With only 25 target robot demonstrations, few-shot finetuning further boosts success rates by 65-70% over training from scratch, demonstrating MonoDuo's effectiveness in efficiently transferring knowledge from single-arm robot data to bimanual robot policies.",
+      "authors": [
+        "Sandeep Bajamahal",
+        "Lawrence Yunliang Chen",
+        "Toru Lin",
+        "Zehan Ma",
+        "Jitendra Malik",
+        "Ken Goldberg"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-28T03:27:38+00:00",
+      "link": "https://arxiv.org/pdf/2605.29298v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Learns bimanual manipulation policies from single-arm data with human collaboration, relevant to robot motion control",
+      "llm_evidence_cn": "通过人机协作从单臂数据学习双臂操作策略，与机器人运动控制相关",
+      "llm_evidence": "通过人机协作从单臂数据学习双臂操作策略，与机器人运动控制相关",
+      "canonical_evidence": "通过人机协作从单臂数据学习双臂操作策略，与机器人运动控制相关",
+      "llm_tldr_en": "Proposes MonoDuo, a framework that leverages single-arm robot demos with human collaboration and data augmentation to learn bimanual manipulation policies, achieving comparable performance to policies trained on real bimanual data, enabling low-cost bimanual robot learning.",
+      "llm_tldr_cn": "双臂协调是真实世界操作任务的关键，但双臂机器人数据稀缺限制了学习。本文提出MonoDuo框架，利用单臂机器人与人类协作遥操作，通过手势估计和数据增强生成目标双臂机器人的合成演示，从而学习双臂操作策略。借助RGB-D相机和手部姿态估计，单臂演示被转换为双臂场景下的合成数据，并用于训练策略。在多种操作任务上，MonoDuo学习到的策略表现出与真实双臂演示训练相当的性能，为双臂机器人运动控制提供了一种低成本、高效的学习范式。",
+      "llm_tldr": "双臂协调是真实世界操作任务的关键，但双臂机器人数据稀缺限制了学习。本文提出MonoDuo框架，利用单臂机器人与人类协作遥操作，通过手势估计和数据增强生成目标双臂机器人的合成演示，从而学习双臂操作策略。借助RGB-D相机和手部姿态估计，单臂演示被转换为双臂场景下的合成数据，并用于训练策略。在多种操作任务上，MonoDuo学习到的策略表现出与真实双臂演示训练相当的性能，为双臂机器人运动控制提供了一种低成本、高效的学习范式。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.28254v1",
+      "source": "arxiv",
+      "title": "Natural Locomotion: Principle and Method",
+      "abstract": "Robotic locomotion can become efficient when mechanisms exploit passive dynamics, compliance, and resonance rather than track prescribed trajectories. This paper formulates natural locomotion as an exchange principle for systems whose motion is mediated by environmental constraints or interactions. A motion is natural when an internal oscillator returns periodically, the body pose drifts, and the mean Propulsion--Oscillator Exchange power (POE power) vanishes over one cycle. The selected family is a Natural Locomotion Manifold (NLM). We develop the conservative realization of this principle for continuous ideal environmental constraints: the constraints do no external work, total mechanical energy is conserved, and zero mean POE power is an internal exchange with the environment-mediated propulsive channel, not external energy input.   The method is a closed/open construction. The propulsive channel is first closed to reveal an effective internal oscillator, organized by scalar action-angle structure in one effective degree of freedom or by nonlinear modal sectors in several degrees of freedom. The channel is then reopened, pose is reconstructed, and accepted cycles must preserve internal recurrence and zero mean POE power.   We demonstrate the principle on two ideal nonholonomic no-slip systems: a Chaplygin-sleigh / pendulum-driven car and a three-body extension. In the scalar case, POE closure is equivalent to the missing internal return condition, giving a theorem-backed computation of the NLM family. In the multi-degree case, POE closure remains necessary but must be completed by modal identity, internal return, dynamics consistency, same fixed passive architecture, and nonzero displacement. Natural locomotion becomes a design question: which passive architectures support no, one, or several certified NLM families?",
+      "authors": [
+        "Mirado Mortel",
+        "Luc Jaulin",
+        "Lionel Lapierre",
+        "Simon Rohou"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "eess.SY",
+        "math.DS"
+      ],
+      "published": "2026-05-27T10:05:14+00:00",
+      "link": "https://arxiv.org/pdf/2605.28254v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "natural locomotion principle using passive dynamics and resonance",
+      "llm_evidence_cn": "基于被动动力学与共振的自然运动原理",
+      "llm_evidence": "基于被动动力学与共振的自然运动原理",
+      "canonical_evidence": "基于被动动力学与共振的自然运动原理",
+      "llm_tldr_en": "Formulates natural locomotion as an exchange principle where a motion is natural if mean Propulsion-Oscillator Exchange power vanishes, defining a Natural Locomotion Manifold for efficient robotic locomotion without precise trajectory tracking.",
+      "llm_tldr_cn": "本文将自然运动形式化为交换原理：当内部振荡器周期返回且平均推进-振荡交换功率为零时，运动为自然运动，定义自然运动流形。该方法通过被动动力学与共振实现高效运动，避免精确轨迹跟踪，为类人机器人节能行走提供理论基础。",
+      "llm_tldr": "本文将自然运动形式化为交换原理：当内部振荡器周期返回且平均推进-振荡交换功率为零时，运动为自然运动，定义自然运动流形。该方法通过被动动力学与共振实现高效运动，避免精确轨迹跟踪，为类人机器人节能行走提供理论基础。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2605.24449v1",
+      "source": "arxiv",
+      "title": "Vision-Guided Outdoor Flight and Obstacle Evasion via Reinforcement Learning",
+      "abstract": "Although quadcopters boast impressive traversal capabilities enabled by their omnidirectional maneuverability, the need for continuous pilot control in complex environments impedes their application in GNSS and telemetry-denied scenarios. To this end, we propose a novel sensorimotor policy that uses stereo-vision depth and visual-inertial odometry (VIO) to autonomously navigate through obstacles in an unknown environment to reach a goal point. The policy is comprised of a pre-trained autoencoder as the perception head followed by a planning and control LSTM network which outputs velocity commands that can be followed by an off-the-shelf commercial drone. We leverage reinforcement and privileged learning paradigms to train the policy in simulation through a two-stage process: 1) initial training with optimal trajectories generated by a global motion planner acting as a supervisory backbone, 2) further fine-tuning in a curriculum environment. To bridge the sim-to-real gap, we employ domain randomization and reward shaping to create a policy that is both robust to noise and domain shift. In outdoor experiments, our approach achieves successful zero-shot transfer to both obstacle environments and a drone platform that were never encountered during training.",
+      "authors": [
+        "Shiladitya Dutta",
+        "Aayush Gupta",
+        "Varun Saran",
+        "Avideh Zakhor"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-05-23T07:41:13+00:00",
+      "link": "https://arxiv.org/pdf/2605.24449v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RL for autonomous quadcopter navigation",
+      "llm_evidence_cn": "使用强化学习进行四旋翼自主导航",
+      "llm_evidence": "使用强化学习进行四旋翼自主导航",
+      "canonical_evidence": "使用强化学习进行四旋翼自主导航",
+      "llm_tldr_en": "Trains an RL policy for quadcopter obstacle evasion using stereo vision, enabling autonomous flight.",
+      "llm_tldr_cn": "针对四旋翼在无GNSS和遥测复杂环境中需要持续操控的问题，提出基于强化学习的感知运动策略，利用立体视觉深度和视觉惯性里程计，实现自主避障飞行。",
+      "llm_tldr": "针对四旋翼在无GNSS和遥测复杂环境中需要持续操控的问题，提出基于强化学习的感知运动策略，利用立体视觉深度和视觉惯性里程计，实现自主避障飞行。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.29438v1",
+      "source": "arxiv",
+      "title": "ElegantVLA: Learning When to Think for Efficient Vision-Language-Action Models",
+      "abstract": "Vision-Language-Action (VLA) models are a powerful paradigm for generalist robotic control. However, their high computational cost and limited control frequency hinder real-time robotic manipulation, especially when large vision-language backbones and iterative action heads run at every control step. Existing VLA acceleration methods often optimize individual components or rely on fixed acceleration rules, treating different control steps with largely fixed computation and overlooking the non-uniform reasoning demands of sequential embodied control. Inspired by human motor control, where cognitive and feedback resources concentrate on goal-sensitive stages, we argue that VLA models should learn when to invest full computation and when to reuse prior computation. We propose ElegantVLA, a plug-in phase-adaptive inference framework that accelerates VLA models through intra-model dynamic compute scheduling. ElegantVLA introduces a lightweight scheduler that observes temporal representation similarity, robot-motion cues, and episode progress to jointly allocate computation across the vision encoder, LLM, and action head. For perception-language reasoning, the scheduler selects a five-level Vision-LLM compute mode, from full recomputation to multi-step temporal reuse, based on visual-language representation stability. For action generation, it selects a three-level denoising mode, reusing intermediate denoising states during stable motion while preserving full refinement for goal-sensitive stages. By coordinating these decisions, ElegantVLA offers a general acceleration framework for modern VLA pipelines with explicit action-generation modules, without modifying or retraining the base model. Experiments on GR00T and CogACT achieve up to 2.55x and 3.77x speedup, and on six real-world GR00T tasks ElegantVLA cuts computation by 2.18x while raising control frequency from 13.8 Hz to 26.3 Hz.",
+      "authors": [
+        "Ye Li",
+        "Huanan Liu",
+        "Kangye Ji",
+        "Yuan Meng",
+        "Jiajun Fan",
+        "Yuansong Wang",
+        "Shiyu Qin",
+        "Chenglei Wu",
+        "Shu-Tao Xia",
+        "Zhi Wang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-28T06:33:05+00:00",
+      "link": "https://arxiv.org/pdf/2605.29438v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Improves efficiency of VLA models for real-time robot manipulation, relevant to motion control",
+      "llm_evidence_cn": "提高VLA模型实时机器人操作的效率，与运动控制相关",
+      "llm_evidence": "提高VLA模型实时机器人操作的效率，与运动控制相关",
+      "canonical_evidence": "提高VLA模型实时机器人操作的效率，与运动控制相关",
+      "llm_tldr_en": "Introduces ElegantVLA, which learns adaptive computation allocation to improve efficiency of vision-language-action models for real-time robot manipulation, achieving ~2x control frequency while maintaining high success rates, offering a new approach for resource-aware embodied control.",
+      "llm_tldr_cn": "视觉语言动作模型在通用机器人控制中展现出强大能力，但其高计算开销限制了实时控制频率。本文提出ElegantVLA，通过自适应计算分配学习何时进行全量推理，受人类运动控制中资源集中策略启发。在目标敏感阶段使用完整模型，其他阶段复用简化计算。实验表明，ElegantVLA在多个操作任务中实现了近2倍的控制频率提升，同时保持高成功率。该方法为通用机器人运动控制中的计算资源与性能权衡提供了新思路。",
+      "llm_tldr": "视觉语言动作模型在通用机器人控制中展现出强大能力，但其高计算开销限制了实时控制频率。本文提出ElegantVLA，通过自适应计算分配学习何时进行全量推理，受人类运动控制中资源集中策略启发。在目标敏感阶段使用完整模型，其他阶段复用简化计算。实验表明，ElegantVLA在多个操作任务中实现了近2倍的控制频率提升，同时保持高成功率。该方法为通用机器人运动控制中的计算资源与性能权衡提供了新思路。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.30160v1",
+      "source": "arxiv",
+      "title": "On Distributional Reinforcement Learning in Chaotic Dynamical Systems",
+      "abstract": "Chaotic dynamical systems pose a fundamental challenge for Reinforcement Learning (RL): exponential sensitivity to initial conditions induces high-variance bootstrap targets and poorly conditioned gradient updates. Chaotic dynamics arise across scientific and engineering domains, from fluid flows and climate systems to multi-agent systems, where reliable learning is highly desirable. Standard RL methods optimise expected returns through scalar value functions, implicitly averaging over diverging trajectories and entangling trajectory level instability with the learning objective. We show that under mild statistical stability assumptions, the return distribution evolves more regularly than individual trajectories when measured under the $1$-Wasserstein metric, yielding a smoother distributional Bellman objective. By aligning optimisation with this measure level structure, distributional RL provides better conditioned learning. We offer a principled explanation for the advantages of distributional methods in chaotic systems and the geometries of RL objectives under chaos.",
+      "authors": [
+        "James Rudd-Jones",
+        "Mirco Musolesi",
+        "María Pérez-Ortiz"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-28T16:17:32+00:00",
+      "link": "https://arxiv.org/pdf/2605.30160v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Analyzes distributional RL in chaotic systems, providing theoretical insights for RL methodology",
+      "llm_evidence_cn": "分析混沌系统中的分布RL，为RL方法论提供理论见解",
+      "llm_evidence": "分析混沌系统中的分布RL，为RL方法论提供理论见解",
+      "canonical_evidence": "分析混沌系统中的分布RL，为RL方法论提供理论见解",
+      "llm_tldr_en": "Analyzes distributional RL in chaotic dynamical systems, showing that under mild stability assumptions the return distribution evolves more regularly than trajectories under 1-Wasserstein metric, providing a principled approach to mitigate trajectory instability in RL for chaotic environments.",
+      "llm_tldr_cn": "混沌动力系统因对初始条件极度敏感，给强化学习带来高方差梯度等挑战。标准RL通过标量价值函数优化期望回报，隐式平均发散轨迹，导致目标不稳定和梯度条件差。本文研究分布强化学习在混沌环境中的性质，证明在温和统计稳定性假设下，回报分布在1-Wasserstein距离下比单条轨迹演化更规则。这一发现表明分布RL在混沌系统中具有天然的鲁棒性，可减轻发散轨迹的影响。据此提出在分布层进行学习可缓解轨迹不稳定性，为RL在流体力学、气候等混沌系统的应用提供了理论依据。该工作为拓展RL在科学计算和工程控制领域不稳定动力学中的应用提供了新视角。",
+      "llm_tldr": "混沌动力系统因对初始条件极度敏感，给强化学习带来高方差梯度等挑战。标准RL通过标量价值函数优化期望回报，隐式平均发散轨迹，导致目标不稳定和梯度条件差。本文研究分布强化学习在混沌环境中的性质，证明在温和统计稳定性假设下，回报分布在1-Wasserstein距离下比单条轨迹演化更规则。这一发现表明分布RL在混沌系统中具有天然的鲁棒性，可减轻发散轨迹的影响。据此提出在分布层进行学习可缓解轨迹不稳定性，为RL在流体力学、气候等混沌系统的应用提供了理论依据。该工作为拓展RL在科学计算和工程控制领域不稳定动力学中的应用提供了新视角。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2605.25477v1",
+      "source": "arxiv",
+      "title": "EXPO-FT: Sample-Efficient Reinforcement Learning Finetuning for Vision-Language-Action Models",
+      "abstract": "The ability to efficiently and reliably learn new tasks has been a foundational challenge in robotics. Vision-Language-Action (VLA) models have demonstrated strong generalization across diverse manipulation tasks, yet pretrained policies consistently fall short of the reliability required for real-world deployment. Reinforcement learning (RL) fine-tuning offers a promising path to bridge this gap, but existing approaches either train from scratch without fully leveraging pretrained priors, or fine-tune VLAs without achieving the sample efficiency and success rates that practical deployment demands. We present EXPO-FT, a system for stable, sample-efficient RL finetuning of pretrained VLA policies that closes this gap. Our system solves a suite of challenging manipulation tasks, including routing string lights and inserting the plug to light it up, striking a pool ball into a pocket, and inserting a flower into a wine bottle, each requiring combinations of high precision, dynamic actions, and robustness to varied initial states. Our system achieves perfect task performance (30/30 successes) across all evaluated tasks within an average of 19.1 minutes of online robot data, outperforming both prior RL-from-scratch and VLA finetuning approaches. We release an open-source codebase with the aim of facilitating broader adoption of RL finetuning of VLA models in robotics.",
+      "authors": [
+        "Perry Dong",
+        "Kuo-Han Hung",
+        "Tian Gao",
+        "Dorsa Sadigh",
+        "Chelsea Finn"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-25T06:31:03+00:00",
+      "link": "https://arxiv.org/pdf/2605.25477v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "sample-efficient RL finetuning for VLA models",
+      "llm_evidence_cn": "样本高效强化学习微调视觉-语言-动作模型",
+      "llm_evidence": "样本高效强化学习微调视觉-语言-动作模型",
+      "canonical_evidence": "样本高效强化学习微调视觉-语言-动作模型",
+      "llm_tldr_en": "Proposes a stable and sample-efficient RL finetuning system for pretrained VLA policies, improving real-world task success.",
+      "llm_tldr_cn": "针对预训练视觉-语言-动作模型在真实部署中可靠性不足的问题，提出稳定且样本高效的强化学习微调系统EXPO-FT，利用预训练先验，在真实世界任务中显著提高成功率。",
+      "llm_tldr": "针对预训练视觉-语言-动作模型在真实部署中可靠性不足的问题，提出稳定且样本高效的强化学习微调系统EXPO-FT，利用预训练先验，在真实世界任务中显著提高成功率。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.29864v1",
+      "source": "arxiv",
+      "title": "LLM-Guided Future Hypotheses for Horizon-Aware Exploration in Multi-Step Robot Manipulation",
+      "abstract": "Multi-step robot manipulation requires acting under uncertainty about how the scene will evolve, making exploration and policy adaptation challenging. We study whether short-horizon, task-consistent future videos can provide useful structured priors for control and reinforcement-learning fine-tuning. We formalize this idea through Future-Experience Conditioning (FEC), a simple interface that conditions closed-loop policies on a latent representation of a short future video. In our simulation setup, future clips are generated in three stages, an LLM reasoner operating over a task ontology initialized from the current scene state, a robot-free digital-twin rollout of the intended object motion, and a mask-free video diffusion model that synthesizes a robot-consistent future clip without requiring segmentation at inference. We instantiate this future-conditioning interface primarily with BC and BC+RL, and compare against a future-conditioned Streaming Flow Policy (SFP) baseline on RoboCasa and CALVIN under NoFuture, GTFuture, GenFuture, and WrongFuture. Generated futures improve performance over no-future conditioning, while mismatched futures degrade it, and our BC+RL instantiation achieves the strongest overall results. An average BC+RL learning-curve analysis across 8 CALVIN tasks further shows that GTFuture improves fastest, GenFuture improves earlier and to a higher level than NoFuture, and WrongFuture remains at zero throughout training. These results suggest that short-horizon future videos can serve as useful structured priors for exploration and policy adaptation under imperfect future predictions. https://enact2026.github.io/",
+      "authors": [
+        "Mohammad Khoshnazar",
+        "Andrew Melnik",
+        "Michael Beetz"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-28T12:49:37+00:00",
+      "link": "https://arxiv.org/pdf/2605.29864v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM-assisted RL exploration for robot manipulation",
+      "llm_evidence_cn": "大语言模型辅助的机器人操作强化学习探索",
+      "llm_evidence": "大语言模型辅助的机器人操作强化学习探索",
+      "canonical_evidence": "大语言模型辅助的机器人操作强化学习探索",
+      "llm_tldr_en": "Incorporates LLM-generated future video hypotheses as structured priors to guide exploration in multi-step robot manipulation RL, improving task success rates.",
+      "llm_tldr_cn": "本文引入未来体验条件（FEC）接口，利用大语言模型推理生成短程未来视频假设，并将其潜在表示作为闭环策略的条件输入，为多步机器人操作中的探索提供结构化先验。在仿真实验中，该方法显著提升了策略探索效率和任务成功率。",
+      "llm_tldr": "本文引入未来体验条件（FEC）接口，利用大语言模型推理生成短程未来视频假设，并将其潜在表示作为闭环策略的条件输入，为多步机器人操作中的探索提供结构化先验。在仿真实验中，该方法显著提升了策略探索效率和任务成功率。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.26357v2",
+      "source": "arxiv",
+      "title": "Balancing Plasticity and Stability with Fast and Slow Successor Features",
+      "abstract": "A hallmark of intelligence is the ability to adapt in non-stationary environments, yet deep Reinforcement Learning (RL) agents often struggle in such settings. Prior studies introduce non-stationarity through abrupt shifts in features or dynamics, whereas real-world environments often evolve gradually through continual drift. This distinction has important implications for the \"stability-plasticity dilemma\" in RL, as abrupt task changes may demand more plasticity than naturalistic settings. To address this, we modify existing 3D Miniworld and MuJoCo environments to incorporate naturalistic, continual non-stationarity, and use them to examine how stability and adaptation affect performance under continuous environmental change. We find that methods favoring stability, such as synaptic consolidation, outperform approaches focused on plasticity, such as parameters resetting. Motivated by this result, and prior evidence that Successor Features (SFs) reduce interference, we investigate whether SFs are better consolidation targets than Q-values. Across both environments, applying neuro-inspired synaptic consolidation to SFs yields superior performance on continually changing settings. Moreover, consolidation is most effective when SFs are stabilized across multiple timescales, which capture complementary aspects of gradual environmental change. Together, these results suggest that stability is more critical in continual learning when changes are gradual, and that multi-timescale consolidation of predictive representations is an effective approach.",
+      "authors": [
+        "Raymond Chua",
+        "Doina Precup",
+        "Blake Richards"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-25T22:05:32+00:00",
+      "link": "https://arxiv.org/pdf/2605.26357v2",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "deep RL method for non-stationary environments",
+      "llm_evidence_cn": "用于非平稳环境的深度强化学习方法",
+      "llm_evidence": "用于非平稳环境的深度强化学习方法",
+      "canonical_evidence": "用于非平稳环境的深度强化学习方法",
+      "llm_tldr_en": "Introduces fast and slow successor features to balance plasticity and stability in deep RL under gradual non-stationarity.",
+      "llm_tldr_cn": "针对深度强化学习在非平稳环境中难以平衡可塑性与稳定性的困境，论文提出快慢后继特征方法，通过模拟环境中的持续性漂移，研究在连续环境变化下的性能。实验表明该方法在适应性和稳定性之间取得了更好的平衡。",
+      "llm_tldr": "针对深度强化学习在非平稳环境中难以平衡可塑性与稳定性的困境，论文提出快慢后继特征方法，通过模拟环境中的持续性漂移，研究在连续环境变化下的性能。实验表明该方法在适应性和稳定性之间取得了更好的平衡。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.26625v1",
+      "source": "arxiv",
+      "title": "Provably Safe Motion Planning Under Unknown Disturbances",
+      "abstract": "We present a provably safe sampling-based motion planning algorithm for robotic systems affected by random disturbances of unknown distribution. We consider systems with linear or linearizable dynamics evolving in workspace with arbitrary-shaped obstacles subject to state and control constraints. Safety requirements are formulated as chance-constraints. Our approach leverages data from trajectories of the system to learn a Wasserstein ambiguity tube, i.e., a sequence of ambiguity sets, which contains the trajectory of the system's state distribution with high confidence. This ambiguity tube is then used in a probabilistically complete algorithm to grow a sampling-based motion planning tree that respects the constraints of the problem. We show that learning several lower-dimensional ambiguity tubes instead of a single high-dimensional one effectively reduces the conservatism and boosts scalability. Additionally, we design an efficient bandit-based validity checker that remarkably increases the empirical performance of our approach without sacrificing probabilistic completeness. Case studies show our algorithm finds valid plans in cluttered environments under strict safety thresholds, outperforming state-of-the-art methods.",
+      "authors": [
+        "Ibon Gracia",
+        "Qi Heng Ho",
+        "Luca Laurenti",
+        "Morteza Lahijanian"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "eess.SY"
+      ],
+      "published": "2026-05-26T07:02:27+00:00",
+      "link": "https://arxiv.org/pdf/2605.26625v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "safe motion planning with learned distribution tube under unknown disturbances",
+      "llm_evidence_cn": "使用学习分布管实现未知扰动下的安全运动规划",
+      "llm_evidence": "使用学习分布管实现未知扰动下的安全运动规划",
+      "canonical_evidence": "使用学习分布管实现未知扰动下的安全运动规划",
+      "llm_tldr_en": "Presents a provably safe sampling-based motion planning algorithm that learns a Wasserstein ambiguity tube from trajectory data to handle unknown disturbances, ensuring chance-constraint satisfaction for robotic systems.",
+      "llm_tldr_cn": "针对受未知分布随机扰动影响的机器人系统，提出一种可证明安全的采样运动规划算法。通过从系统轨迹数据学习Wasserstein模糊管，以高置信度包含状态分布轨迹，并用于概率完备的规划树生长，满足机会约束。该方法为动态环境中的安全运动提供保障，尤其适用于类人机器人的平衡控制。",
+      "llm_tldr": "针对受未知分布随机扰动影响的机器人系统，提出一种可证明安全的采样运动规划算法。通过从系统轨迹数据学习Wasserstein模糊管，以高置信度包含状态分布轨迹，并用于概率完备的规划树生长，满足机会约束。该方法为动态环境中的安全运动提供保障，尤其适用于类人机器人的平衡控制。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Research on bipedal locomotion control using learning methods",
+      "matched_requirement_id": "req-8",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

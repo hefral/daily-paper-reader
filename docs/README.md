@@ -6,73 +6,76 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-05-29
-- 运行时间：2026-05-29 21:53:45 UTC
+- 最新运行日期：2026-05-30
+- 运行时间：2026-05-30 21:05:48 UTC
 - 运行状态：成功
-- 本次总论文数：17
-- 精读区：6
+- 本次总论文数：18
+- 精读区：7
 - 速读区：11
 
 ### 今日简报（AI）
-今天重点啃下两篇满分论文，聚焦人形机器人从语言指令到物理仿真的可控动作生成与安全全身控制。  
-最抢眼的方向是“语言驱动物理人形控制”与“输入-状态安全屏障函数”，让机器人既能听懂人话又能守住安全底线。  
-建议普通读者从语言驱动仿真入手，再看安全约束方案，把两个拼图合起来理解具身智能的可靠行动。
-- 详情：[/202605/29/README](/202605/29/README)
+今日精读两篇顶级RL论文，聚焦强化学习在可达性保障与微型集群动态流优化中的突破。  
+最值得关注：可达性RL首次实现渐近最优性保证；微型集群通过多目标多智能体RL在动态流中自主学习高效运动。  
+建议读者重点探索RL的保障性理论如何落地，同时关注集群智能在复杂物理环境中的应用潜力。
+- 详情：[/202605/30/README](/202605/30/README)
 
 ### 精读区论文标签
-1. [SCRIPT: Scalable Diffusion Policy with Multi-stage Training for Language-driven Physics-based Humanoid Control](/202605/29/2605.22894v2-script-scalable-diffusion-policy-with-multi-stage-training-for-language-driven-physics-based-humanoid-control)  
-   标签：评分：10.0/10、query:rl-humanoid
-   evidence：直接针对语言驱动的物理仿真人形机器人控制，采用可扩展扩散策略，与强化学习人形运动控制高度相关
-2. [Safety-Critical Whole-Body Control for Humanoid Robots via Input-to-State Safe Control Barrier Functions](/202605/29/2605.25546v1-safety-critical-whole-body-control-for-humanoid-robots-via-input-to-state-safe-control-barrier-functions)  
-   标签：评分：10.0/10、query:rl-humanoid
-   evidence：人形机器人安全关键全身控制
-3. [SCRIPT: Scalable Diffusion Policy with Multi-stage Training for Language-driven Physics-Based Humanoid Control](/202605/29/2605.22894v1-script-scalable-diffusion-policy-with-multi-stage-training-for-language-driven-physics-based-humanoid-control)  
+1. [Reinforcement Learning for Reachability: Guaranteeing Asymptotic Optimality](/202605/30/2605.24740v1-reinforcement-learning-for-reachability-guaranteeing-asymptotic-optimality)  
    标签：评分：9.0/10、query:rl-humanoid
-   evidence：语言驱动扩散策略用于物理仿真人形机器人控制
-4. [Any2Any: Efficient Cross-Embodiment Transfer for Humanoid Whole-Body Tracking](/202605/29/2605.23733v1-any2any-efficient-cross-embodiment-transfer-for-humanoid-whole-body-tracking)  
+   evidence：为RL在可达性任务中提供理论收敛保证，推进RL理论
+2. [Micro-Swarm Locomotion Optimization in Dynamic Flow using Multi-Objective Multi-Agent Reinforcement Learning](/202605/30/2605.25025v1-micro-swarm-locomotion-optimization-in-dynamic-flow-using-multi-objective-multi-agent-reinforcement-learning)  
    标签：评分：9.0/10、query:rl-humanoid
-   evidence：人形机器人全身跟踪的跨形态迁移
-5. [HumanoidMimicGen: Data Generation for Loco-Manipulation via Whole-Body Planning](/202605/29/2605.27724v1-humanoidmimicgen-data-generation-for-loco-manipulation-via-whole-body-planning)  
+   evidence：应用多目标多智能体RL优化微型机器人群体运动
+3. [Efficient On-policy Visual-RL via Stochastic Decoupled Policy Gradient](/202605/30/2605.26478v1-efficient-on-policy-visual-rl-via-stochastic-decoupled-policy-gradient)  
    标签：评分：9.0/10、query:rl-humanoid
-   evidence：为人形机器人步行操作生成模仿学习数据
-6. [Theoretical Foundations and Effective Algorithms for Policy-Aware Simulator Learning](/202605/29/2605.29032v1-theoretical-foundations-and-effective-algorithms-for-policy-aware-simulator-learning)  
-   标签：评分：8.0/10、query:rl-humanoid
-   evidence：提出零和极小极大博弈学习对策略鲁棒的仿真模型，用于基于模型的强化学习
+   evidence：随机解耦策略梯度用于高效视觉强化学习，测试于运动与操控任务
+4. [L-Learning : A Lyapunov-Based Approach Leveraging Lagrangian Mechanics for Efficient and Stable Robot Tracking](/202605/30/2605.26648v1-l-learning--a-lyapunov-based-approach-leveraging-lagrangian-mechanics-for-efficient-and-stable-robot-tracking)  
+   标签：评分：9.0/10、query:rl-humanoid
+   evidence：提出基于李雅普诺夫的学习控制方法用于机器人轨迹跟踪，具有稳定性保证
+5. [Towards Shared Embodied Intelligence in Humanoid Robots through Optimization Development and Testing of the Human Aware ergoCub Robot](/202605/30/2605.26991v1-towards-shared-embodied-intelligence-in-humanoid-robots-through-optimization-development-and-testing-of-the-human-aware-ergocub-robot)  
+   标签：评分：9.0/10、query:rl-humanoid
+   evidence：集成了共享智能和具身认知以进行人形机器人协作
+6. [Transferable Reinforcement Learning via Probabilistic Latent Embeddings and Dynamic Policy Adaptation for Sim-to-Real Deployment](/202605/30/2605.27659v1-transferable-reinforcement-learning-via-probabilistic-latent-embeddings-and-dynamic-policy-adaptation-for-sim-to-real-deployment)  
+   标签：评分：9.0/10、query:rl-humanoid
+   evidence：提出一种带隐嵌入的可迁移RL框架，实现安全高效的仿真到真实迁移
+7. [Teacher-Student Representational Alignment for Reinforcement Learning-Driven Imitation Learning](/202605/30/2605.28372v1-teacher-student-representational-alignment-for-reinforcement-learning-driven-imitation-learning)  
+   标签：评分：9.0/10、query:rl-humanoid
+   evidence：提出了基于强化学习的机器人模仿学习中表征对齐方法
 
 ### 速读区论文标签
-1. [Sample-Efficient Diffusion-based Reinforcement Learning with Critic Guidance](/202605/29/2605.30056v1-sample-efficient-diffusion-based-reinforcement-learning-with-critic-guidance)  
+1. [Decoupled Delay Compensation: Enhancing Pre-trained MARL Policies via Learned Dynamics Filtering](/202605/30/2605.26286v1-decoupled-delay-compensation-enhancing-pre-trained-marl-policies-via-learned-dynamics-filtering)  
    标签：评分：8.0/10、query:rl-humanoid
-   evidence：提出CGPO，一种评论家引导的扩散策略优化方法，用于样本高效的强化学习
-2. [Four Simple Proprioceptive Estimators for Legged Robots](/202605/29/2605.23100v1-four-simple-proprioceptive-estimators-for-legged-robots)  
+   evidence：利用学习的状态估计增强通信延迟下的多智能体RL策略，一种RL方法
+2. [Natural Locomotion: Principle and Method](/202605/30/2605.28254v1-natural-locomotion-principle-and-method)  
+   标签：评分：8.0/10、query:rl-humanoid
+   evidence：基于被动动力学与共振的自然运动原理
+3. [On Distributional Reinforcement Learning in Chaotic Dynamical Systems](/202605/30/2605.30160v1-on-distributional-reinforcement-learning-in-chaotic-dynamical-systems)  
+   标签：评分：8.0/10、query:rl-humanoid
+   evidence：分析混沌系统中的分布RL，为RL方法论提供理论见解
+4. [ECo-MoE: Embodiment-Conditioned Mixture of Experts Increases the Evolvability of Robots](/202605/30/2605.24225v1-eco-moe-embodiment-conditioned-mixture-of-experts-increases-the-evolvability-of-robots)  
    标签：评分：7.0/10、query:rl-humanoid
-   evidence：利用IMU和足部接触信息开发一系列腿式机器人状态估计器
-3. [Evolving Robustness--Exploration Trade-off in Online Reinforcement Learning via Quantile Bayesian Risk MDPs](/202605/29/2605.24345v1-evolving-robustness--exploration-trade-off-in-online-reinforcement-learning-via-quantile-bayesian-risk-mdps)  
+   evidence：根据具身体态门控混合专家网络实现多样化机器人控制器的协同进化
+5. [Vision-Guided Outdoor Flight and Obstacle Evasion via Reinforcement Learning](/202605/30/2605.24449v1-vision-guided-outdoor-flight-and-obstacle-evasion-via-reinforcement-learning)  
    标签：评分：7.0/10、query:rl-humanoid
-   evidence：通过分位数贝叶斯风险MDP研究在线强化学习中时变的鲁棒性-探索权衡
-4. [Dynamic Neural Koopman Distillation for Real-Time Robot Control Using Diffusion Models](/202605/29/2605.24924v1-dynamic-neural-koopman-distillation-for-real-time-robot-control-using-diffusion-models)  
+   evidence：使用强化学习进行四旋翼自主导航
+6. [EXPO-FT: Sample-Efficient Reinforcement Learning Finetuning for Vision-Language-Action Models](/202605/30/2605.25477v1-expo-ft-sample-efficient-reinforcement-learning-finetuning-for-vision-language-action-models)  
    标签：评分：7.0/10、query:rl-humanoid
-   evidence：在包含双足步行器的D4RL MuJoCo运动基准上评估，属于基于学习的运动控制方法
-5. [Bridging the Gap: Enabling Soft Actor Critic for High Performance Legged Locomotion](/202605/29/2605.24975v1-bridging-the-gap-enabling-soft-actor-critic-for-high-performance-legged-locomotion)  
+   evidence：样本高效强化学习微调视觉-语言-动作模型
+7. [Balancing Plasticity and Stability with Fast and Slow Successor Features](/202605/30/2605.26357v2-balancing-plasticity-and-stability-with-fast-and-slow-successor-features)  
    标签：评分：7.0/10、query:rl-humanoid
-   evidence：在足式运动中使用SAC，可用于双足控制的深度强化学习方法
-6. [Parallel Differentiable Reachability for Learning and Planning with Certified Neural Dynamics and Controllers](/202605/29/2605.25346v1-parallel-differentiable-reachability-for-learning-and-planning-with-certified-neural-dynamics-and-controllers)  
+   evidence：用于非平稳环境的深度强化学习方法
+8. [Provably Safe Motion Planning Under Unknown Disturbances](/202605/30/2605.26625v1-provably-safe-motion-planning-under-unknown-disturbances)  
    标签：评分：7.0/10、query:rl-humanoid
-   evidence：可微可达性用于机器人中认证的神经网络控制器
-7. [Learning in Low-Dimensional Subspaces: Orthogonal Bottlenecks for Reinforcement Learning](/202605/29/2605.26012v1-learning-in-low-dimensional-subspaces-orthogonal-bottlenecks-for-reinforcement-learning)  
-   标签：评分：7.0/10、query:rl-humanoid
-   evidence：引入正交瓶颈投影将强化学习表示约束在低维子空间中
-8. [Robust Koopman Control Barrier Filters for Safe Actor-Critic Reinforcement Learning](/202605/29/2605.26452v1-robust-koopman-control-barrier-filters-for-safe-actor-critic-reinforcement-learning)  
-   标签：评分：7.0/10、query:rl-humanoid
-   evidence：提出用于机器人系统的安全强化学习框架，采用控制屏障函数，直接推动安全关键运动控制的深度RL方法
-9. [Reflex: Reinforcement Learning with Reflection Symmetry Exploitation in State-Based Continuous Control](/202605/29/2605.23415v1-reflex-reinforcement-learning-with-reflection-symmetry-exploitation-in-state-based-continuous-control)  
+   evidence：使用学习分布管实现未知扰动下的安全运动规划
+9. [MonoDuo: Using One Robot Arm to Learn Bimanual Policies](/202605/30/2605.29298v1-monoduo-using-one-robot-arm-to-learn-bimanual-policies)  
    标签：评分：6.0/10、query:rl-humanoid
-   evidence：在状态基连续控制中利用反射对称的深度强化学习方法
-10. [How to Mitigate the Distribution Shift Problem in Robotics Control: A Robust and Adaptive Approach Based on Offline to Online Imitation Learning](/202605/29/2605.25414v1-how-to-mitigate-the-distribution-shift-problem-in-robotics-control-a-robust-and-adaptive-approach-based-on-offline-to-online-imitation-learning)  
+   evidence：通过人机协作从单臂数据学习双臂操作策略，与机器人运动控制相关
+10. [ElegantVLA: Learning When to Think for Efficient Vision-Language-Action Models](/202605/30/2605.29438v1-elegantvla-learning-when-to-think-for-efficient-vision-language-action-models)  
    标签：评分：6.0/10、query:rl-humanoid
-   evidence：离线到在线模仿学习框架处理机器人控制中的分布偏移
-11. [Exploiting Local Dynamics Regularity for Reusable Skills in Offline Hierarchical RL](/202605/29/2605.26371v1-exploiting-local-dynamics-regularity-for-reusable-skills-in-offline-hierarchical-rl)  
+   evidence：提高VLA模型实时机器人操作的效率，与运动控制相关
+11. [LLM-Guided Future Hypotheses for Horizon-Aware Exploration in Multi-Step Robot Manipulation](/202605/30/2605.29864v1-llm-guided-future-hypotheses-for-horizon-aware-exploration-in-multi-step-robot-manipulation)  
    标签：评分：6.0/10、query:rl-humanoid
-   evidence：利用局部动态规律的可重用技能层次强化学习
+   evidence：大语言模型辅助的机器人操作强化学习探索
 
 
 <div class="dpr-home-promo-card">
