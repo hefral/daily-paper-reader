@@ -1,0 +1,507 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-05-31T20:22:33.344973+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 3,
+    "deep_cap": 6,
+    "deep_selected": 3,
+    "quick_candidates": 9,
+    "quick_skim_target": 11,
+    "quick_selected": 9
+  },
+  "deep_dive": [
+    {
+      "id": "2605.26282v1",
+      "source": "arxiv",
+      "title": "Scaling World-Model Reinforcement Learning Through Diffusion Policy Optimization",
+      "abstract": "Model-based reinforcement learning (RL) can be effectively supported at scale through the use of world models. However, in practice, scaling such approaches remains fundamentally limited. A commonly recognized challenge is model bias and error compounding, which degrade long-horizon predictions. Beyond these issues, we identify a more critical yet underexplored bottleneck: a structural misalignment between search and value learning in existing world model approaches. In particular, policy improvement often relies on value functions induced by a separate, non-search policy, resulting in training inconsistency and ultimately suboptimal learning. To address this limitation, we propose Model-Based Diffusion Policy Optimization (MBDPO) in world models, a framework that unifies search and policy optimization through diffusion policy representations, thereby unlocking the potential of world models for scalable policy learning. Instead of constructing an explicit planner over a learned world model, we reformulate policy optimization as a diffusion process over searched trajectories in latent world models. In this view, we extract an implicit energy function from the collected dataset that anchors the policy, enabling MBDPO to refine the score field for policy optimization while mitigating misalignment. We evaluate MBDPO across a wide range of settings, including multi-task offline pretraining, online learning, and offline-to-online fine-tuning. In the offline regime, we further investigate its scaling behavior by pretraining on large-scale datasets, observing consistent and monotonic performance gains with increasing model capacity.",
+      "authors": [
+        "Xiaoyuan Cheng",
+        "Wenxuan Yuan",
+        "Zhancun Mu",
+        "Yuanzhao Zhang",
+        "Yiming Yang",
+        "Hai Wang",
+        "Zhuo Sun",
+        "Che Liu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-25T19:06:51+00:00",
+      "link": "https://arxiv.org/pdf/2605.26282v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "proposes model-based diffusion policy optimization for scaling world-model RL",
+      "llm_evidence_cn": "提出基于模型的扩散策略优化以扩展世界模型强化学习",
+      "llm_evidence": "提出基于模型的扩散策略优化以扩展世界模型强化学习",
+      "canonical_evidence": "提出基于模型的扩散策略优化以扩展世界模型强化学习",
+      "llm_tldr_en": "Addresses structural misalignment between search and value learning in world-model RL by proposing Model-Based Diffusion Policy Optimization, enabling consistent policy improvement and scaling.",
+      "llm_tldr_cn": "针对现有世界模型强化学习中搜索与价值学习之间的结构性错位问题，提出基于模型的扩散策略优化(MBDPO)方法，通过扩散策略实现策略改进与价值学习的一致性，从而提升世界模型强化学习的可扩展性与性能。最终在长期预测任务上取得了更优的样本效率与稳定性，为大规模世界模型强化学习提供了新思路。",
+      "llm_tldr": "针对现有世界模型强化学习中搜索与价值学习之间的结构性错位问题，提出基于模型的扩散策略优化(MBDPO)方法，通过扩散策略实现策略改进与价值学习的一致性，从而提升世界模型强化学习的可扩展性与性能。最终在长期预测任务上取得了更优的样本效率与稳定性，为大规模世界模型强化学习提供了新思路。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.24881v1",
+      "source": "arxiv",
+      "title": "Learning Transferable Motor Skills for Geometry-Aware Robotic Surface Tasks",
+      "abstract": "Robotic surface-interaction tasks, such as spray painting or welding, require both accurate geometric planning and precise motion execution. While modern motion planners generate valid geometric paths, they often lack the expert motor patterns observed in human operators. Conversely, learning from demonstration often tightly couples task execution to the specific training geometry, limiting transferability. We propose a modular framework that decouples geometric motion planning from execution-level expertise. Expert behavior is represented as a vocabulary of interpretable, atomic motor rules, such as velocity scaling and orientation offsets, that systematically modify a geometrically planned reference path. We train a multimodal neural network to infer rule parameters jointly from kinematic trajectory data and CAD model geometry. We evaluate our approach through dynamic simulation on L-shaped and window-shaped objects, demonstrating on simulated data that the model successfully extracts velocity and orientation rules across both topologies.",
+      "authors": [
+        "Miroslav David",
+        "Karla Stepanova",
+        "Robert Babuska"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-24T05:49:33+00:00",
+      "link": "https://arxiv.org/pdf/2605.24881v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "learning transferable motor skills for robotic surface tasks, decoupling geometric planning from execution",
+      "llm_evidence_cn": "学习可迁移的机器人表面任务运动技能，解耦几何规划与执行",
+      "llm_evidence": "学习可迁移的机器人表面任务运动技能，解耦几何规划与执行",
+      "canonical_evidence": "学习可迁移的机器人表面任务运动技能，解耦几何规划与执行",
+      "llm_tldr_en": "Proposes a modular framework to learn transferable motor skills for robotic surface tasks, decoupling geometric planning from expert execution, enabling geometry-aware motion control.",
+      "llm_tldr_cn": "针对机器人表面任务中精确运动执行的需求，提出模块化框架将几何运动规划与执行级专业技能解耦，通过学习可解释的运动规则实现技能迁移，在喷涂、焊接等任务中提升运动质量。",
+      "llm_tldr": "针对机器人表面任务中精确运动执行的需求，提出模块化框架将几何运动规划与执行级专业技能解耦，通过学习可解释的运动规则实现技能迁移，在喷涂、焊接等任务中提升运动质量。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.27284v1",
+      "source": "arxiv",
+      "title": "FineVLA: Fine-Grained Instruction Alignment for Steerable Vision-Language-Action Policies",
+      "abstract": "Vision-Language-Action (VLA) models are increasingly expected to not only complete robot tasks, but also follow human instructions about how those tasks should be executed. However, existing robot datasets usually pair trajectories with coarse goal-level language, leaving execution-critical details such as active arm, approach direction, and contact region unspecified. This limits steerable policy learning and robotic video understanding. We introduce FineVLA, an open framework for action-aligned fine-grained VLA supervision. The framework includes: (1) a data construction tool that unifies 972,247 trajectories across 85K tasks from 10 open-source robot datasets and builds FineVLA-Data, a human-verified dataset of 47,159 fine-grained trajectories; (2) a held-out benchmark with 500 videos, 10,816 atomic facts, and 1,030 VQA questions; (3) a robotics-specialized VLM annotator for scalable fine-grained annotation; and (4) a steerable VLA policy trained with controlled mixtures of fine-grained and raw goal-level instructions. Our experiments yield three findings. First, fine-grained supervision does not sacrifice goal-level success: FG-only improves over Raw-only by +1.4 to +8.1 success-rate points across settings. Second, fine-grained and raw instructions are complementary, following a consistent inverted-U trend peaking at FG:Raw = 1:2 to 1:1. The best mixed setting reaches 86.8%/82.5% in RoboTwin simulation and 62.7/100 in real-world dual-arm manipulation (vs. 49.9 Raw-only). Third, fine-grained supervision improves steerable control: the largest real-world gains appear on pose (+23), color (+18), and approach direction (+18)--factors where goal-level instructions provide no guidance. Overall, fine-grained language should augment goal-level instructions: specifying how to execute alongside what to achieve. Project page: https://finevla.xlang.ai/",
+      "authors": [
+        "Xintong Hu",
+        "Xuhong Huang",
+        "Jinyu Zhang",
+        "Yutong Yao",
+        "Yuchong Sun",
+        "Qiuyue Wang",
+        "Mingsheng Li",
+        "Sicheng Xie",
+        "Yitao Liu",
+        "Junhao Chen",
+        "Yixuan Chen",
+        "Yingming Zheng",
+        "Shuai Bai",
+        "Tao Yu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-26T17:01:10+00:00",
+      "link": "https://arxiv.org/pdf/2605.27284v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Fine-grained instruction alignment for steerable vision-language-action policies in robot tasks",
+      "llm_evidence_cn": "细粒度指令对齐实现可引导的视觉-语言-动作策略用于机器人任务",
+      "llm_evidence": "细粒度指令对齐实现可引导的视觉-语言-动作策略用于机器人任务",
+      "canonical_evidence": "细粒度指令对齐实现可引导的视觉-语言-动作策略用于机器人任务",
+      "llm_tldr_en": "FineVLA constructs a large-scale fine-grained instruction-action dataset and framework to align robot action policies with detailed human instructions, improving steerability and task execution.",
+      "llm_tldr_cn": "针对现有机器人数据集只提供粗粒度目标语言而缺乏动作执行细节（如主动手臂、接近方向、接触区域）的问题，本文推出FineVLA框架，从10个开源数据集统一构建了包含425万轨迹的细粒度指令-动作数据集，并设计了对齐训练方法，使视觉-语言-动作策略能够遵循精细的指令进行可控操作。实验表明该方法显著提升了机器人在多种任务中的指令跟随能力和鲁棒性，为可引导的机器人学习提供了数据与算法基础。",
+      "llm_tldr": "针对现有机器人数据集只提供粗粒度目标语言而缺乏动作执行细节（如主动手臂、接近方向、接触区域）的问题，本文推出FineVLA框架，从10个开源数据集统一构建了包含425万轨迹的细粒度指令-动作数据集，并设计了对齐训练方法，使视觉-语言-动作策略能够遵循精细的指令进行可控操作。实验表明该方法显著提升了机器人在多种任务中的指令跟随能力和鲁棒性，为可引导的机器人学习提供了数据与算法基础。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2605.24709v1",
+      "source": "arxiv",
+      "title": "Streaming Reinforcement Learning under Partial Observability with Real-Time Recurrent Learning",
+      "abstract": "Streaming reinforcement learning has emerged as an online learning paradigm that conforms to the restrictions of natural learning agents that process data incrementally, i.e. with a batch size of 1 and no replay buffer. While streaming RL has recently been shown to scale with deep function approximation with full observability, partially observable settings have remained out of reach. Truncated backpropagation through time collapses to a one-step gradient horizon under the streaming setting, and exact real-time recurrent learning is prohibitively expensive. We close this gap using recurrent trace units, a diagonal recurrent architecture that enables exact RTRL with linear time and memory complexity in the parameter count, and show that they integrate cleanly into existing streaming algorithms across both discrete and continuous control. On a MemoryChain diagnostic with chain lengths from 2 to 128, our method sustains performance where streaming TBPTT(1) baselines using feedforward, GRU, and RTU networks collapse. On five POPGym tasks and on partially observable MuJoCo continuous control, the streaming approach is competitive with batched PPO on POPGym and recovers a substantial fraction of batched performance on masked MuJoCo, despite using no replay buffer or batched updates.",
+      "authors": [
+        "Noah Farr",
+        "Aryaman Reddi",
+        "Carlo D'Eramo",
+        "Jan Peters"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-23T19:25:30+00:00",
+      "link": "https://arxiv.org/pdf/2605.24709v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "streaming RL with real-time recurrent learning under partial observability",
+      "llm_evidence_cn": "基于实时递归学习的部分可观测流式强化学习",
+      "llm_evidence": "基于实时递归学习的部分可观测流式强化学习",
+      "canonical_evidence": "基于实时递归学习的部分可观测流式强化学习",
+      "llm_tldr_en": "Enables streaming RL under partial observability using recurrent trace units, a diagonal recurrent architecture that allows exact real-time recurrent learning with linear complexity, closing the gap for online, partially observable settings.",
+      "llm_tldr_cn": "针对流式强化学习在部分可观测环境中因截断BPTT退化为一步梯度而无法学习长程依赖的问题，提出循环追踪单元(RTUs)，一种对角递归架构，能以线性时间和记忆复杂度实现精确的实时递归学习(RTRL)。该架构克服了流式设置下梯度视野受限的瓶颈，使深度流式RL能够处理部分可观测任务。实验在标准POMDP基准上验证了RTU-RL的有效性，为自然学习代理的在线学习开辟了道路，并可能应用于人形机器人等需处理部分可观测性的实际控制问题。",
+      "llm_tldr": "针对流式强化学习在部分可观测环境中因截断BPTT退化为一步梯度而无法学习长程依赖的问题，提出循环追踪单元(RTUs)，一种对角递归架构，能以线性时间和记忆复杂度实现精确的实时递归学习(RTRL)。该架构克服了流式设置下梯度视野受限的瓶颈，使深度流式RL能够处理部分可观测任务。实验在标准POMDP基准上验证了RTU-RL的有效性，为自然学习代理的在线学习开辟了道路，并可能应用于人形机器人等需处理部分可观测性的实际控制问题。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.27095v1",
+      "source": "arxiv",
+      "title": "Adversarial Dual On-Policy Distillation from Expressive Flow-based Teacher",
+      "abstract": "Learning from demonstrations in embodied control is often cast as behavioral cloning, and recent diffusion or flow-matching policies improve this paradigm by modeling multi-modal expert actions. Yet these methods remain offline supervised learners: the policy is trained only on expert states and receives no corrective signal on the states it actually visits. On-policy distillation (OPD) offers a natural remedy, but standard OPD assumes a strong fixed teacher, which is unavailable in demonstration-only control. We propose \\textbf{FA-OPD}, an \\emph{adversarial dual on-policy distillation} method in which a Flow Matching (FM) teacher is learned from demonstrations and co-trained with a lightweight MLP student. The teacher provides two complementary signals on student rollouts. The reward channel learns an expert-likeness objective over state-action pairs and drives online exploration through long-horizon policy optimization. The action channel supplies dense local targets at student-visited states, stabilizing exploitation. FA-OPD couples them so that reward distillation enables generalization beyond point-wise demonstrations, while action distillation keeps exploration anchored near expert-like behavior. Across six robot navigation, manipulation, and locomotion benchmarks, FA-OPD beats strong baselines and shows much stronger robustness under noisy or limited demonstrations.",
+      "authors": [
+        "Zhenglin Wan",
+        "Jingxuan Wu",
+        "Xingrui Yu",
+        "Chubin Zhang",
+        "Mingcong Lei",
+        "Bo An",
+        "Ivor W. Tsang",
+        "Yang You"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-26T14:38:03+00:00",
+      "link": "https://arxiv.org/pdf/2605.27095v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "On-policy distillation from flow-based teacher for embodied control from demonstrations",
+      "llm_evidence_cn": "基于流式教师的在线策略蒸馏用于从演示中学习具身控制",
+      "llm_evidence": "基于流式教师的在线策略蒸馏用于从演示中学习具身控制",
+      "canonical_evidence": "基于流式教师的在线策略蒸馏用于从演示中学习具身控制",
+      "llm_tldr_en": "FA-OPD learns a Flow Matching teacher from demonstrations and co-trains it with a student policy using adversarial on-policy distillation, providing corrective signals for improved robustness in embodied control.",
+      "llm_tldr_cn": "针对演示驱动具身控制中离线行为克隆缺乏在线校正的问题，本文提出FA-OPD对抗性双重在线策略蒸馏方法，从演示中学习流匹配教师模型，并与轻量学生策略协同训练，教师提供两种互补信号进行对抗蒸馏，使学生在自身访问的状态上获得校正反馈。实验在仿真机器人控制任务上证明了该方法优于纯离线方法，为机器人技能学习提供了更鲁棒的范式。",
+      "llm_tldr": "针对演示驱动具身控制中离线行为克隆缺乏在线校正的问题，本文提出FA-OPD对抗性双重在线策略蒸馏方法，从演示中学习流匹配教师模型，并与轻量学生策略协同训练，教师提供两种互补信号进行对抗蒸馏，使学生在自身访问的状态上获得校正反馈。实验在仿真机器人控制任务上证明了该方法优于纯离线方法，为机器人技能学习提供了更鲁棒的范式。",
+      "llm_tags": [
+        "query:rl-humanoid:composite"
+      ],
+      "matched_query_tag": "query:rl-humanoid:composite",
+      "matched_query_text": "Papers central to 查找强化学习及人行机器人运动控制相关论文, especially work that connects or combines: Find papers on reinforcement learning; Research on humanoid robots; Motion control for robots; Deep reinforcement learning methods; Humanoid locomotion and balance; Find papers on reinforcement learning for humanoid robot motion control; Literature review on deep reinforcement learning in robotics; Research on bipedal locomotion control using learning methods.",
+      "matched_requirement_id": "req-composite-rl-humanoid",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.24992v1",
+      "source": "arxiv",
+      "title": "Scaling up Energy-Aware Multi-Agent Reinforcement Learning for Mission-Oriented Drone Networks with Individual Reward",
+      "abstract": "Multi-agent reinforcement learning (MARL) has shown wide applicability in collaborative systems such as autonomous driving and smart cities for its ability of learning through interaction. With the recent development of drone networks, researchers have also applied MARL to address the trajectory planning problems. However, the dynamic environment and the limited battery capacity are still challenging for using MARL to achieve efficient collaborative task execution. In this paper, we propose an energy-aware MARL model as an attempt to tackle these challenges, leveraging Deep Q-Networks (DQN) with \\emph{individual reward functions} driven by the task execution progress and the remaining battery of drones. We conduct a set of simulation studies for the proposed mode and compare it with the shared reward MARL~\\cite{Li2022MARL} to explore the impact of credit assignment in MARL. The results indicate that our proposed model can achieve at least 80\\% success rate regardless of the task locations and lengths. Similar to the shared reward mode, the individual reward mode can achieve a better success rate when the task density is high, and it can hit nearly a 100\\% success rate when task density gets close to 40\\%. The true advantage of our proposed model with individual reward is revealed when scaling up the environment. The comparison to the shared reward MARL shows that the our proposed model is more robust towards the change of the environment size and agent numbers. It can achieve higher success rate with fewer steps due to the clarity of the goal which improves energy efficiency even better.",
+      "authors": [
+        "Changling Li",
+        "Ying Li"
+      ],
+      "primary_category": "cs.NI",
+      "categories": [
+        "cs.NI",
+        "cs.AI",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-05-24T10:41:33+00:00",
+      "link": "https://arxiv.org/pdf/2605.24992v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "energy-aware multi-agent RL for drone trajectory planning, using DQN with individual rewards",
+      "llm_evidence_cn": "面向无人机网络的能量感知多智能体强化学习，使用DQN和个体奖励",
+      "llm_evidence": "面向无人机网络的能量感知多智能体强化学习，使用DQN和个体奖励",
+      "canonical_evidence": "面向无人机网络的能量感知多智能体强化学习，使用DQN和个体奖励",
+      "llm_tldr_en": "Proposes an energy-aware MARL model for drone networks, using DQN with individual reward functions based on task progress and battery, to achieve efficient collaborative trajectory planning.",
+      "llm_tldr_cn": "针对无人机网络中动态环境和有限电池的挑战，提出基于DQN的能量感知多智能体强化学习模型，通过任务进度和电池电量的个体奖励函数实现高效协同轨迹规划。",
+      "llm_tldr": "针对无人机网络中动态环境和有限电池的挑战，提出基于DQN的能量感知多智能体强化学习模型，通过任务进度和电池电量的个体奖励函数实现高效协同轨迹规划。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.27834v1",
+      "source": "arxiv",
+      "title": "Reward Transfer from Inverse Reinforcement Learning: A Coupled Minimax Approach",
+      "abstract": "We study the transfer of rewards learned using inverse reinforcement learning from expert demonstrations in one environment to reinforcement learning in a new, different environment. This arises naturally when demonstrations are collected in a controlled environment. We formulate the problem as a joint system of Bellman equations across the source and target environments and develop minimax estimators for the target soft-$q$-function. Whereas a sequential solution approach first estimates the source reward and then plugs it into the target control problem, a coupled approach solves the source and target system of equations jointly. We show that, in contrast to the sequential approach, the coupled approach removes the first-order influence of source Bellman residual error. We characterize the local behavior of each approach, develop finite-sample soft-$q$-function error bounds, and prove regret guarantees for the resulting soft-control policy. An empirical investigation using a sepsis simulator validates the theoretical comparison.",
+      "authors": [
+        "Guang-Yuan Hao",
+        "Lars van der Laan",
+        "Aurélien Bibaut",
+        "Nathan Kallus"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-05-27T01:46:20+00:00",
+      "link": "https://arxiv.org/pdf/2605.27834v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Coupled minimax estimation for transferring learned rewards across environments",
+      "llm_evidence_cn": "耦合极小极大估计用于跨环境迁移学习的奖励",
+      "llm_evidence": "耦合极小极大估计用于跨环境迁移学习的奖励",
+      "canonical_evidence": "耦合极小极大估计用于跨环境迁移学习的奖励",
+      "llm_tldr_en": "The paper proposes a coupled minimax approach for reward transfer in inverse RL that jointly solves source and target Bellman equations, reducing first-order error propagation compared to sequential methods, with potential application to sim-to-real transfer in robotics.",
+      "llm_tldr_cn": "本文提出耦合极小极大方法解决逆强化学习中奖励跨环境迁移问题，通过联合建立源和目标环境的贝尔曼方程并同时求解，消除顺序方法中的一阶误差传递，为机器人仿真到真实迁移中的奖励学习提供更准确的方法。",
+      "llm_tldr": "本文提出耦合极小极大方法解决逆强化学习中奖励跨环境迁移问题，通过联合建立源和目标环境的贝尔曼方程并同时求解，消除顺序方法中的一阶误差传递，为机器人仿真到真实迁移中的奖励学习提供更准确的方法。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.28276v1",
+      "source": "arxiv",
+      "title": "Commit to the Bit: Reactive Reinforcement Learning Done Right",
+      "abstract": "Reinforcement learning algorithms are commonly analyzed (and designed) under the Markov assumption. This is unrealistic, as most environments encountered in practice are either partially observable, or require function approximation that restricts the agent to access non-Markovian state features. We consider the problem of learning an optimal reactive policy in a finite environment with deterministic observations (or equivalently, hard state aggregation). We introduce a new algorithm, Committed Q-learning, and prove almost-sure convergence to the optimal reactive policy under an intuitive assumption we call rewire-robustness. This assumption is strictly weaker than the $q_\\star$-realizability condition used in prior work. Our algorithm is a variant of classical Q-learning in which the behavior policy commits to a single action upon entering a feature, and only resamples actions when the observed feature changes. A crucial part of our analysis is the introduction of quasi-Markov environments.",
+      "authors": [
+        "Onno Eberhard",
+        "Claire Vernade",
+        "Michael Muehlebach"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-27T10:20:40+00:00",
+      "link": "https://arxiv.org/pdf/2605.28276v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Proposes a new deep RL algorithm for learning optimal reactive policies under partial observability",
+      "llm_evidence_cn": "提出一种在部分可观测环境下学习最优反应策略的深度强化学习新算法",
+      "llm_evidence": "提出一种在部分可观测环境下学习最优反应策略的深度强化学习新算法",
+      "canonical_evidence": "提出一种在部分可观测环境下学习最优反应策略的深度强化学习新算法",
+      "llm_tldr_en": "Committed Q-learning is a reactive RL algorithm that converges to the optimal reactive policy under an assumption weaker than prior work. It addresses non-Markovian settings with deterministic observations, providing almost-sure convergence guarantees and practical performance improvements.",
+      "llm_tldr_cn": "针对现实环境中常见的部分可观测或状态聚合限制，该研究提出Committed Q-learning算法，在确定性观测的有穷环境中学习最优反应策略。算法建立在“重连鲁棒性”这一比以往q*-可实现性更弱的假设之上，并证明了强收敛性。在联合测试环境上的实验表明，该方法能可靠收敛且性能优于传统方法，为打破马尔可夫假设下的强化学习应用提供了理论和实践基础。",
+      "llm_tldr": "针对现实环境中常见的部分可观测或状态聚合限制，该研究提出Committed Q-learning算法，在确定性观测的有穷环境中学习最优反应策略。算法建立在“重连鲁棒性”这一比以往q*-可实现性更弱的假设之上，并证明了强收敛性。在联合测试环境上的实验表明，该方法能可靠收敛且性能优于传统方法，为打破马尔可夫假设下的强化学习应用提供了理论和实践基础。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.28634v1",
+      "source": "arxiv",
+      "title": "PrimitiveVLA: Learning Reusable Motion Primitives for Efficient and Generalizable Robotic Manipulation",
+      "abstract": "Vision-Language-Action (VLA) models offer a promising paradigm for generalist robotic policies, yet their adaptation is hindered by data inefficiency and poor generalization. We argue that these bottlenecks stem from the prevailing Direct Instruction-to-Control Mapping, which forces models to memorize monolithic trajectories rather than reusable motion patterns, i.e., primitives. We propose PrimitiveVLA, a framework that shifts this paradigm toward a Primitive-Centric Disassemble & Assemble paradigm. Supported by a shared Multimodal Canonical Representation (MCR), PrimitiveVLA unifies two phases: (1) Fine-tuning-phase Disassembly, which uses an automated pipeline to disassemble demonstrations into reusable primitives; and (2) Inference-phase Assembly, which employs a VLM-based planner and an LLM-generated switch module for robust closed-loop execution. By disassembling tasks into reusable primitives, PrimitiveVLA enables VLA models to learn invariant motion patterns instead of task-specific trajectories. Extensive experiments show that our framework improves data efficiency and achieves superior zero-shot generalization across unseen and long-horizon tasks.",
+      "authors": [
+        "Yutai Li",
+        "Shaohui Peng",
+        "Jiaming Guo",
+        "Di Huang",
+        "Zihao Zhang",
+        "Yuxuan Guo",
+        "Yunkai Gao",
+        "Siming Lan",
+        "Ling Li",
+        "Xing Hu",
+        "Yunji Chen"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-27T15:41:18+00:00",
+      "link": "https://arxiv.org/pdf/2605.28634v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "learning reusable motion primitives for robotic manipulation with VLA models",
+      "llm_evidence_cn": "使用VLA模型学习可重用运动基元用于机器人操作",
+      "llm_evidence": "使用VLA模型学习可重用运动基元用于机器人操作",
+      "canonical_evidence": "使用VLA模型学习可重用运动基元用于机器人操作",
+      "llm_tldr_en": "Proposes PrimitiveVLA, a primitive-centric framework that disassembles demonstrations into reusable motion primitives to improve efficiency and generalization in robotic manipulation.",
+      "llm_tldr_cn": "针对VLA模型在机器人操作中数据效率低和泛化差的问题，提出PrimitiveVLA框架，将演示拆解为可重用运动基元，通过基元中心范式提升学习效率和泛化能力。",
+      "llm_tldr": "针对VLA模型在机器人操作中数据效率低和泛化差的问题，提出PrimitiveVLA框架，将演示拆解为可重用运动基元，通过基元中心范式提升学习效率和泛化能力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.29564v1",
+      "source": "arxiv",
+      "title": "VE2VF: Vision-Enabled to Vision-Free Distillation via Real-world Reinforcement Learning for Robust Contact-Rich Manipulation",
+      "abstract": "When using reinforcement learning (RL) for contact-rich robotic manipulation, vision can provide task-relevant information that accelerates learning beyond what proprioception alone can achieve. However, vision-enabled policies tend to overfit to the visual conditions seen during training, limiting their robustness and transferability. We present a human-in-the-loop RL framework that employs teacher-student distillation to achieve robust performance across multiple task variants, trained entirely in the real world without requiring domain randomization or data augmentation. A vision-enabled teacher distills its knowledge into a vision-free student that relies solely on pose, twist, and wrench sensing, combining fast training with strong task generalization. On the real-world NIST assembly benchmark board, our approach achieves 95\\% overall success after approximately 50 minutes of training on 3 representative tasks, including robust generalization to 8 unseen task variants. Fine-tuning with distillation achieves full success on the most challenging task. We demonstrate that the resulting policies outperform baselines in both robustness and adaptability.",
+      "authors": [
+        "Victor Kowalski",
+        "Chengxi Li",
+        "Dongheui Lee"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-28T08:15:59+00:00",
+      "link": "https://arxiv.org/pdf/2605.29564v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Teacher-student RL framework distills vision-based to vision-free policies for robust real-world manipulation",
+      "llm_evidence_cn": "教师-学生强化学习框架将视觉策略蒸馏为无视觉策略，实现真实世界鲁棒操作",
+      "llm_evidence": "教师-学生强化学习框架将视觉策略蒸馏为无视觉策略，实现真实世界鲁棒操作",
+      "canonical_evidence": "教师-学生强化学习框架将视觉策略蒸馏为无视觉策略，实现真实世界鲁棒操作",
+      "llm_tldr_en": "VE2VF presents a human-in-the-loop RL method that distills a vision-enabled teacher into a vision-free student policy for contact-rich manipulation, achieving robust performance across multiple task variants trained entirely in the real world without domain randomization.",
+      "llm_tldr_cn": "VE2VF提出人在回路强化学习框架，利用教师-学生蒸馏，将依赖视觉的专家策略知识迁移到仅使用本体感受的无视觉学生策略，实现接触丰富操作任务的多变体鲁棒性，全部在真实世界训练，无需域随机化，验证了无视觉策略的泛化性和鲁棒性。",
+      "llm_tldr": "VE2VF提出人在回路强化学习框架，利用教师-学生蒸馏，将依赖视觉的专家策略知识迁移到仅使用本体感受的无视觉学生策略，实现接触丰富操作任务的多变体鲁棒性，全部在真实世界训练，无需域随机化，验证了无视觉策略的泛化性和鲁棒性。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.29766v1",
+      "source": "arxiv",
+      "title": "MARS Policy: Multimodality Only When It Matters",
+      "abstract": "Imitation learning has become a cornerstone for solving complex robotic manipulation tasks. In particular, multimodality, which enables robots to capture diverse yet valid behavioral patterns, has driven the rapid emergence of generative policies as a dominant paradigm in robot learning. However, achieving such multimodality typically relies on stochastic noise initialization and iterative denoising procedures, resulting in substantial training complexity and low inference efficiency. Meanwhile, not all phases of a robotic task inherently require behavioral diversity. Motivated by this insight, we propose the Modality-Adaptive Robot Sampling (MARS) policy, which adaptively invokes tailored stochasticity only when it is truly beneficial, while reverting to an efficient deterministic learning during single-modal phases. In other words, the proper amount of noise is injected only at the proper time. By selectively activating multimodal generation, MARS policy bridges the gap between the multimodal capability of generative policies and the superior training and inference efficiency of deterministic models. Empirical studies across 8 simulated and 4 real-world tasks demonstrate that MARS exhibits robust multimodal expressivity and high efficiency, with a 16.67% success rate improvement and an 83.20% inference latency reduction in real-world tests. Counterintuitively, MARS also outpaces deterministic policies in training efficiency on near-deterministic tasks by more effectively modeling nuanced action diversity.",
+      "authors": [
+        "Jindou Jia",
+        "Tuo An",
+        "Yuxuan Hu",
+        "Gen Li",
+        "Jingliang Li",
+        "Bohan Hou",
+        "Xiangyu Chen",
+        "Jiaqi Bai",
+        "Bofan Lyu",
+        "Jianfei Yang"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-28T11:12:30+00:00",
+      "link": "https://arxiv.org/pdf/2605.29766v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "adaptive multimodality for robotic manipulation policies to reduce complexity",
+      "llm_evidence_cn": "针对机器人操作策略的自适应多模态以减少复杂性",
+      "llm_evidence": "针对机器人操作策略的自适应多模态以减少复杂性",
+      "canonical_evidence": "针对机器人操作策略的自适应多模态以减少复杂性",
+      "llm_tldr_en": "Proposes MARS policy that adaptively invokes stochasticity only when beneficial, balancing efficiency and diversity in robotic manipulation imitation learning.",
+      "llm_tldr_cn": "观察到并非所有任务阶段都需要行为多样性，提出MARS策略，自适应地在有利时引入随机性，否则使用确定性模式，降低训练复杂度和推理延迟，同时保持多模态能力。",
+      "llm_tldr": "观察到并非所有任务阶段都需要行为多样性，提出MARS策略，自适应地在有利时引入随机性，否则使用确定性模式，降低训练复杂度和推理延迟，同时保持多模态能力。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.30226v1",
+      "source": "arxiv",
+      "title": "BORA: Bridging Offline Reinforcement Learning and Online Residual Adaptation for Real-World Dexterous VLA Models",
+      "abstract": "Vision-Language-Action (VLA) models have emerged as a promising paradigm for grounding visual-language understanding into real-world robotic manipulation. However, dexterous manipulation remains challenging for VLA policies due to high-dimensional hand control and compounding execution errors, which makes real-world RL post-training essential for bridging the gap between visually grounded action generation and physically reliable dexterous execution. However, high-dimensional dexterous exploration often triggers temporal inconsistency, sample inefficiency and hardware risks in the real world. To address these challenges, we propose BORA, an offline-to-online RL post-training framework designed for real-world dexterous VLA models. In the offline phase, BORA constructs a critic that takes both the VLM's cognition tokens and action chunks as inputs. This design enables action-conditioned value guidance, allowing the critic to evaluate dexterous hand motions beyond visual context alone. During the subsequent online phase, BORA freezes the VLA base and introduces a lightweight, Human-in-the-Loop (HiL) chunk-wise residual adaptation mechanism to mitigate real-world execution errors and further correct the offline-learned intents within the actual physical environment. By inheriting the offline critic and employing intervention-driven rewards, BORA effectively corrects execution discrepancies and adapts to real-world physical variances while preserving the pretrained policy as a stable prior. Extensive evaluations across five complex real-world dexterous tasks demonstrate that BORA significantly outperforms pure imitation learning and traditional decoupled RL baselines, achieving a 33% absolute increase in average success rate under standard settings and up to a 43% improvement in unseen object generalization.",
+      "authors": [
+        "Zhongxi Chen",
+        "Yifan Han",
+        "Yanming Shao",
+        "Huanming Liu",
+        "Congsheng Xu",
+        "Xiaoyu Chen",
+        "Yao Mu",
+        "Wenzhao Lian"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-05-28T16:57:47+00:00",
+      "link": "https://arxiv.org/pdf/2605.30226v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "offline-to-online RL framework for real-world dexterous manipulation",
+      "llm_evidence_cn": "用于真实世界灵巧操作的离线到在线RL框架",
+      "llm_evidence": "用于真实世界灵巧操作的离线到在线RL框架",
+      "canonical_evidence": "用于真实世界灵巧操作的离线到在线RL框架",
+      "llm_tldr_en": "Proposes BORA, an offline-to-online RL post-training framework that bridges the sim-to-real gap for vision-language-action models in dexterous manipulation tasks.",
+      "llm_tldr_cn": "为解决视觉语言动作模型在真实灵巧操作中的执行误差和安全风险，该文提出BORA框架，结合离线强化学习与在线残差适应，在真实世界任务中提升了策略的稳健性和样本效率。",
+      "llm_tldr": "为解决视觉语言动作模型在真实灵巧操作中的执行误差和安全风险，该文提出BORA框架，结合离线强化学习与在线残差适应，在真实世界任务中提升了策略的稳健性和样本效率。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
