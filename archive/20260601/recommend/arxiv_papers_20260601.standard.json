@@ -1,0 +1,443 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-06-01T22:09:02.576782+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 4,
+    "deep_cap": 6,
+    "deep_selected": 4,
+    "quick_candidates": 7,
+    "quick_skim_target": 11,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2605.30770v1",
+      "source": "arxiv",
+      "title": "SSR: Scaling Surefooted and Symmetric Humanoid Traversal to the Open World",
+      "abstract": "Extending humanoid traversal to the open world is key to practical deployment in human environments, but remains challenging. The robot must use vision to ensure safe and reliable foot placement on heterogeneous terrain under highly dynamic motion, while producing coordinated, natural whole-body behaviors. We propose SSR, an efficient end-to-end framework for egocentric vision-based humanoid traversal that jointly learns these capabilities. SSR introduces imagined foothold guidance, which learns to model forthcoming swing-foot contacts and evaluates their support to guide pre-touchdown swings toward stable regions, reducing edge slips. It further employs equivariant latent-space symmetry augmentation to efficiently induce bilateral coordination under high-dimensional visual observations, and uses terrain-specific multi-discriminator motion priors to encourage human-like behavior across scenes. Extensive experiments show that SSR achieves safe, stable, and high-quality locomotion on diverse real-world terrains, including stairs with varied structures and extreme challenges such as wide gaps and high platforms, while enabling reliable long-horizon traversal in open outdoor environments.",
+      "authors": [
+        "Ruiqi Yu",
+        "Yiwen Wang",
+        "Yuan Hao",
+        "Jun WU",
+        "Qiuguo Zhu"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-29T02:54:15+00:00",
+      "link": "https://arxiv.org/pdf/2605.30770v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "egocentric vision-based humanoid traversal that jointly learns imagined foothold guidance and bilateral coordination",
+      "llm_evidence_cn": "基于第一视角视觉的人形机器人遍历，联合学习想象落脚点引导和双侧协调",
+      "llm_evidence": "基于第一视角视觉的人形机器人遍历，联合学习想象落脚点引导和双侧协调",
+      "canonical_evidence": "基于第一视角视觉的人形机器人遍历，联合学习想象落脚点引导和双侧协调",
+      "llm_tldr_en": "To enable humanoid robots to traverse diverse open-world terrains, the paper proposes SSR, an end-to-end framework that jointly learns imagined foothold guidance for safe swing-foot contacts and equivariant latent-space symmetry augmentation for bilateral coordination, achieving more surefooted and natural whole-body behaviors.",
+      "llm_tldr_cn": "针对人形机器人在开放世界非结构化地形中行走的挑战，本文提出SSR框架，通过想象落脚点引导预测安全接触区域并利用潜在空间对称增强实现双侧协调运动，从第一视角视觉中端到端地学习这些能力。实验结果表明该方法显著提升了落脚的稳健性，并产生更自然的全身行为。这一工作为人形机器人在实际环境中的安全遍历提供了高效的学习方案。",
+      "llm_tldr": "针对人形机器人在开放世界非结构化地形中行走的挑战，本文提出SSR框架，通过想象落脚点引导预测安全接触区域并利用潜在空间对称增强实现双侧协调运动，从第一视角视觉中端到端地学习这些能力。实验结果表明该方法显著提升了落脚的稳健性，并产生更自然的全身行为。这一工作为人形机器人在实际环境中的安全遍历提供了高效的学习方案。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.31343v1",
+      "source": "arxiv",
+      "title": "Learning Terrain-Aware Whole-Body Control for Perceptive Legged Loco-Manipulation",
+      "abstract": "Legged manipulators integrate exceptional terrain adaptability along with mobile manipulation capabilities, which make them highly promising for deployment in human-centric environments. By coordinating the control of both legs and arms, a whole-body controller can significantly expand the operational workspace of legged manipulators. However, many existing whole-body controllers primarily depend on proprioception and do not incorporate the critical exteroception required for effective terrain topology perception. This limitation can hinder their ability to adapt to varying environmental conditions and navigate complex terrains effectively. In this paper, we introduce TA-WBC, a terrain-aware whole-body control framework for legged manipulators, which features a novel RL-based unified policy tailored to whole-body loco-manipulation tasks in various terrains. Specifically, we employ a hybrid exteroception encoder to extract terrain features, providing an essential basis for the robot to proactively adapt posture and footholds. Furthermore, to facilitate stable cross-terrain loco-manipulation, we propose a novel end-effector sampling method based on the foot contact plane, decoupling manipulation target from base fluctuations. Moreover, a dual-policy distillation module is introduced to integrate expansive whole-body motion with terrain adaptability without catastrophic forgetting. The simulation and real-world experiments validate the robustness of our proposed controller, which leads to a larger reachable space, less tracking error, and reduced unexpected stumbles. This unified policy highlights the promising capabilities of legged manipulators in performing loco-manipulation tasks across complex terrains.",
+      "authors": [
+        "Sikai Guo",
+        "Yudong Zhong",
+        "Guoyang Zhao",
+        "Botao Dang",
+        "Zhihai Bi",
+        "Jun Ma"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-29T14:22:10+00:00",
+      "link": "https://arxiv.org/pdf/2605.31343v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "terrain-aware whole-body control for legged robots, crucial for humanoid locomotion and balance",
+      "llm_evidence_cn": "感知地形的腿足机器人全身控制，对人形运动与平衡至关重要",
+      "llm_evidence": "感知地形的腿足机器人全身控制，对人形运动与平衡至关重要",
+      "canonical_evidence": "感知地形的腿足机器人全身控制，对人形运动与平衡至关重要",
+      "llm_tldr_en": "Introduces TA-WBC, a whole-body controller integrating exteroception for terrain adaptation; directly applicable to humanoid robots for stable locomotion and manipulation.",
+      "llm_tldr_cn": "针对现有全身控制器缺乏外部感知的问题，本文提出TA-WBC框架，融合视觉地形感知实现腿足机器人的全身协调控制。该方法在腿足运动-操作任务中验证了地形适应能力，对人形机器人在复杂环境的行走与平衡具有直接借鉴意义。",
+      "llm_tldr": "针对现有全身控制器缺乏外部感知的问题，本文提出TA-WBC框架，融合视觉地形感知实现腿足机器人的全身协调控制。该方法在腿足运动-操作任务中验证了地形适应能力，对人形机器人在复杂环境的行走与平衡具有直接借鉴意义。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Humanoid locomotion and balance",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.28231v1",
+      "source": "arxiv",
+      "title": "ProgVLA: Progress-Aware Robot Manipulation Skill Learning",
+      "abstract": "We present ProgVLA, a compact vision-language-action (VLA) model designed for reliable robot manipulation under tight compute and memory budgets. The model specifically focuses on efficiently processing long multi-modal sequences by maintaining an explicit representation of task progress over extended horizons. To this end, ProgVLA integrates two key components. First, a multi-modal encoder with a two-stage Perceiver resampling scheme compresses variable-length visual, language, and proprioceptive streams into a fixed set of control-ready context tokens, substantially reducing sequence length while preserving cross-modal grounding. Second, an auxiliary set of progress heads is trained with offline reinforcement learning (RL) objectives to jointly learn critics over normalized remaining-horizon targets. This provides the policy with an internal estimate of task progress and enables advantage- and success-weighted flow-matching imitation learning. On two well-established multi-task robot manipulation benchmarks, a 0.1B-parameter ProgVLA model reaches success rates that are competitive with, and on long-horizon and harder task tiers exceed, substantially larger pretrained baselines. Ablations indicate that the learned context resampler and task-adaptive visual fine-tuning are the largest single contributors, while progress-aware training provides a consistent additional gain that is concentrated on long-horizon and multi-object tasks. We further validate the approach in real-world toy-kitchen environments.",
+      "authors": [
+        "Seungsu Kim",
+        "Jinyoung Choi",
+        "Seungmin Baek",
+        "Jean-Michel Renders"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-05-27T09:44:46+00:00",
+      "link": "https://arxiv.org/pdf/2605.28231v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Robot manipulation skill learning with progress-aware VLA and offline RL",
+      "llm_evidence_cn": "具有进度感知的VLA模型和离线强化学习用于机器人操作技能学习",
+      "llm_evidence": "具有进度感知的VLA模型和离线强化学习用于机器人操作技能学习",
+      "canonical_evidence": "具有进度感知的VLA模型和离线强化学习用于机器人操作技能学习",
+      "llm_tldr_en": "ProgVLA is a compact VLA model for robot manipulation that uses two-stage Perceiver resampling to compress multimodal sequences and trains progress heads with offline RL to maintain task progress, achieving reliable long-horizon skill learning under compute budgets.",
+      "llm_tldr_cn": "针对资源受限下机器人长期操作任务，本文提出ProgVLA，通过两阶段Perceiver重采样将视觉、语言和本体感觉流压缩为固定控制令牌，并利用离线强化学习训练进度头以显式跟踪任务进度。该方法在有限计算预算下实现了可靠的长程操作技能学习，为部署高效机器人操控系统提供了实用方案。",
+      "llm_tldr": "针对资源受限下机器人长期操作任务，本文提出ProgVLA，通过两阶段Perceiver重采样将视觉、语言和本体感觉流压缩为固定控制令牌，并利用离线强化学习训练进度头以显式跟踪任务进度。该方法在有限计算预算下实现了可靠的长程操作技能学习，为部署高效机器人操控系统提供了实用方案。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2605.31481v1",
+      "source": "arxiv",
+      "title": "Batched Differentiable Rigid Body Dynamics in PyTorch for GPU-Accelerated Robot Learning",
+      "abstract": "As robot control shifts toward large-scale reinforcement learning with in-loop dynamics computation, the community's reliance on CPU-bound libraries such as Pinocchio creates a throughput bottleneck in GPU-based training pipelines. We present BARD (Batched Articulated Rigid-body Dynamics), a self-contained PyTorch implementation of Featherstone's rigid-body dynamics algorithms, optimized for batched GPU evaluation and automatic differentiation. Three design choices make this efficient: a tiered lazy-evaluation cache that avoids redundant tree traversals, matmul-free joint transforms via pre-computed Rodrigues constants, and level-parallel propagation that reduces sequential operations to tree-depth batched steps. On five robot models (7-23 DOFs), BARD matches Pinocchio numerically while reaching up to 64x higher throughput for Forward Kinematics and 63x for Jacobians at batch size 4096 on an NVIDIA H200. We validate differentiability through gradient-based system identification on a 7-DOF manipulator, recovering link masses to 1.24% mean error under 5% torque noise, and integrate BARD into an Isaac Lab AMP training pipeline for an 11-DOF spined quadruped with 4096 parallel environments, where it is 8.5x faster than Pinocchio and 2.0x faster than ADAM for in-loop dynamics. BARD is open-sourced at: https://github.com/YueWang996/bard-pytorch-dynamics.",
+      "authors": [
+        "Yue Wang",
+        "Yanran Xu",
+        "Wenbo Wu",
+        "Chuanhang Qiu",
+        "Zhaoxing Li"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-29T16:07:28+00:00",
+      "link": "https://arxiv.org/pdf/2605.31481v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "GPU-accelerated differentiable rigid body dynamics for robot reinforcement learning",
+      "llm_evidence_cn": "面向机器人强化学习的GPU加速可微分刚体动力学",
+      "llm_evidence": "面向机器人强化学习的GPU加速可微分刚体动力学",
+      "canonical_evidence": "面向机器人强化学习的GPU加速可微分刚体动力学",
+      "llm_tldr_en": "BARD is a PyTorch implementation of Featherstone dynamics, batched for GPU, removing CPU bottlenecks in RL training pipelines.",
+      "llm_tldr_cn": "针对机器人强化学习中CPU限制导致的训练瓶颈，本文提出了BARD，一个基于PyTorch的批量刚体动力学库，利用分级惰性缓存、无矩阵乘关节变换和层级并行加速GPU上的可微动力学计算。在多种机器人模型上实现了显著的训练加速，为大规模强化学习提供了高效的动力学引擎。BARD有望成为未来机器人学习算法中标准的高效动力学后端。",
+      "llm_tldr": "针对机器人强化学习中CPU限制导致的训练瓶颈，本文提出了BARD，一个基于PyTorch的批量刚体动力学库，利用分级惰性缓存、无矩阵乘关节变换和层级并行加速GPU上的可微动力学计算。在多种机器人模型上实现了显著的训练加速，为大规模强化学习提供了高效的动力学引擎。BARD有望成为未来机器人学习算法中标准的高效动力学后端。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2605.27095v1",
+      "source": "arxiv",
+      "title": "Adversarial Dual On-Policy Distillation from Expressive Flow-based Teacher",
+      "abstract": "Learning from demonstrations in embodied control is often cast as behavioral cloning, and recent diffusion or flow-matching policies improve this paradigm by modeling multi-modal expert actions. Yet these methods remain offline supervised learners: the policy is trained only on expert states and receives no corrective signal on the states it actually visits. On-policy distillation (OPD) offers a natural remedy, but standard OPD assumes a strong fixed teacher, which is unavailable in demonstration-only control. We propose \\textbf{FA-OPD}, an \\emph{adversarial dual on-policy distillation} method in which a Flow Matching (FM) teacher is learned from demonstrations and co-trained with a lightweight MLP student. The teacher provides two complementary signals on student rollouts. The reward channel learns an expert-likeness objective over state-action pairs and drives online exploration through long-horizon policy optimization. The action channel supplies dense local targets at student-visited states, stabilizing exploitation. FA-OPD couples them so that reward distillation enables generalization beyond point-wise demonstrations, while action distillation keeps exploration anchored near expert-like behavior. Across six robot navigation, manipulation, and locomotion benchmarks, FA-OPD beats strong baselines and shows much stronger robustness under noisy or limited demonstrations.",
+      "authors": [
+        "Zhenglin Wan",
+        "Jingxuan Wu",
+        "Xingrui Yu",
+        "Chubin Zhang",
+        "Mingcong Lei",
+        "Bo An",
+        "Ivor W. Tsang",
+        "Yang You"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-26T14:38:03+00:00",
+      "link": "https://arxiv.org/pdf/2605.27095v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "On-policy distillation for embodied control from demonstrations",
+      "llm_evidence_cn": "从演示中在线蒸馏策略用于具身控制",
+      "llm_evidence": "从演示中在线蒸馏策略用于具身控制",
+      "canonical_evidence": "从演示中在线蒸馏策略用于具身控制",
+      "llm_tldr_en": "FA-OPD is an adversarial dual on-policy distillation method where a flow matching teacher learned from demonstrations co-trains a lightweight student, providing corrective signals for improved embodied control policy learning.",
+      "llm_tldr_cn": "针对离线模仿学习缺乏在线纠正的问题，本文提出FA-OPD，利用流匹配从演示中学习一个表达性教师模型，并与轻量MLP学生进行对抗式在线策略蒸馏。教师提供梯度信号和对抗信号，帮助学生策略在访问的状态上获得纠正，从而在具身控制任务上超越纯离线方法，为高效利用演示数据学习控制策略提供了新范式。",
+      "llm_tldr": "针对离线模仿学习缺乏在线纠正的问题，本文提出FA-OPD，利用流匹配从演示中学习一个表达性教师模型，并与轻量MLP学生进行对抗式在线策略蒸馏。教师提供梯度信号和对抗信号，帮助学生策略在访问的状态上获得纠正，从而在具身控制任务上超越纯离线方法，为高效利用演示数据学习控制策略提供了新范式。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.30957v1",
+      "source": "arxiv",
+      "title": "RDGen: Demonstration Generation for High-Quality Robot Learning via Reinforcement Learning",
+      "abstract": "Vision-Language-Action (VLA) models have emerged as a promising paradigm for general-purpose robot control. However, their performance remains fundamentally constrained by the availability of high-quality robot trajectory data. In current robot learning practice, such data are primarily collected through human teleoperation, which is labor-intensive, costly, and difficult to scale. In this paper, we propose RDGen, a sim-to-real reinforcement learning framework for generating high-quality robot demonstrations. Rather than employing reinforcement learning solely as the final control policy, RDGen leverages trained RL policies as a structured trajectory generator. The system consists of a VLM-based task parser that identifies task-relevant objects, a Grounding DINO-based object localizer, and an RL policy transferred from simulation to the real robot. Successful rollouts are then harvested as clean, high-quality demonstrations for downstream VLA training, while the simulation stage further provides a scalable source of additional trajectories at little marginal cost. Experiments on a pick-and-place task demonstrate that the transferred RL policy achieves a high task success rate. Compared with human teleoperation, RDGen produces significantly smoother trajectories and yields superior downstream VLA performance. These results indicate that RL-generated demonstrations can serve as more reliable and consistent supervisory signals for robot policy learning.",
+      "authors": [
+        "Zijian Zhu",
+        "Menglin Zou",
+        "Zhuang Li",
+        "Yaojie Tu",
+        "Xinhai Sun"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-29T07:53:19+00:00",
+      "link": "https://arxiv.org/pdf/2605.30957v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RL-based demonstration generation for robots",
+      "llm_evidence_cn": "基于强化学习的机器人演示生成",
+      "llm_evidence": "基于强化学习的机器人演示生成",
+      "canonical_evidence": "基于强化学习的机器人演示生成",
+      "llm_tldr_en": "Proposes RDGen, a sim-to-real RL framework that generates high-quality robot demonstrations to improve vision-language-action model training, reducing reliance on human teleoperation.",
+      "llm_tldr_cn": "针对机器人学习中高质量轨迹数据依赖昂贵遥操作、难以扩展的问题，本文提出RDGen框架，利用仿真到真实强化学习策略作为结构化轨迹生成器。该框架结合VLM任务解析器，在仿真中产生多样鲁棒的演示数据，提升了视觉-语言-动作模型的性能，为机器人数据获取提供了可扩展的替代方案。",
+      "llm_tldr": "针对机器人学习中高质量轨迹数据依赖昂贵遥操作、难以扩展的问题，本文提出RDGen框架，利用仿真到真实强化学习策略作为结构化轨迹生成器。该框架结合VLM任务解析器，在仿真中产生多样鲁棒的演示数据，提升了视觉-语言-动作模型的性能，为机器人数据获取提供了可扩展的替代方案。",
+      "llm_tags": [
+        "query:rl-humanoid:composite"
+      ],
+      "matched_query_tag": "query:rl-humanoid:composite",
+      "matched_query_text": "Papers central to 查找强化学习及人行机器人运动控制相关论文, especially work that connects or combines: Find papers on reinforcement learning; Research on humanoid robots; Motion control for robots; Deep reinforcement learning methods; Humanoid locomotion and balance; Find papers on reinforcement learning for humanoid robot motion control; Literature review on deep reinforcement learning in robotics; Research on bipedal locomotion control using learning methods.",
+      "matched_requirement_id": "req-composite-rl-humanoid",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.30503v1",
+      "source": "arxiv",
+      "title": "Physics-informed Goal-Conditioned Reinforcement Learning under Hybrid Contact Dynamics",
+      "abstract": "Learning to reach arbitrary goals from sparse feedback requires agents to infer a rich notion of reachability across state--goal pairs. Goal-conditioned reinforcement learning (GCRL) tackles this challenge by learning policies that generalize across goals, but this generalization becomes increasingly difficult as the underlying dynamics become high-dimensional, hybrid, or contact-dependent. To address this issue, physics-informed GCRL (Pi-GCRL) introduces optimal-control-inspired inductive biases into goal-conditioned value learning. While Pi-GCRL methods have proven effective in navigation and object-free goal-reaching domains, their reliability in contact-rich tasks remains unclear, where contact interactions induce hybrid dynamics, mode-dependent controllability, and nonsmooth value landscapes. In this work, we show that these structural properties can cause existing Pi-GCRL methods to degrade when applied naively to contact-rich manipulation. Motivated by this analysis, we introduce contact-aware and hierarchical formulations that apply physics-informed inductive biases selectively across the manipulation problem. Our results provide a principled step toward extending Pi-GCRL to contact-rich manipulation.",
+      "authors": [
+        "Vittorio Giammarino",
+        "Anastasios Manganaris",
+        "Ahmed H. Qureshi"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "eess.SY",
+        "stat.ML"
+      ],
+      "published": "2026-05-28T19:36:46+00:00",
+      "link": "https://arxiv.org/pdf/2605.30503v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "goal-conditioned RL with physics-informed biases for contact-rich tasks, key for humanoid locomotion",
+      "llm_evidence_cn": "面向接触丰富任务的物理信息条件目标强化学习，是人形运动的关键技术",
+      "llm_evidence": "面向接触丰富任务的物理信息条件目标强化学习，是人形运动的关键技术",
+      "canonical_evidence": "面向接触丰富任务的物理信息条件目标强化学习，是人形运动的关键技术",
+      "llm_tldr_en": "Addresses goal-conditioned RL under hybrid contact dynamics by introducing optimal-control-inspired inductive biases, potentially beneficial for humanoid locomotion control.",
+      "llm_tldr_cn": "该论文针对稀疏反馈下目标导向任务中由于高维、混合和接触依赖动力学导致的泛化困难，提出物理信息条件目标强化学习（Pi-GCRL），通过引入最优控制启发的归纳偏置提升值学习。方法可广泛应用于接触丰富任务，对人形机器人的行走和操作控制具有潜在价值。",
+      "llm_tldr": "该论文针对稀疏反馈下目标导向任务中由于高维、混合和接触依赖动力学导致的泛化困难，提出物理信息条件目标强化学习（Pi-GCRL），通过引入最优控制启发的归纳偏置提升值学习。方法可广泛应用于接触丰富任务，对人形机器人的行走和操作控制具有潜在价值。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Find papers on reinforcement learning for humanoid robot motion control",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.31110v1",
+      "source": "arxiv",
+      "title": "Building Generalization Into Behavior Generation Via Adaptive Compositions of Regularities",
+      "abstract": "Generalization in robotics requires prior knowledge about how the world is structured, yet this structure changes from one situation to the next. This paper investigates the proposition that generalization arises from adaptively composing regularities -- predictable relationships within the robot-environment system -- into situation-appropriate structures for behavior generation. We examine this proposition by analyzing the mechanism in AICON (Active InterCONnect), a framework representing regularities as interacting processes in a differentiable network, where sensory feedback realizes composition and gradient descent generates behavior. To isolate adaptive composition as the key mechanism, we study a simple simulated problem in which all relevant regularities can be identified. We expose the resulting model to a wide range of novel conditions not considered during design, and we find that it generates context-appropriate behavior in all but one case, where encoded regularities are provably insufficient. Ablations reveal that the network automatically modulates which regularities influence behavior based on their informativeness. These results suggest that adaptive composition of regularities constitutes a powerful inductive bias for building generalization into behavior generation.",
+      "authors": [
+        "Aravind Battaje",
+        "Malte Bernhard",
+        "Vito Mengers",
+        "Oliver Brock"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-05-29T10:21:35+00:00",
+      "link": "https://arxiv.org/pdf/2605.31110v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Robot behavior generation via adaptive composition of regularities",
+      "llm_evidence_cn": "通过规律的自适应组合生成机器人行为",
+      "llm_evidence": "通过规律的自适应组合生成机器人行为",
+      "canonical_evidence": "通过规律的自适应组合生成机器人行为",
+      "llm_tldr_en": "This paper investigates how adaptive composition of regularities in a differentiable network can enable generalization in robot behavior generation, demonstrated in a simulated task using the AICON framework.",
+      "llm_tldr_cn": "为理解机器人行为泛化机制，本文在AICON框架中探索了将规律（机器人-环境系统的可预测关系）自适应组合以实现泛化的思想。通过将规律表示为可微分网络中的交互过程，感官反馈驱动组合，梯度下降生成行为。简单仿真实验表明，自适应组合是泛化的关键，为设计通用自主系统提供了新思路。",
+      "llm_tldr": "为理解机器人行为泛化机制，本文在AICON框架中探索了将规律（机器人-环境系统的可预测关系）自适应组合以实现泛化的思想。通过将规律表示为可微分网络中的交互过程，感官反馈驱动组合，梯度下降生成行为。简单仿真实验表明，自适应组合是泛化的关键，为设计通用自主系统提供了新思路。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Motion control for robots",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.30719v1",
+      "source": "arxiv",
+      "title": "When are LLMs Sufficient Policy Optimizers for Sequential RL Tasks?",
+      "abstract": "We study when large language models (LLMs) can serve as effective black-box policy optimizers for reinforcement learning (RL) tasks, i.e., when can we replace classical RL algorithms with an LLM? We explore this question by introducing Prompted Policy Optimization (PromptPO), an iterative method that prompts an LLM with Python descriptions of the state space, action space, and reward function, then has it generate and refine executable policies based on rollout feedback. Across hard exploration environments, Meta-World robotics tasks, and several real-world control problems, PromptPO often matches or exceeds the performance of standard RL baselines while using substantially fewer environment interactions. To maximize expected return, and without further explicit prompting, the policies PromptPO outputs range from tuned proportional controllers or rule-based plans to policies that run planning algorithms like value iteration. Our results demonstrate that LLM-based policy optimization is sufficient when the LLM can leverage prior knowledge about the environment or optimization strategy. PromptPO underperforms standard RL baselines in MuJoCo domains. This demonstrates possible limitations of LLM-based policy optimization to settings that requiring fine-grained continuous control.",
+      "authors": [
+        "Stephane Hatgis-Kessell",
+        "Emma Brunskill"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-29T01:24:24+00:00",
+      "link": "https://arxiv.org/pdf/2605.30719v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "LLM-based policy optimizer for RL on robotics tasks",
+      "llm_evidence_cn": "基于大语言模型的策略优化器用于机器人强化学习任务",
+      "llm_evidence": "基于大语言模型的策略优化器用于机器人强化学习任务",
+      "canonical_evidence": "基于大语言模型的策略优化器用于机器人强化学习任务",
+      "llm_tldr_en": "Introduces PromptPO, using LLMs to generate and refine policies from state/action/reward descriptions, matching classical RL on robotics tasks with fewer interactions.",
+      "llm_tldr_cn": "探索大语言模型替代经典强化学习算法的条件，提出PromptPO方法，通过迭代提示LLM利用状态、动作与奖励函数描述生成可执行策略，在Meta-World等机器人任务上取得与标准RL相当的性能，且环境交互次数大幅减少。",
+      "llm_tldr": "探索大语言模型替代经典强化学习算法的条件，提出PromptPO方法，通过迭代提示LLM利用状态、动作与奖励函数描述生成可执行策略，在Meta-World等机器人任务上取得与标准RL相当的性能，且环境交互次数大幅减少。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2605.31388v1",
+      "source": "arxiv",
+      "title": "Constrained Multi-Objective Reinforcement Learning with Max-Min Criterion",
+      "abstract": "Multi-Objective Reinforcement Learning (MORL) extends standard RL by optimizing policies with respect to multiple, often conflicting, objectives. While max-min MORL has emerged as an effective approach for promoting fairness, its applicability remains limited, particularly when constraints must be incorporated. In this paper, we propose a MORL framework that integrates the max-min criterion with explicit constraint satisfaction. We establish a theoretical foundation for the proposed framework and validate the resulting algorithm through convergence analysis and experiments in tabular settings. We further demonstrate the practical relevance of our approach in simulated building thermal control, multi-objective locomotion control, and greenhouse-gas-emission-aware traffic management. Across these domains, our method effectively balances fairness and constraint satisfaction in multi-objective decision-making.",
+      "authors": [
+        "Giseung Park",
+        "Hyunyoung Nam",
+        "Woohyeon Byeon",
+        "Amir Leshem",
+        "Youngchul Sung"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-29T14:52:12+00:00",
+      "link": "https://arxiv.org/pdf/2605.31388v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "proposes a constrained multi-objective RL framework and demonstrates on multi-objective locomotion control",
+      "llm_evidence_cn": "提出约束多目标强化学习框架，并在多目标运动控制上验证",
+      "llm_evidence": "提出约束多目标强化学习框架，并在多目标运动控制上验证",
+      "canonical_evidence": "提出约束多目标强化学习框架，并在多目标运动控制上验证",
+      "llm_tldr_en": "This paper proposes a MORL framework integrating max-min fairness with explicit constraint satisfaction, providing theoretical convergence guarantees and validating on building thermal control, locomotion, and emission tasks, showing practical relevance for constrained multi-objective sequential decision problems.",
+      "llm_tldr_cn": "针对多目标强化学习难以兼顾公平性与约束的问题，本文提出结合最大最小准则和显式约束满足的框架，建立了理论收敛性并推导了算法。实验在建筑热控制、多目标运动控制和温室气体排放等任务中验证了方法的有效性。该框架为存在冲突目标且需满足约束的序贯决策问题提供了通用解决思路。",
+      "llm_tldr": "针对多目标强化学习难以兼顾公平性与约束的问题，本文提出结合最大最小准则和显式约束满足的框架，建立了理论收敛性并推导了算法。实验在建筑热控制、多目标运动控制和温室气体排放等任务中验证了方法的有效性。该框架为存在冲突目标且需满足约束的序贯决策问题提供了通用解决思路。",
+      "llm_tags": [
+        "query:rl-humanoid"
+      ],
+      "matched_query_tag": "query:rl-humanoid",
+      "matched_query_text": "Deep reinforcement learning methods",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2605.31273v1",
+      "source": "arxiv",
+      "title": "Survival Reinforcement Learning: Toward Scalable Self-Supervised RL",
+      "abstract": "While self-supervised Contrastive Reinforcement Learning (CRL) has shown remarkable depth-scaling capabilities, successfully using networks over 64 layers, scaled CRL still struggles with long-horizon goal-conditioned planning due to the uniformity-tolerance dilemma inherent in contrastive losses. We introduce Survival Reinforcement Learning (SRL), an online classification-based alternative that extends the survival value learning framework by maximizing the agent's dwell time at target goals. SRL bypasses the structural constraints of CRL and mitigates the \"bang-bang\" control solutions inherent to survival frameworks, which often induce undesirable behavior in complex dynamical systems. Evaluated across diverse robotic benchmarks, scaled SRL matches state-of-the-art CRL on manipulation tasks and outperforms it by 2x to 8x on stable, long-horizon locomotion tasks. Our results provide strong additional evidence that classification-based methods may serve as a key primitive in the broader effort to scale reinforcement learning.",
+      "authors": [
+        "Franki Nguimatsia-Tiofack",
+        "Fabian Schramm",
+        "Théotime Le Hellard",
+        "Justin Carpentier"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-29T13:05:08+00:00",
+      "link": "https://arxiv.org/pdf/2605.31273v1",
+      "tags": [
+        "keyword:rl-humanoid",
+        "query:rl-humanoid"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "survival RL for robotics benchmarks",
+      "llm_evidence_cn": "用于机器人基准的生存强化学习",
+      "llm_evidence": "用于机器人基准的生存强化学习",
+      "canonical_evidence": "用于机器人基准的生存强化学习",
+      "llm_tldr_en": "Introduces Survival RL, an online classification-based method that extends survival value learning to improve long-horizon goal-conditioned planning, evaluated on diverse robotic tasks.",
+      "llm_tldr_cn": "针对自监督对比强化学习在长时程目标条件规划中受限的问题，本文提出生存强化学习（SRL），通过最大化目标处停留时间来规避对比损失的结构限制。在多种机器人基准上，大规模SRL匹配或超越现有深度强化学习方法，尤其在需要长远规划的任务中表现出色，为可扩展的自监督RL提供了新方向。",
+      "llm_tldr": "针对自监督对比强化学习在长时程目标条件规划中受限的问题，本文提出生存强化学习（SRL），通过最大化目标处停留时间来规避对比损失的结构限制。在多种机器人基准上，大规模SRL匹配或超越现有深度强化学习方法，尤其在需要长远规划的任务中表现出色，为可扩展的自监督RL提供了新方向。",
+      "llm_tags": [
+        "query:rl-humanoid:composite"
+      ],
+      "matched_query_tag": "query:rl-humanoid:composite",
+      "matched_query_text": "Papers central to 查找强化学习及人行机器人运动控制相关论文, especially work that connects or combines: Find papers on reinforcement learning; Research on humanoid robots; Motion control for robots; Deep reinforcement learning methods; Humanoid locomotion and balance; Find papers on reinforcement learning for humanoid robot motion control; Literature review on deep reinforcement learning in robotics; Research on bipedal locomotion control using learning methods.",
+      "matched_requirement_id": "req-composite-rl-humanoid",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
